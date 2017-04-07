@@ -1,8 +1,7 @@
 ---
-#title: hello-world.Rmd
-author: Yang Song
-date: '2017-04-06'
-draft: yes
-title : Hello World
+title: "Hello World"
+author: "Yang Song"
+date: 2015-07-23T21:13:14-05:00
+categories: ["R"]
+tags: ["R Markdown", "plot", "regression"]
 ---
-
