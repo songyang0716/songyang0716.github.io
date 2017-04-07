@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Yang&#39;s Den</title>
-    <link>https://songyang0716.github.io/index.xml</link>
+    <link>/index.xml</link>
     <description>Recent content on Yang&#39;s Den</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 23 Jul 2017 21:13:14 -0500</lastBuildDate>
-    <atom:link href="https://songyang0716.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Hello World</title>
-      <link>https://songyang0716.github.io/2017/07/hello-world/</link>
+      <link>/2017/07/hello-world/</link>
       <pubDate>Sun, 23 Jul 2017 21:13:14 -0500</pubDate>
       
-      <guid>https://songyang0716.github.io/2017/07/hello-world/</guid>
+      <guid>/2017/07/hello-world/</guid>
       <description>&lt;!-- BLOGDOWN-HEAD --&gt;
 &lt;!-- /BLOGDOWN-HEAD --&gt;
 
@@ -26,10 +26,10 @@
     
     <item>
       <title>Hello R Markdown</title>
-      <link>https://songyang0716.github.io/2015/07/hello-r-markdown/</link>
+      <link>/2015/07/hello-r-markdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
       
-      <guid>https://songyang0716.github.io/2015/07/hello-r-markdown/</guid>
+      <guid>/2015/07/hello-r-markdown/</guid>
       <description>&lt;div id=&#34;r-markdown&#34; class=&#34;section level1&#34;&gt;
 &lt;h1&gt;R Markdown&lt;/h1&gt;
 &lt;p&gt;This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see &lt;a href=&#34;http://rmarkdown.rstudio.com&#34; class=&#34;uri&#34;&gt;http://rmarkdown.rstudio.com&lt;/a&gt;.&lt;/p&gt;
@@ -63,7 +63,7 @@ pie(
   init.angle = -50, border = NA
 )&lt;/code&gt;&lt;/pre&gt;
 &lt;div class=&#34;figure&#34;&gt;&lt;span id=&#34;fig:pie&#34;&gt;&lt;/span&gt;
-&lt;img src=&#34;https://songyang0716.github.io/post/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;/post/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png&#34; alt=&#34;A fancy pie chart.&#34; width=&#34;672&#34; /&gt;
 &lt;p class=&#34;caption&#34;&gt;
 Figure 1: A fancy pie chart.
 &lt;/p&gt;
@@ -74,14 +74,14 @@ Figure 1: A fancy pie chart.
     
     <item>
       <title>Welcome to Tranquilpeak 0.2.3-ALPHA</title>
-      <link>https://songyang0716.github.io/2015/06/welcome-to-tranquilpeak-0.2.3-alpha/</link>
+      <link>/2015/06/welcome-to-tranquilpeak-0.2.3-alpha/</link>
       <pubDate>Mon, 15 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://songyang0716.github.io/2015/06/welcome-to-tranquilpeak-0.2.3-alpha/</guid>
+      <guid>/2015/06/welcome-to-tranquilpeak-0.2.3-alpha/</guid>
       <description>&lt;p&gt;Tranquilpeak is a gorgeous responsive theme for Hugo blog framework. It has many features and integrated services to improve user experience.
 &lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;https://songyang0716.github.io/img/showcase.png&#34; alt=&#34;Tranquilpeak&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/img/showcase.png&#34; alt=&#34;Tranquilpeak&#34; /&gt;
 Tranquilpeak is a gorgeous responsive theme for Hugo blog framework. It has many features and integrated services to improve user experience.
 &lt;!-- toc --&gt;&lt;/p&gt;
 
@@ -91,7 +91,7 @@ Tranquilpeak is a gorgeous responsive theme for Hugo blog framework. It has many
 
 &lt;p&gt;A gorgeous responsive theme for Hugo blog framework&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://tranquilpeak.kakawait.com&#34;&gt;&lt;img src=&#34;https://songyang0716.github.io/img/showcase.png&#34; alt=&#34;Tranquilpeak&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://tranquilpeak.kakawait.com&#34;&gt;&lt;img src=&#34;/img/showcase.png&#34; alt=&#34;Tranquilpeak&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;alpha-beta-versions&#34;&gt;Alpha/Beta versions&lt;/h2&gt;
 
@@ -265,10 +265,10 @@ git clone https://github.com/kakawait/hugo-tranquilpeak-theme.git
     
     <item>
       <title>Elements showcase</title>
-      <link>https://songyang0716.github.io/2015/05/elements-showcase/</link>
+      <link>/2015/05/elements-showcase/</link>
       <pubDate>Thu, 28 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://songyang0716.github.io/2015/05/elements-showcase/</guid>
+      <guid>/2015/05/elements-showcase/</guid>
       <description>&lt;p&gt;Check out how Tranquilpeak theme display well HTML elements (title, paragraph, blockquote, table and more..). It&amp;rsquo;s simple and elegant.
 &lt;/p&gt;
 
@@ -359,10 +359,10 @@ sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula
     
     <item>
       <title>Cover image showcase</title>
-      <link>https://songyang0716.github.io/2015/05/cover-image-showcase/</link>
+      <link>/2015/05/cover-image-showcase/</link>
       <pubDate>Wed, 13 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://songyang0716.github.io/2015/05/cover-image-showcase/</guid>
+      <guid>/2015/05/cover-image-showcase/</guid>
       <description>&lt;p&gt;Tranquilpeak integrate a unique &amp;ldquo;cover image&amp;rdquo; feature. Open this post to see how this feature sublimate your article.
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget urna vitae velit eleifend interdum at ac nisi. In nec ligula lacus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed eu cursus erat, ut dapibus quam. Aliquam eleifend dolor vitae libero pharetra adipiscing. Etiam adipiscing dolor a quam tempor, eu convallis nulla varius. Aliquam sollicitudin risus a porta aliquam. Ut nec velit dolor. Proin eget leo lobortis, aliquam est sed, mollis mauris. Fusce vitae leo pretium massa accumsan condimentum. Fusce malesuada gravida lectus vel vulputate. Donec bibendum porta nibh ut aliquam.
@@ -377,10 +377,10 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eget urna vitae v
     
     <item>
       <title>highlighted code showcase</title>
-      <link>https://songyang0716.github.io/2015/03/highlighted-code-showcase/</link>
+      <link>/2015/03/highlighted-code-showcase/</link>
       <pubDate>Mon, 23 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://songyang0716.github.io/2015/03/highlighted-code-showcase/</guid>
+      <guid>/2015/03/highlighted-code-showcase/</guid>
       <description>&lt;p&gt;Tranquilpeak Hugo theme have its own theme to highlight source code. It&amp;rsquo;s based on GitHub theme: simple and elegant. Check out how it sublimate source codes.
 &lt;/p&gt;
 
@@ -2364,10 +2364,10 @@ func main() {
     
     <item>
       <title>Tags plugins showcase</title>
-      <link>https://songyang0716.github.io/2014/10/tags-plugins-showcase/</link>
+      <link>/2014/10/tags-plugins-showcase/</link>
       <pubDate>Wed, 29 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://songyang0716.github.io/2014/10/tags-plugins-showcase/</guid>
+      <guid>/2014/10/tags-plugins-showcase/</guid>
       <description>&lt;p&gt;This post is used to show how tag plugins are displayed. See &lt;a href=&#34;https://github.com/kakawait/hugo-tranquilpeak-theme/blob/master/docs/user.md#tags&#34;&gt;docs&lt;/a&gt; for more info.
 &lt;/p&gt;
 
@@ -3467,10 +3467,10 @@ li[lang=ru] {
     
     <item>
       <title>Hidden social section showcase</title>
-      <link>https://songyang0716.github.io/2014/08/hidden-social-section-showcase/</link>
+      <link>/2014/08/hidden-social-section-showcase/</link>
       <pubDate>Sun, 17 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://songyang0716.github.io/2014/08/hidden-social-section-showcase/</guid>
+      <guid>/2014/08/hidden-social-section-showcase/</guid>
       <description>&lt;p&gt;This post is used to show how a site looks if the social section is hidden.
 &lt;/p&gt;
 
@@ -3479,10 +3479,10 @@ li[lang=ru] {
     
     <item>
       <title>Hidden tag section showcase</title>
-      <link>https://songyang0716.github.io/2014/08/hidden-tag-section-showcase/</link>
+      <link>/2014/08/hidden-tag-section-showcase/</link>
       <pubDate>Sat, 16 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://songyang0716.github.io/2014/08/hidden-tag-section-showcase/</guid>
+      <guid>/2014/08/hidden-tag-section-showcase/</guid>
       <description>&lt;p&gt;This post is used to show how a site looks if the tag section is hidden.
 &lt;/p&gt;
 
@@ -3491,10 +3491,10 @@ li[lang=ru] {
     
     <item>
       <title>Hidden pagination showcase</title>
-      <link>https://songyang0716.github.io/2014/08/hidden-pagination-showcase/</link>
+      <link>/2014/08/hidden-pagination-showcase/</link>
       <pubDate>Fri, 15 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://songyang0716.github.io/2014/08/hidden-pagination-showcase/</guid>
+      <guid>/2014/08/hidden-pagination-showcase/</guid>
       <description>&lt;p&gt;This post is used to show how a site looks if the pagination is hidden.
 &lt;/p&gt;
 
@@ -3503,10 +3503,10 @@ li[lang=ru] {
     
     <item>
       <title>Video integrations showcase</title>
-      <link>https://songyang0716.github.io/2014/08/video-integrations-showcase/</link>
+      <link>/2014/08/video-integrations-showcase/</link>
       <pubDate>Sat, 09 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://songyang0716.github.io/2014/08/video-integrations-showcase/</guid>
+      <guid>/2014/08/video-integrations-showcase/</guid>
       <description>&lt;p&gt;Youtube and Vimeo videos are easily integrated thanks to tags plugins. Of course, you can add video other platforms like dailymotion.
 &lt;/p&gt;
 
@@ -3529,10 +3529,10 @@ li[lang=ru] {
     
     <item>
       <title>中文測試</title>
-      <link>https://songyang0716.github.io/2013/10/chinese-test/</link>
+      <link>/2013/10/chinese-test/</link>
       <pubDate>Wed, 02 Oct 2013 00:00:00 +0000</pubDate>
       
-      <guid>https://songyang0716.github.io/2013/10/chinese-test/</guid>
+      <guid>/2013/10/chinese-test/</guid>
       <description>&lt;p&gt;This is a chinese test post to show you how chinese is displayed.
 &lt;/p&gt;
 
@@ -3553,20 +3553,20 @@ li[lang=ru] {
     
     <item>
       <title>Image gallery showcase</title>
-      <link>https://songyang0716.github.io/2013/02/image-gallery-showcase/</link>
+      <link>/2013/02/image-gallery-showcase/</link>
       <pubDate>Mon, 18 Feb 2013 00:00:00 +0000</pubDate>
       
-      <guid>https://songyang0716.github.io/2013/02/image-gallery-showcase/</guid>
+      <guid>/2013/02/image-gallery-showcase/</guid>
       <description>&lt;p&gt;And here is the image gallery!
 &lt;/p&gt;</description>
     </item>
     
     <item>
       <title>日本語テスト</title>
-      <link>https://songyang0716.github.io/2013/01/japanese-test/</link>
+      <link>/2013/01/japanese-test/</link>
       <pubDate>Wed, 02 Jan 2013 00:00:00 +0000</pubDate>
       
-      <guid>https://songyang0716.github.io/2013/01/japanese-test/</guid>
+      <guid>/2013/01/japanese-test/</guid>
       <description>&lt;p&gt;This is a Japanese test post to show you how japanese is displayed.
 &lt;/p&gt;
 
