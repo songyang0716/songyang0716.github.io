@@ -1,0 +1,27 @@
+---
+title: A Review of Spelling Correction
+date: '2017-04-16'
+Author: Yang Song
+---
+
+A tutorial on Non-Word Spelling Correction and Real Word Spelling Correction
+<!--more-->
+
+
+
+
+### Background
+Recently, I am always interrupted by the annoying [Grammarly](https://www.grammarly.com/) ads. In the same time, I learned some use cases of this playform, one of the feature of this platform is to correct misspelled words, flags words in a document that may not be spelled correctly.
+
+
+### Methods
+
+
+### A baby version of Word Spelling Corrector
+
+
+
+
+
+
+

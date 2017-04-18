@@ -1,0 +1,10 @@
+---
+title: Empirical Bayes Estimation.Rmd
+author: Yang Song
+date: '2017-04-15'
+draft: yes
+---
+  
+Welcome to my Den !
+<!--more-->
+

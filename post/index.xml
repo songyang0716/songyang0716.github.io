@@ -6,8 +6,26 @@
     <description>Recent content in Posts on Yang&#39;s Den</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 14 Apr 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 16 Apr 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://songyang0716.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>A Review of Spelling Correction</title>
+      <link>https://songyang0716.github.io/2017/04/a-review-of-spelling-correction/</link>
+      <pubDate>Sun, 16 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://songyang0716.github.io/2017/04/a-review-of-spelling-correction/</guid>
+      <description>&lt;p&gt;A tutorial on Non-Word Spelling Correction and Real Word Spelling Correction
+&lt;/p&gt;
+
+&lt;h3 id=&#34;background&#34;&gt;Background&lt;/h3&gt;
+
+&lt;p&gt;Recently, I am always interrupted by the annoying &lt;a href=&#34;https://www.grammarly.com/&#34;&gt;Grammarly&lt;/a&gt; ads on Youtube. In the same time, I can&amp;rsquo;t help to watch some use cases of this playform, one of the feature is to correct misspelled words in your email, flags words in a document that may not be spelled correctly. Spelling correction is often considered from two perspectives. &lt;strong&gt;Non-word spelling correction&lt;/strong&gt; is the detection and correction of spelling errors that result in non-words (like &lt;em&gt;speling&lt;/em&gt; for &lt;em&gt;spelling&lt;/em&gt;, &lt;em&gt;corection&lt;/em&gt; for &lt;em&gt;correction&lt;/em&gt;). By contrast, &lt;strong&gt;real word spelling correction&lt;/strong&gt; is the task of detecting and correcting spelling errors even if they accidentally result in an actual word of English (I like to eat Cheescake Factory &lt;em&gt;desert&lt;/em&gt;: which is suppose to be &lt;em&gt;dessert&lt;/em&gt;)&lt;/p&gt;
+
+&lt;h3 id=&#34;methods&#34;&gt;Methods&lt;/h3&gt;
+
+&lt;h3 id=&#34;a-baby-version-of-word-spelling-corrector&#34;&gt;A baby version of Word Spelling Corrector&lt;/h3&gt;</description>
+    </item>
     
     <item>
       <title>Hello World</title>
@@ -24,7 +42,15 @@
 
 &lt;p&gt;I enjoy teaching to others for things that I understand, and also looking forward to learning from others. When I write code I usually do it in Python and R, but historically I spent some time in Java and C++. I also have fair amount of experiences using Tableau for visualization purpose.&lt;/p&gt;
 
-&lt;p&gt;I am now living in the San Francisco Bay Area, I am a big sports fan, especially into Soccer and Basketball, &lt;a href=&#34;https://en.wikipedia.org/wiki/Beijing_Sinobo_Guoan_F.C.&#34;&gt;Guoan&lt;/a&gt; is my most favorite team and one of my childhood dreams is to become a part of it. I was grew up in Beijing and attended a &lt;a href=&#34;http://www.bjroyalschool.com/&#34;&gt;rural boarding school&lt;/a&gt; since 6 years old.&lt;/p&gt;
+&lt;p&gt;I am now living in the San Francisco Bay Area, I am a big sports fan, especially into Soccer and Basketball, &lt;a href=&#34;https://en.wikipedia.org/wiki/Beijing_Sinobo_Guoan_F.C.&#34;&gt;Guoan&lt;/a&gt; is my most favorite team and one of my childhood dreams is to become a part of it.&lt;/p&gt;
+
+&lt;p&gt;Other random facts:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I was grew up in Beijing and attended a &lt;a href=&#34;http://www.bjroyalschool.com/&#34;&gt;rural boarding school&lt;/a&gt; since 6 years old&lt;/li&gt;
+&lt;li&gt;I started playing &lt;a href=&#34;https://en.wikipedia.org/wiki/FIFA_(video_game_series)&#34;&gt;FIFA soccer&lt;/a&gt; since 1999 and that&amp;rsquo;s my only favorite game&lt;/li&gt;
+&lt;li&gt;I have more than 20 pairs of &lt;a href=&#34;https://en.wikipedia.org/wiki/Air_Jordan&#34;&gt;Air Jordan Shoes&lt;/a&gt;, the first pair is the AJ XII&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&#34;about-this-blog&#34;&gt;About this blog&lt;/h3&gt;
 

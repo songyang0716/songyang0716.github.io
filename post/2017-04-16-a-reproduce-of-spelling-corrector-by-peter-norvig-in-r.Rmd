@@ -1,0 +1,7 @@
+---
+title: A Reproduce of Spelling Corrector by Peter Norvig in R
+author: Yang Song
+date: '2017-04-16'
+draft: yes
+---
+
