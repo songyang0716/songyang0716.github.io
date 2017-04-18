@@ -118,7 +118,7 @@ def edit2(word):
 
 &lt;h3 id=&#34;about-me&#34;&gt;About me&lt;/h3&gt;
 
-&lt;p&gt;My name is Yang Song, I am a Data Scientist at &lt;a href=&#34;http://www.homedepot.com/&#34;&gt;The Home Depot&lt;/a&gt; - mainly focus on the &lt;a href=&#34;http://www.homedepot.com/services/&#34;&gt;Home Services Program&lt;/a&gt;. In June 2015 I received my Master&amp;rsquo;s Degree in Statistics from &lt;a href=&#34;http://www.stanford.edu/&#34;&gt;Stanford University&lt;/a&gt;. My interests include statistics, data analysis, data visulization, machine learning and programming in R and Python.&lt;/p&gt;
+&lt;p&gt;My name is Yang Song, I am a Data Scientist at &lt;a href=&#34;http://www.homedepot.com/&#34;&gt;The Home Depot&lt;/a&gt; - mainly focus on the &lt;a href=&#34;http://www.homedepot.com/services/&#34;&gt;Home Services Program&lt;/a&gt; and &lt;a href=&#34;https://www.proreferral.com/&#34;&gt;Pro Referral Platform&lt;/a&gt;. In June 2015 I received my Master&amp;rsquo;s Degree in Statistics from &lt;a href=&#34;http://www.stanford.edu/&#34;&gt;Stanford University&lt;/a&gt;. My interests include statistics, data analysis, data visulization, machine learning and programming in R and Python.&lt;/p&gt;
 
 &lt;p&gt;I enjoy teaching to others for things that I understand, and also looking forward to learning from others. When I write code I usually do it in Python and R, but historically I spent some time in Java and C++. I also have fair amount of experiences using Tableau for visualization purpose.&lt;/p&gt;
 
