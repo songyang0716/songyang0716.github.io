@@ -20,11 +20,91 @@
 
 &lt;h3 id=&#34;background&#34;&gt;Background&lt;/h3&gt;
 
-&lt;p&gt;Recently, I am always interrupted by the annoying &lt;a href=&#34;https://www.grammarly.com/&#34;&gt;Grammarly&lt;/a&gt; ads on Youtube. In the same time, I can&amp;rsquo;t help to watch some use cases of this playform, one of the feature is to correct misspelled words in your email, flags words in a document that may not be spelled correctly. Spelling correction is often considered from two perspectives. &lt;strong&gt;Non-word spelling correction&lt;/strong&gt; is the detection and correction of spelling errors that result in non-words (like &lt;em&gt;speling&lt;/em&gt; for &lt;em&gt;spelling&lt;/em&gt;, &lt;em&gt;corection&lt;/em&gt; for &lt;em&gt;correction&lt;/em&gt;). By contrast, &lt;strong&gt;real word spelling correction&lt;/strong&gt; is the task of detecting and correcting spelling errors even if they accidentally result in an actual word of English (I like to eat Cheescake Factory &lt;em&gt;desert&lt;/em&gt;: which is suppose to be &lt;em&gt;dessert&lt;/em&gt;)&lt;/p&gt;
+&lt;p&gt;Recently, I am always interrupted by the annoying &lt;a href=&#34;https://www.grammarly.com/&#34;&gt;Grammarly&lt;/a&gt; ads on Youtube. In the same time, I can&amp;rsquo;t help to watch and astonished by the powerful features in this playform, one of the feature is to correct misspelled words in your email, flags words in a email that may not be spelled correctly. Then I decided to learn the ideas behind it. Spelling correction is often considered from two perspectives. &lt;strong&gt;Non-word spelling correction&lt;/strong&gt; is the detection and correction of spelling errors that result in non-words (like &lt;em&gt;speling&lt;/em&gt; for &lt;em&gt;spelling&lt;/em&gt;, &lt;em&gt;corection&lt;/em&gt; for &lt;em&gt;correction&lt;/em&gt;). By contrast, &lt;strong&gt;real word spelling correction&lt;/strong&gt; is the task of detecting and correcting spelling errors even if they accidentally result in an actual word of English (I like to eat Cheescake Factory &lt;em&gt;desert&lt;/em&gt;: which is suppose to be &lt;em&gt;dessert&lt;/em&gt;)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Non-word spelling errors&lt;/strong&gt; are detected by looking for any word not found in a dictionary. For example, the word &lt;em&gt;speling&lt;/em&gt; can&amp;rsquo;t be found in a dictionary. To correct non-word spelling errors we need to generate &lt;strong&gt;candidates&lt;/strong&gt; : real words that have a similar pattern to the error. Candidate corrections from the spelling error &lt;em&gt;speling&lt;/em&gt; might include &lt;em&gt;speeding&lt;/em&gt;, &lt;em&gt;spoiling&lt;/em&gt;, &lt;em&gt;spiking&lt;/em&gt;, &lt;em&gt;spending&lt;/em&gt; or &lt;em&gt;spelling&lt;/em&gt;. Then we rank the candidate using a &lt;strong&gt;distance metric&lt;/strong&gt; between the source and the surface error.  We want the word &lt;em&gt;spelling&lt;/em&gt; has the highest probability among all the candidates&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Real-word spelling error&lt;/strong&gt; detection is much more difficult, since any word in the input text could be an error. However, we could still find the candidate of all words that occurs in a sentence and rank all the combinations to find the users original intentional one&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&#34;methods&#34;&gt;Methods&lt;/h3&gt;
 
-&lt;h3 id=&#34;a-baby-version-of-word-spelling-corrector&#34;&gt;A baby version of Word Spelling Corrector&lt;/h3&gt;</description>
+&lt;h3 id=&#34;a-baby-version-of-word-spelling-corrector&#34;&gt;A baby version of Word Spelling Corrector&lt;/h3&gt;
+
+&lt;h4 id=&#34;python-version&#34;&gt;Python Version&lt;/h4&gt;
+
+
+  
+    
+  
+  
+    
+  
+  
+    
+  
+  
+    
+  
+
+
+&lt;figure class=&#34;highlight python&#34;&gt;
+  &lt;figcaption&gt;
+    
+      &lt;span&gt;spell.py&lt;/span&gt;&lt;a href=&#34;http://underscorejs.org/#compact&#34; target=&#34;_blank&#34; rel=&#34;external&#34;&gt;spell.py&lt;/a&gt;
+    
+  &lt;/figcaption&gt;
+  &lt;table&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td class=&#34;gutter&#34;&gt;
+          &lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;38&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;
+        &lt;/td&gt;
+        &lt;td class=&#34;code&#34;&gt;
+          &lt;pre class=&#34;python code-highlight&#34;&gt;import re
+from collections import Counter
+
+def words(text) : return re.findall(r&amp;#39;\w&amp;#43;&amp;#39;, text.lower())
+
+WORDS = Counter(words(open(&amp;#39;big.txt&amp;#39;).read()))
+
+def P(word, N = sum(WORDS.values())):
+    # Probability of the word
+    return WORDS[word] * 1.0 / N
+
+def correction(word):
+    # Return the maximum prob word
+    return max(candidate(word), key = P)
+
+def candidate(word):
+    return (known([word]) | known(edit1(word)) | known(edit2(word)) | {word})
+
+def known(words):
+    return set(w for w in words if w in WORDS)
+
+def edit1(word):
+    # All edit that are one edit away from word
+    letters = &amp;#34;abcdefghijklmnopqrstuvwxyz&amp;#34;
+    splits = [(word[:i], word[i:])for i in range(len(word) &amp;#43; 1)]
+    # Del
+    deletes = {L &amp;#43; R[1:] for L, R in splits if R}
+    # Insert
+    inserts = {L &amp;#43; letter &amp;#43; R for L, R in splits for letter in letters}
+    # Sub
+    sub = {L &amp;#43; letter &amp;#43; R[1:] for L, R in splits if R for letter in letters}
+    # Trans
+    trans = {L &amp;#43; R[1] &amp;#43; R[0] &amp;#43; R[2:] for L, R in splits if len(R) &amp;gt; 1}
+
+    return deletes | inserts | trans | sub | {word}
+
+def edit2(word):
+    return {e2 for e1 in edit1(word) for e2 in edit1(e1)}&lt;/pre&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/figure&gt;</description>
     </item>
     
     <item>
