@@ -233,6 +233,8 @@
               <p>A tutorial on Non-Word Spelling Correction and Real Word Spelling Correction
 </p>
 
+<p><em>Note : The ideas and contents of this tutorial is from Stanford Professor Dan Jurafsky</em></p>
+
 <h3 id="background">Background</h3>
 
 <p>Recently, I am always interrupted by the annoying <a href="https://www.grammarly.com/">Grammarly</a> ads on Youtube. In the same time, I can&rsquo;t help to watch and astonished by the powerful features in this playform, one of the feature is to correct misspelled words in your email, flags words in a email that may not be spelled correctly. Then I decided to learn the ideas behind it. Spelling correction is often considered from two perspectives. <strong>Non-word spelling correction</strong> is the detection and correction of spelling errors that result in non-words (like <em>speling</em> for <em>spelling</em>, <em>corection</em> for <em>correction</em>). By contrast, <strong>real word spelling correction</strong> is the task of detecting and correcting spelling errors even if they accidentally result in an actual word of English (I like to eat Cheescake Factory <em>desert</em>: which is suppose to be <em>dessert</em>)</p>
@@ -244,6 +246,10 @@
 </ul>
 
 <h3 id="methods">Methods</h3>
+
+<p>In order to learn the spelling correction, we need to introduce the <strong>noisy channel model</strong> first and show how to apply it to the task of detecing and correcting spelling errors.</p>
+
+<p>The intuition of the <strong>noisy channel</strong> model is to treat the misspelled word as if a correctly spelled word had been &ldquo;&ldquo;distorted&rdquo; by being passed through a noisy communication channel.</p>
 
 <h3 id="a-baby-version-of-word-spelling-corrector">A baby version of Word Spelling Corrector</h3>
 
@@ -582,142 +588,15 @@ def edit2(word):
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://songyang0716.github.io/2015/07/hello-r-markdown/">
-                <h3 class="media-heading">Hello R Markdown</h3>
+              <a class="link-unstyled" href="https://songyang0716.github.io/post/">
+                <h3 class="media-heading">Posts</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
-                  Jul 7, 2015
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://songyang0716.github.io/2015/06/welcome-to-tranquilpeak-0.2.3-alpha/">
-                <h3 class="media-heading">Welcome to Tranquilpeak 0.2.3-ALPHA</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Jun 6, 2015
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>Tranquilpeak is a gorgeous responsive theme for Hugo blog framework. It has many features and integrated services to improve user experience.
-</p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://songyang0716.github.io/2015/05/elements-showcase/">
-                <h3 class="media-heading">Elements showcase</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  May 5, 2015
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>Check out how Tranquilpeak theme display well HTML elements (title, paragraph, blockquote, table and more..). It&rsquo;s simple and elegant.
-</p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://songyang0716.github.io/2015/05/cover-image-showcase/">
-                <h3 class="media-heading">Cover image showcase</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  May 5, 2015
+                  Apr 4, 2017
                 </span>
               </span>
               <div class="media-content hide-xs font-merryweather"></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://songyang0716.github.io/2015/03/highlighted-code-showcase/">
-                <h3 class="media-heading">highlighted code showcase</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Mar 3, 2015
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>Tranquilpeak Hugo theme have its own theme to highlight source code. It&rsquo;s based on GitHub theme: simple and elegant. Check out how it sublimate source codes.
-</p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://songyang0716.github.io/2014/10/tags-plugins-showcase/">
-                <h3 class="media-heading">Tags plugins showcase</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Oct 10, 2014
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>This post is used to show how tag plugins are displayed. See <a href="https://github.com/kakawait/hugo-tranquilpeak-theme/blob/master/docs/user.md#tags">docs</a> for more info.
-</p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://songyang0716.github.io/2014/08/hidden-social-section-showcase/">
-                <h3 class="media-heading">Hidden social section showcase</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Aug 8, 2014
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>This post is used to show how a site looks if the social section is hidden.
-</p></div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="https://songyang0716.github.io/2014/08/hidden-tag-section-showcase/">
-                <h3 class="media-heading">Hidden tag section showcase</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Aug 8, 2014
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather"><p>This post is used to show how a site looks if the tag section is hidden.
-</p></div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -730,7 +609,7 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         16 posts found
+         3 posts found
       </p>
     </div>
   </div>
