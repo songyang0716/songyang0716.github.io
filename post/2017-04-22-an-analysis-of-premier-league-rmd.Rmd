@@ -1,0 +1,9 @@
+---
+title: An Analysis of Premier League.rmd
+author: Yang Song
+date: '2017-04-22'
+draft: yes
+thumbnailImagePosition: left
+thumbnailImage: "img/premier_league_logo.jpg"
+---
+

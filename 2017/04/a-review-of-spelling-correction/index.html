@@ -24,7 +24,7 @@
     <meta name="author" content="Yang Song">
     <meta name="keywords" content="">
 
-    <link rel="icon" href="https://songyang0716.github.io/favicon.png">
+    <link rel="icon" href="/favicon.png">
     
 
     
@@ -47,9 +47,11 @@
     
 
     
-      <meta property="og:image" content="https://songyang0716.github.io/img/cover_picture7.jpg">
+      <meta property="og:image" content="/img/cover_picture7.jpg">
     
 
+    
+      <meta property="og:image" content="/img/spelling_correction.jpg">
     
     
     
@@ -62,7 +64,7 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
     
     
-    <link rel="stylesheet" href="https://songyang0716.github.io/css/style-gwlo24d2hxipxk8bi1sxik0zhlpn9t7ebcmgp9kubmmcjfzlavuyhvbqumhn.min.css" />
+    <link rel="stylesheet" href="/css/style-gwlo24d2hxipxk8bi1sxik0zhlpn9t7ebcmgp9kubmmcjfzlavuyhvbqumhn.min.css" />
     
     
 
@@ -77,17 +79,17 @@
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="https://songyang0716.github.io/">Yang&#39;s Den</a>
+    <a class="header-title-link" href="/">Yang&#39;s Den</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="https://songyang0716.github.io/#about">
+         href="/#about">
     
     
     
       
-        <img class="header-picture" src="https://songyang0716.github.io/img/cover_picture7.jpg" alt="Author&#39;s picture" />
+        <img class="header-picture" src="/img/cover_picture7.jpg" alt="Author&#39;s picture" />
       
     
     </a>
@@ -98,8 +100,8 @@
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
-        <a href="https://songyang0716.github.io/#about">
-          <img class="sidebar-profile-picture" src="https://songyang0716.github.io/img/cover_picture7.jpg" alt="Author&#39;s picture" />
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="/img/cover_picture7.jpg" alt="Author&#39;s picture" />
         </a>
         <h4 class="sidebar-profile-name">Yang Song</h4>
         
@@ -111,7 +113,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://songyang0716.github.io/categories">
+      <a class="sidebar-button-link " href="/categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -121,7 +123,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://songyang0716.github.io/tags">
+      <a class="sidebar-button-link " href="/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -131,7 +133,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://songyang0716.github.io/archives">
+      <a class="sidebar-button-link " href="/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -141,7 +143,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://songyang0716.github.io/#about">
+      <a class="sidebar-button-link " href="/#about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -151,7 +153,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://songyang0716.github.io/">
+      <a class="sidebar-button-link " href="/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -164,7 +166,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://github.com/songyang0716" target="_blank">
+      <a class="sidebar-button-link " href="https://github.com/songyang0716">
     
       <i class="sidebar-button-icon fa fa-lg fa-github"></i>
       
@@ -174,7 +176,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://www.linkedin.com/in/yang-song-516350b2/" target="_blank">
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/yang-song-516350b2/">
     
       <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
       
@@ -187,7 +189,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://songyang0716.github.io/index.xml">
+      <a class="sidebar-button-link " href="/index.xml">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -249,7 +251,12 @@
 
 <p>In order to learn the spelling correction, we need to introduce the <strong>noisy channel model</strong> first and show how to apply it to the task of detecing and correcting spelling errors.</p>
 
-<p>The intuition of the <strong>noisy channel</strong> model is to treat the misspelled word as if a correctly spelled word had been &ldquo;&ldquo;distorted&rdquo; by being passed through a noisy communication channel.</p>
+<p>The intuition of the <strong>noisy channel</strong> model is to treat the misspelled word as if a correctly spelled word had been &ldquo;&ldquo;distorted&rdquo; by being passed through a noisy communication channel. This channel introduces &ldquo;noise&rdquo; in the form of substitution or other changes to the letters, making it hard to recognize the &ldquo;true&rdquo; word. Our goal is to build a model of the channel. Given this model, we then find the true word by passing every candidate word of the language through our model of the noisy channel and seeing which one comes the closest to the misspelled word.</p>
+
+<p>The noisy channel is a kind of <strong>Bayesian Inference</strong>. For each given misspelled word <em>x</em>, Our job is to find one correct spelled word <em>w</em> with the highest possibility.</p>
+
+<pre><code>                        w_hat = argmaxP(w|x)
+</code></pre>
 
 <h3 id="a-baby-version-of-word-spelling-corrector">A baby version of Word Spelling Corrector</h3>
 
@@ -280,7 +287,7 @@
     <tbody>
       <tr>
         <td class="gutter">
-          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre>
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre>
         </td>
         <td class="code">
           <pre class="python code-highlight">import re
@@ -308,15 +315,10 @@ def edit1(word):
     # All edit that are one edit away from word
     letters = &#34;abcdefghijklmnopqrstuvwxyz&#34;
     splits = [(word[:i], word[i:])for i in range(len(word) &#43; 1)]
-    # Del
     deletes = {L &#43; R[1:] for L, R in splits if R}
-    # Insert
     inserts = {L &#43; letter &#43; R for L, R in splits for letter in letters}
-    # Sub
     sub = {L &#43; letter &#43; R[1:] for L, R in splits if R for letter in letters}
-    # Trans
     trans = {L &#43; R[1] &#43; R[0] &#43; R[2:] for L, R in splits if len(R) &gt; 1}
-
     return deletes | inserts | trans | sub | {word}
 
 def edit2(word):
@@ -339,7 +341,7 @@ def edit2(word):
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2017/04/an-analysis-of-premier-league.rmd/" data-tooltip="An Analysis of Premier League.rmd">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -347,7 +349,7 @@ def edit2(word):
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://songyang0716.github.io/2017/04/hello-world/" data-tooltip="Hello World">
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2017/04/hello-world/" data-tooltip="Hello World">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -364,17 +366,17 @@ def edit2(word):
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fa-review-of-spelling-correction%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=%2f2017%2f04%2fa-review-of-spelling-correction%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fa-review-of-spelling-correction%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2f2017%2f04%2fa-review-of-spelling-correction%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fa-review-of-spelling-correction%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=%2f2017%2f04%2fa-review-of-spelling-correction%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -420,7 +422,7 @@ def edit2(word):
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2017/04/an-analysis-of-premier-league.rmd/" data-tooltip="An Analysis of Premier League.rmd">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -428,7 +430,7 @@ def edit2(word):
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://songyang0716.github.io/2017/04/hello-world/" data-tooltip="Hello World">
+            <a class="post-action-btn btn btn--default tooltip--top" href="/2017/04/hello-world/" data-tooltip="Hello World">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -445,17 +447,17 @@ def edit2(word):
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fa-review-of-spelling-correction%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=%2f2017%2f04%2fa-review-of-spelling-correction%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fa-review-of-spelling-correction%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2f2017%2f04%2fa-review-of-spelling-correction%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fa-review-of-spelling-correction%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=%2f2017%2f04%2fa-review-of-spelling-correction%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -482,17 +484,17 @@ def edit2(word):
       <div id="share-options-bar" class="share-options-bar" data-behavior="4">
   <ul class="share-options">
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fa-review-of-spelling-correction%2f">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2f2017%2f04%2fa-review-of-spelling-correction%2f">
         <i class="fa fa-google-plus"></i><span>Share on Google Plus</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fa-review-of-spelling-correction%2f">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2f2017%2f04%2fa-review-of-spelling-correction%2f">
         <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fa-review-of-spelling-correction%2f">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2f2017%2f04%2fa-review-of-spelling-correction%2f">
         <i class="fa fa-twitter"></i><span>Share on Twitter</span>
       </a>
     </li>
@@ -507,7 +509,7 @@ def edit2(word):
       <i class="fa fa-remove"></i>
     </div>
     
-      <img id="about-card-picture" src="https://songyang0716.github.io/img/cover_picture7.jpg" alt="Author&#39;s picture" />
+      <img id="about-card-picture" src="/img/cover_picture7.jpg" alt="Author&#39;s picture" />
     
     <h4 id="about-card-name">Yang Song</h4>
     
@@ -552,7 +554,24 @@ def edit2(word):
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://songyang0716.github.io/2017/04/a-review-of-spelling-correction/">
+              <a class="link-unstyled" href="/2017/04/an-analysis-of-premier-league.rmd/">
+                <h3 class="media-heading">An Analysis of Premier League.rmd</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Apr 4, 2017
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2017/04/a-review-of-spelling-correction/">
                 <h3 class="media-heading">A Review of Spelling Correction</h3>
               </a>
               <span class="media-meta">
@@ -570,7 +589,7 @@ def edit2(word):
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://songyang0716.github.io/2017/04/hello-world/">
+              <a class="link-unstyled" href="/2017/04/hello-world/">
                 <h3 class="media-heading">Hello World</h3>
               </a>
               <span class="media-meta">
@@ -588,7 +607,7 @@ def edit2(word):
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="https://songyang0716.github.io/post/">
+              <a class="link-unstyled" href="/post/">
                 <h3 class="media-heading">Posts</h3>
               </a>
               <span class="media-meta">
@@ -609,7 +628,7 @@ def edit2(word):
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         3 posts found
+         4 posts found
       </p>
     </div>
   </div>
@@ -617,7 +636,7 @@ def edit2(word):
     
   
     
-    <div id="cover" style="background-image:url('https://songyang0716.github.io/images/cover.jpg');"></div>
+    <div id="cover" style="background-image:url('/images/cover.jpg');"></div>
   
 
 
@@ -628,7 +647,7 @@ def edit2(word):
 <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
 
 
-<script src="https://songyang0716.github.io/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
+<script src="/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
 
 <script>
 $(document).ready(function() {
@@ -653,7 +672,7 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/songyang0716.github.io\/2017\/04\/a-review-of-spelling-correction\/';
+          this.page.url = '\/2017\/04\/a-review-of-spelling-correction\/';
           
             this.page.identifier = '\/2017\/04\/a-review-of-spelling-correction\/'
           
