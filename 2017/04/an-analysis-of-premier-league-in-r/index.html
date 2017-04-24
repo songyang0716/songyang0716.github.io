@@ -303,25 +303,40 @@ pl_team %&gt;%
 <ul>
 <li>Ranking of each club in the past 25 years</li>
 </ul>
-<pre class="r"><code>pl_rank &lt;- pl %&gt;% mutate(home_team_point = ifelse(hgoal &gt; vgoal, 3, ifelse(hgoal == 
-    vgoal, 1, 0))) %&gt;% mutate(away_team_point = ifelse(vgoal &gt; hgoal, 3, ifelse(hgoal == 
-    vgoal, 1, 0)))
-temp1 &lt;- pl_rank %&gt;% group_by(Season, home) %&gt;% summarize(home_points = sum(home_team_point))
-temp2 &lt;- pl_rank %&gt;% group_by(Season, visitor) %&gt;% summarize(away_points = sum(away_team_point))
+<pre class="r"><code>pl_rank &lt;- pl %&gt;%
+           mutate(home_team_point = ifelse(hgoal &gt; vgoal, 3, ifelse(hgoal == vgoal, 1, 0))) %&gt;%
+           mutate(away_team_point = ifelse(vgoal &gt; hgoal, 3, ifelse(hgoal == vgoal, 1, 0)))
+temp1 &lt;-  pl_rank %&gt;%
+           group_by(Season, home) %&gt;%
+           summarize(home_points = sum(home_team_point))
+temp2 &lt;- pl_rank %&gt;%
+          group_by(Season, visitor) %&gt;%
+          summarize(away_points = sum(away_team_point))
 temp1$away_points &lt;- temp2$away_points
-pl_rank &lt;- temp1 %&gt;% mutate(total_points = home_points + away_points)
+pl_rank &lt;- temp1 %&gt;%
+           mutate(total_points = home_points + away_points)
 
-pl_rank &lt;- pl_rank %&gt;% rename(Team = home) %&gt;% group_by(Season) %&gt;% arrange(-total_points) %&gt;% 
-    mutate(ranking = row_number())
+pl_rank &lt;- pl_rank %&gt;%
+           rename(Team = home) %&gt;%
+           group_by(Season) %&gt;%
+           arrange(-total_points) %&gt;%
+           mutate(ranking = row_number())
 
 # We only include some famous football clubs in the visulization
 
-pl_rank %&gt;% filter(Team %in% c(&quot;Arsenal&quot;, &quot;Chelsea&quot;, &quot;Everton&quot;, &quot;Liverpool&quot;, 
-    &quot;Manchester City&quot;, &quot;Manchester\n                         United&quot;, &quot;Tottenham Hotspur&quot;)) %&gt;% 
-    ggplot(aes(x = Season, y = ranking, group = Team, colour = Team)) + geom_line(size = 1) + 
-    geom_point() + scale_x_continuous(breaks = seq(1992, 2015, 1)) + theme(axis.text.x = element_text(angle = 45, 
-    hjust = 1)) + xlab(&quot;Year&quot;) + ylab(&quot;Standing&quot;) + ggtitle(&quot;Top Team Standing&quot;) + 
-    theme(legend.position = &quot;bottom&quot;)</code></pre>
+pl_rank  %&gt;%
+    filter(Team %in% c(&#39;Arsenal&#39;,&#39;Chelsea&#39;,&#39;Everton&#39;,
+                        &#39;Liverpool&#39;,&#39;Manchester City&#39;,&#39;Manchester
+                         United&#39;,&#39;Tottenham Hotspur&#39;)) %&gt;%
+    ggplot(aes(x = Season, y = ranking, group = Team, colour = Team)) +
+    geom_line(size = 1) +
+    geom_point() +
+    scale_x_continuous(breaks=seq(1992,2015,1)) +
+    theme(axis.text.x=element_text(angle=45, hjust=1)) +
+    xlab(&#39;Year&#39;) +
+    ylab(&#39;Standing&#39;) +
+    ggtitle(&#39;Top Team Standing&#39;) +
+    theme(legend.position=&quot;bottom&quot;)</code></pre>
 <p><img src="https://songyang0716.github.io/post/premier_league_analysis_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <ul>
 <li>Which club has the longest consecutive winning / losing runs</li>

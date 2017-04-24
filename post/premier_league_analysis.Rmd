@@ -21,7 +21,6 @@ The **Premier League** is an English professional league for men's association f
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
 ## Setup
 
 *The soccer data is collected and prepared by James P. Curley (2016). engsoccerdata: English Soccer Data*
@@ -80,7 +79,7 @@ Since the start of the Premier League, seven clubs have never faced the drop: Th
 
 * Ranking of each club in the past 25 years
 
-```{r, warning = FALSE, message = FALSE, tidy = TRUE}
+```{r, warning = FALSE, message = FALSE}
 pl_rank <- pl %>%
            mutate(home_team_point = ifelse(hgoal > vgoal, 3, ifelse(hgoal == vgoal, 1, 0))) %>%
            mutate(away_team_point = ifelse(vgoal > hgoal, 3, ifelse(hgoal == vgoal, 1, 0)))
