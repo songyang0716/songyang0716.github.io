@@ -81,6 +81,41 @@ Since the start of the Premier League, seven clubs have never faced the drop: Th
 * Ranking of each club in the past 25 years
 
 ```{r, warning = FALSE, message = FALSE, tidy = TRUE}
+pl_rank <- pl %>%
+           mutate(home_team_point = ifelse(hgoal > vgoal, 3, ifelse(hgoal == vgoal, 1, 0))) %>%
+           mutate(away_team_point = ifelse(vgoal > hgoal, 3, ifelse(hgoal == vgoal, 1, 0)))
+temp1 <-  pl_rank %>%
+           group_by(Season, home) %>%
+           summarize(home_points = sum(home_team_point))
+temp2 <- pl_rank %>%
+          group_by(Season, visitor) %>%
+          summarize(away_points = sum(away_team_point))
+temp1$away_points <- temp2$away_points
+pl_rank <- temp1 %>%
+           mutate(total_points = home_points + away_points)
+
+pl_rank <- pl_rank %>%
+           rename(Team = home) %>%
+           group_by(Season) %>%
+           arrange(-total_points) %>%
+           mutate(ranking = row_number())
+
+# We only include some famous football clubs in the visulization
+
+pl_rank  %>%
+    filter(Team %in% c('Arsenal','Chelsea','Everton',
+                        'Liverpool','Manchester City','Manchester
+                         United','Tottenham Hotspur')) %>%
+    ggplot(aes(x = Season, y = ranking, group = Team, colour = Team)) +
+    geom_line(size = 1) +
+    geom_point() +
+    scale_x_continuous(breaks=seq(1992,2015,1)) +
+    theme(axis.text.x=element_text(angle=45, hjust=1)) +
+    xlab('Year') +
+    ylab('Standing') +
+    ggtitle('Top Team Standing') +
+    theme(legend.position="bottom")
+
 
 ```
 

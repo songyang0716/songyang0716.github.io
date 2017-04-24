@@ -87,8 +87,30 @@ pl_team %&amp;gt;%
 &lt;p&gt;&lt;img src=&#34;https://songyang0716.github.io/post/premier_league_analysis_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Since the start of the Premier League, seven clubs have never faced the drop: They are &lt;strong&gt;Arsenal, Aston Villa, Chelsea, Everton, Liverpool, Man Utd and Hotspur&lt;/strong&gt;. Hopefully, we could see Newcastle United in the next season !&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Ranking of each club in the past 25 years&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Which club has the longest consecutive winning / losing runs&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;Ranking of each club in the past 25 years&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pl_rank &amp;lt;- pl %&amp;gt;% mutate(home_team_point = ifelse(hgoal &amp;gt; vgoal, 3, ifelse(hgoal == 
+    vgoal, 1, 0))) %&amp;gt;% mutate(away_team_point = ifelse(vgoal &amp;gt; hgoal, 3, ifelse(hgoal == 
+    vgoal, 1, 0)))
+temp1 &amp;lt;- pl_rank %&amp;gt;% group_by(Season, home) %&amp;gt;% summarize(home_points = sum(home_team_point))
+temp2 &amp;lt;- pl_rank %&amp;gt;% group_by(Season, visitor) %&amp;gt;% summarize(away_points = sum(away_team_point))
+temp1$away_points &amp;lt;- temp2$away_points
+pl_rank &amp;lt;- temp1 %&amp;gt;% mutate(total_points = home_points + away_points)
+
+pl_rank &amp;lt;- pl_rank %&amp;gt;% rename(Team = home) %&amp;gt;% group_by(Season) %&amp;gt;% arrange(-total_points) %&amp;gt;% 
+    mutate(ranking = row_number())
+
+# We only include some famous football clubs in the visulization
+
+pl_rank %&amp;gt;% filter(Team %in% c(&amp;quot;Arsenal&amp;quot;, &amp;quot;Chelsea&amp;quot;, &amp;quot;Everton&amp;quot;, &amp;quot;Liverpool&amp;quot;, 
+    &amp;quot;Manchester City&amp;quot;, &amp;quot;Manchester\n                         United&amp;quot;, &amp;quot;Tottenham Hotspur&amp;quot;)) %&amp;gt;% 
+    ggplot(aes(x = Season, y = ranking, group = Team, colour = Team)) + geom_line(size = 1) + 
+    geom_point() + scale_x_continuous(breaks = seq(1992, 2015, 1)) + theme(axis.text.x = element_text(angle = 45, 
+    hjust = 1)) + xlab(&amp;quot;Year&amp;quot;) + ylab(&amp;quot;Standing&amp;quot;) + ggtitle(&amp;quot;Top Team Standing&amp;quot;) + 
+    theme(legend.position = &amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://songyang0716.github.io/post/premier_league_analysis_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Which club has the longest consecutive winning / losing runs&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
