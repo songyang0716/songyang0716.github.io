@@ -21,6 +21,7 @@ The **Premier League** is an English professional league for men's association f
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
 ## Setup
 
 *The soccer data is collected and prepared by James P. Curley (2016). engsoccerdata: English Soccer Data*
@@ -103,8 +104,8 @@ pl_rank <- pl_rank %>%
 
 pl_rank  %>%
     filter(Team %in% c('Arsenal','Chelsea','Everton',
-                        'Liverpool','Manchester City','Manchester
-                         United','Tottenham Hotspur')) %>%
+                        'Liverpool','Manchester City','Manchester United',
+                        'Tottenham Hotspur', 'Leicester City')) %>%
     ggplot(aes(x = Season, y = ranking, group = Team, colour = Team)) +
     geom_line(size = 1) +
     geom_point() +
