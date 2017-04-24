@@ -20,29 +20,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.19">
-    <title>Hello R Markdown</title>
+    <title>An Analysis of Premier League in R</title>
     <meta name="author" content="Yang Song">
     <meta name="keywords" content="">
 
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="https://songyang0716.github.io/favicon.png">
     
 
     
-    <meta name="description" content="R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.">
-    <meta property="og:description" content="R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.">
+    <meta name="description" content="This is a review and discussion on my Machine Learning class project - Mining the Stack Overflow Dataset.">
+    <meta property="og:description" content="This is a review and discussion on my Machine Learning class project - Mining the Stack Overflow Dataset.">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Hello R Markdown">
-    <meta property="og:url" content="/2015/07/hello-r-markdown/">
+    <meta property="og:title" content="An Analysis of Premier League in R">
+    <meta property="og:url" content="/2017/04/an-analysis-of-premier-league-in-r/">
     <meta property="og:site_name" content="Yang&#39;s Den">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Yang&#39;s Den">
-    <meta name="twitter:description" content="R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.">
+    <meta name="twitter:description" content="This is a review and discussion on my Machine Learning class project - Mining the Stack Overflow Dataset.">
     
     
 
@@ -50,9 +44,11 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
     
 
     
-      <meta property="og:image" content="/img/cover_picture7.jpg">
+      <meta property="og:image" content="https://songyang0716.github.io/img/cover_picture7.jpg">
     
 
+    
+      <meta property="og:image" content="https://songyang0716.github.io/img/premier_league_logo.jpg">
     
     
     
@@ -65,7 +61,7 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" />
     
     
-    <link rel="stylesheet" href="/css/style-gwlo24d2hxipxk8bi1sxik0zhlpn9t7ebcmgp9kubmmcjfzlavuyhvbqumhn.min.css" />
+    <link rel="stylesheet" href="https://songyang0716.github.io/css/style-gwlo24d2hxipxk8bi1sxik0zhlpn9t7ebcmgp9kubmmcjfzlavuyhvbqumhn.min.css" />
     
     
 
@@ -80,17 +76,17 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="/">Yang&#39;s Den</a>
+    <a class="header-title-link" href="https://songyang0716.github.io/">Yang&#39;s Den</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="/#about">
+         href="https://songyang0716.github.io/#about">
     
     
     
       
-        <img class="header-picture" src="/img/cover_picture7.jpg" alt="Author&#39;s picture" />
+        <img class="header-picture" src="https://songyang0716.github.io/img/cover_picture7.jpg" alt="Author&#39;s picture" />
       
     
     </a>
@@ -101,8 +97,8 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
   <div class="sidebar-container">
     
       <div class="sidebar-profile">
-        <a href="/#about">
-          <img class="sidebar-profile-picture" src="/img/cover_picture7.jpg" alt="Author&#39;s picture" />
+        <a href="https://songyang0716.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://songyang0716.github.io/img/cover_picture7.jpg" alt="Author&#39;s picture" />
         </a>
         <h4 class="sidebar-profile-name">Yang Song</h4>
         
@@ -114,7 +110,7 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/categories">
+      <a class="sidebar-button-link " href="https://songyang0716.github.io/categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -124,7 +120,7 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/tags">
+      <a class="sidebar-button-link " href="https://songyang0716.github.io/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -134,7 +130,7 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/archives">
+      <a class="sidebar-button-link " href="https://songyang0716.github.io/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -144,7 +140,7 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/#about">
+      <a class="sidebar-button-link " href="https://songyang0716.github.io/#about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -154,7 +150,7 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/">
+      <a class="sidebar-button-link " href="https://songyang0716.github.io/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -167,7 +163,7 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://github.com/songyang0716">
+      <a class="sidebar-button-link " href="https://github.com/songyang0716" target="_blank">
     
       <i class="sidebar-button-icon fa fa-lg fa-github"></i>
       
@@ -177,7 +173,7 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="https://www.linkedin.com/in/yang-song-516350b2/">
+      <a class="sidebar-button-link " href="https://www.linkedin.com/in/yang-song-516350b2/" target="_blank">
     
       <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
       
@@ -190,7 +186,7 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="/index.xml">
+      <a class="sidebar-button-link " href="https://songyang0716.github.io/index.xml">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -214,26 +210,18 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      Hello R Markdown
+      An Analysis of Premier League in R
     </h1>
   
   <div class="postShorten-meta post-meta">
   
-    <time itemprop="datePublished" datetime="2015-07-23T21:13:14-05:00">
+    <time itemprop="datePublished" datetime="2017-04-22T00:00:00Z">
       
-  July 23, 2015
+  April 22, 2017
 
     </time>
   
   
-  
-  
-    <span>in</span>
-    
-      <a class="category-link" href="/categories/r">R</a>
-    
-  
-
 
 </div>
 
@@ -241,44 +229,88 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <div id="r-markdown" class="section level1">
-<h1>R Markdown</h1>
-<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <a href="http://rmarkdown.rstudio.com" class="uri">http://rmarkdown.rstudio.com</a>.</p>
-<p>You can embed an R code chunk like this:</p>
-<pre class="r"><code>summary(cars)
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-fit &lt;- lm(dist ~ speed, data = cars)
-fit
-## 
-## Call:
-## lm(formula = dist ~ speed, data = cars)
-## 
-## Coefficients:
-## (Intercept)        speed  
-##     -17.579        3.932</code></pre>
+              <p>The <strong>Premier League</strong> is an English professional league for men’s association football clubs. At the top of the English football league system, it is the country’s primary football competition. Contested by 20 clubs, it operates on a system of promotion and relegation with the English Football League. Premier League season runs from August to May, Teams play 38 matches each, totalling 380 matches in the season. I have to say that it’s my favorite league in the world, I do really enjoy the high competitiveness of Premier League, Also in the video game, it’s a wise choice to start your career mode using a Premier League team due to the high transfer budget.</p>
+<!--more-->
+<div id="setup" class="section level2">
+<h2>Setup</h2>
+<p><em>The soccer data is collected and prepared by James P. Curley (2016). engsoccerdata: English Soccer Data</em></p>
+<div id="import-and-clean-the-data" class="section level3">
+<h3>Import and clean the data</h3>
+<pre class="r"><code>library(devtools)
+# install_github(&#39;jalapic/engsoccerdata&#39;, username = &#39;jalapic&#39;)
+library(engsoccerdata)
+library(dplyr)
+library(tidyr)
+library(tidyverse)
+library(ggplot2)
+
+df &lt;- as_tibble(england)
+
+# The dataset includes results of all top 4 tier soccer games in England
+# since 1888, In our analysis, We are only interested in the Premier League
+# which started in 1992.
+df$date &lt;- as.Date(df$Date, format = &quot;%Y-%m-%d&quot;)
+pl &lt;- df %&gt;% filter(tier == 1, Season &gt;= 1992)</code></pre>
 </div>
-<div id="including-plots" class="section level1">
-<h1>Including Plots</h1>
-<p>You can also embed plots. See Figure <a href="#fig:pie">1</a> for example:</p>
-<pre class="r"><code>par(mar = c(0, 1, 0, 1))
-pie(
-  c(280, 60, 20),
-  c(&#39;Sky&#39;, &#39;Sunny side of pyramid&#39;, &#39;Shady side of pyramid&#39;),
-  col = c(&#39;#0292D8&#39;, &#39;#F7EA39&#39;, &#39;#C4B632&#39;),
-  init.angle = -50, border = NA
-)</code></pre>
-<div class="figure"><span id="fig:pie"></span>
-<img src="/post/2015-07-23-r-rmarkdown_files/figure-html/pie-1.png" alt="A fancy pie chart." width="672" />
-<p class="caption">
-Figure 1: A fancy pie chart.
-</p>
+<div id="visulizating-some-interesting-facts" class="section level3">
+<h3>Visulizating some interesting facts</h3>
+<ul>
+<li>The followings are the 47 teams that ever played in Premier League for at least one season</li>
+</ul>
+<pre class="r"><code>sort(unique(pl$home))</code></pre>
+<pre><code>##  [1] &quot;AFC Bournemouth&quot;         &quot;Arsenal&quot;                
+##  [3] &quot;Aston Villa&quot;             &quot;Barnsley&quot;               
+##  [5] &quot;Birmingham City&quot;         &quot;Blackburn Rovers&quot;       
+##  [7] &quot;Blackpool&quot;               &quot;Bolton Wanderers&quot;       
+##  [9] &quot;Bradford City&quot;           &quot;Burnley&quot;                
+## [11] &quot;Cardiff City&quot;            &quot;Charlton Athletic&quot;      
+## [13] &quot;Chelsea&quot;                 &quot;Coventry City&quot;          
+## [15] &quot;Crystal Palace&quot;          &quot;Derby County&quot;           
+## [17] &quot;Everton&quot;                 &quot;Fulham&quot;                 
+## [19] &quot;Hull City&quot;               &quot;Ipswich Town&quot;           
+## [21] &quot;Leeds United&quot;            &quot;Leicester City&quot;         
+## [23] &quot;Liverpool&quot;               &quot;Manchester City&quot;        
+## [25] &quot;Manchester United&quot;       &quot;Middlesbrough&quot;          
+## [27] &quot;Newcastle United&quot;        &quot;Norwich City&quot;           
+## [29] &quot;Nottingham Forest&quot;       &quot;Oldham Athletic&quot;        
+## [31] &quot;Portsmouth&quot;              &quot;Queens Park Rangers&quot;    
+## [33] &quot;Reading&quot;                 &quot;Sheffield United&quot;       
+## [35] &quot;Sheffield Wednesday&quot;     &quot;Southampton&quot;            
+## [37] &quot;Stoke City&quot;              &quot;Sunderland&quot;             
+## [39] &quot;Swansea City&quot;            &quot;Swindon Town&quot;           
+## [41] &quot;Tottenham Hotspur&quot;       &quot;Watford&quot;                
+## [43] &quot;West Bromwich Albion&quot;    &quot;West Ham United&quot;        
+## [45] &quot;Wigan Athletic&quot;          &quot;Wimbledon&quot;              
+## [47] &quot;Wolverhampton Wanderers&quot;</code></pre>
+<ul>
+<li>which clubs have never been relegated from the league ?</li>
+</ul>
+<pre class="r"><code>pl_team &lt;- pl %&gt;%
+       group_by(home) %&gt;%
+       summarize(appearence = n_distinct(Season))
+
+pl_team %&gt;%
+  mutate(home = reorder(home, appearence)) %&gt;%
+  top_n(15) %&gt;%
+  ggplot(aes(x = reorder(home, -appearence), y = appearence)) +
+  geom_bar(stat = &#39;identity&#39;, fill = &#39;lightblue&#39;, color = &#39;black&#39;) +
+  theme(axis.text.x=element_text(angle=45, hjust=1)) +
+  xlab(&#39;Club&#39;) +
+  ylab(&#39;Season&#39;) +
+  ggtitle(&#39;Total Seasons in Premier League&#39;)</code></pre>
+<p><img src="https://songyang0716.github.io/post/premier_league_analysis_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Since the start of the Premier League, seven clubs have never faced the drop: They are <strong>Arsenal, Aston Villa, Chelsea, Everton, Liverpool, Man Utd and Hotspur</strong>. Hopefully, we could see Newcastle United in the next season !</p>
+<ul>
+<li><p>Ranking of each club in the past 25 years</p></li>
+<li><p>Which club has the longest consecutive winning / losing runs</p></li>
+</ul>
 </div>
+</div>
+<div id="analysis" class="section level2">
+<h2>Analysis</h2>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
 </div>
 
               
@@ -287,20 +319,6 @@ Figure 1: A fancy pie chart.
           <div id="post-footer" class="post-footer main-content-wrap">
             
               
-                
-                
-                  <div class="post-footer-tags">
-                    <span class="text-color-light text-small">TAGGED IN</span><br/>
-                    
-  <a class="tag tag--primary tag--small" href="//tags/r-markdown/">R Markdown</a>
-
-  <a class="tag tag--primary tag--small" href="//tags/plot/">plot</a>
-
-  <a class="tag tag--primary tag--small" href="//tags/regression/">regression</a>
-
-                  </div>
-                
-              
             
             <div class="post-actions-wrap">
   <nav>
@@ -308,7 +326,7 @@ Figure 1: A fancy pie chart.
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="/2017/04/hello-world/" data-tooltip="Hello World">
+            <a class="post-action-btn btn btn--disabled">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -316,7 +334,7 @@ Figure 1: A fancy pie chart.
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://songyang0716.github.io/2017/04/a-review-of-spelling-correction/" data-tooltip="A Review of Spelling Correction">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -333,17 +351,17 @@ Figure 1: A fancy pie chart.
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=%2f2015%2f07%2fhello-r-markdown%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fan-analysis-of-premier-league-in-r%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2f2015%2f07%2fhello-r-markdown%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fan-analysis-of-premier-league-in-r%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=%2f2015%2f07%2fhello-r-markdown%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fan-analysis-of-premier-league-in-r%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -389,7 +407,7 @@ Figure 1: A fancy pie chart.
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="/2017/04/hello-world/" data-tooltip="Hello World">
+            <a class="post-action-btn btn btn--disabled">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -397,7 +415,7 @@ Figure 1: A fancy pie chart.
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--disabled">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://songyang0716.github.io/2017/04/a-review-of-spelling-correction/" data-tooltip="A Review of Spelling Correction">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -414,17 +432,17 @@ Figure 1: A fancy pie chart.
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=%2f2015%2f07%2fhello-r-markdown%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fan-analysis-of-premier-league-in-r%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2f2015%2f07%2fhello-r-markdown%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fan-analysis-of-premier-league-in-r%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=%2f2015%2f07%2fhello-r-markdown%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fan-analysis-of-premier-league-in-r%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -451,17 +469,17 @@ Figure 1: A fancy pie chart.
       <div id="share-options-bar" class="share-options-bar" data-behavior="4">
   <ul class="share-options">
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2f2015%2f07%2fhello-r-markdown%2f">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fan-analysis-of-premier-league-in-r%2f">
         <i class="fa fa-google-plus"></i><span>Share on Google Plus</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2f2015%2f07%2fhello-r-markdown%2f">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fan-analysis-of-premier-league-in-r%2f">
         <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2f2015%2f07%2fhello-r-markdown%2f">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fan-analysis-of-premier-league-in-r%2f">
         <i class="fa fa-twitter"></i><span>Share on Twitter</span>
       </a>
     </li>
@@ -476,7 +494,7 @@ Figure 1: A fancy pie chart.
       <i class="fa fa-remove"></i>
     </div>
     
-      <img id="about-card-picture" src="/img/cover_picture7.jpg" alt="Author&#39;s picture" />
+      <img id="about-card-picture" src="https://songyang0716.github.io/img/cover_picture7.jpg" alt="Author&#39;s picture" />
     
     <h4 id="about-card-name">Yang Song</h4>
     
@@ -521,15 +539,15 @@ Figure 1: A fancy pie chart.
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="/2017/04/an-analysis-of-premier-league.rmd/">
-                <h3 class="media-heading">An Analysis of Premier League.rmd</h3>
+              <a class="link-unstyled" href="https://songyang0716.github.io/2017/04/an-analysis-of-premier-league-in-r/">
+                <h3 class="media-heading">An Analysis of Premier League in R</h3>
               </a>
               <span class="media-meta">
                 <span class="media-date text-small">
                   Apr 4, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather"></div>
+              <div class="media-content hide-xs font-merryweather">The Premier League is an English professional league for men’s association football clubs. At the top of the English football league system, it is the country’s primary football competition. Contested by 20 clubs, it operates on a system of promotion and relegation with the English Football League. Premier League season runs from August to May, Teams play 38 matches each, totalling 380 matches in the season. I have to say that it’s my favorite league in the world, I do really enjoy the high competitiveness of Premier League, Also in the video game, it’s a wise choice to start your career mode using a Premier League team due to the high transfer budget.</div>
             </div>
             <div style="clear:both;"></div>
             <hr>
@@ -538,7 +556,7 @@ Figure 1: A fancy pie chart.
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="/2017/04/a-review-of-spelling-correction/">
+              <a class="link-unstyled" href="https://songyang0716.github.io/2017/04/a-review-of-spelling-correction/">
                 <h3 class="media-heading">A Review of Spelling Correction</h3>
               </a>
               <span class="media-meta">
@@ -556,7 +574,7 @@ Figure 1: A fancy pie chart.
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="/2017/04/hello-world/">
+              <a class="link-unstyled" href="https://songyang0716.github.io/2017/04/hello-world/">
                 <h3 class="media-heading">Hello World</h3>
               </a>
               <span class="media-meta">
@@ -574,26 +592,7 @@ Figure 1: A fancy pie chart.
           <div class="media">
             
             <div class="media-body">
-              <a class="link-unstyled" href="/2015/07/hello-r-markdown/">
-                <h3 class="media-heading">Hello R Markdown</h3>
-              </a>
-              <span class="media-meta">
-                <span class="media-date text-small">
-                  Jul 7, 2015
-                </span>
-              </span>
-              <div class="media-content hide-xs font-merryweather">R Markdown This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
-You can embed an R code chunk like this:
-summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</div>
-            </div>
-            <div style="clear:both;"></div>
-            <hr>
-          </div>
-        
-          <div class="media">
-            
-            <div class="media-body">
-              <a class="link-unstyled" href="/post/">
+              <a class="link-unstyled" href="https://songyang0716.github.io/post/">
                 <h3 class="media-heading">Posts</h3>
               </a>
               <span class="media-meta">
@@ -614,7 +613,7 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         5 posts found
+         4 posts found
       </p>
     </div>
   </div>
@@ -622,7 +621,7 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
     
   
     
-    <div id="cover" style="background-image:url('/images/cover.jpg');"></div>
+    <div id="cover" style="background-image:url('https://songyang0716.github.io/images/cover.jpg');"></div>
   
 
 
@@ -633,7 +632,7 @@ summary(cars) ## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 2
 <script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.js"></script>
 
 
-<script src="/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
+<script src="https://songyang0716.github.io/js/script-wl33z0n6ocaypepiqrazthtivfrliqijej4rq8ek8gvrv1awftmgjuv8k4zc.min.js"></script>
 
 <script>
 $(document).ready(function() {
@@ -658,9 +657,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = '\/2015\/07\/hello-r-markdown\/';
+          this.page.url = 'https:\/\/songyang0716.github.io\/2017\/04\/an-analysis-of-premier-league-in-r\/';
           
-            this.page.identifier = '\/2015\/07\/hello-r-markdown\/'
+            this.page.identifier = '\/2017\/04\/an-analysis-of-premier-league-in-r\/'
           
         };
         (function() {

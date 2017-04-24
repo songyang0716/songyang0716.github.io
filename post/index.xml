@@ -2,34 +2,111 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Yang&#39;s Den</title>
-    <link>/post/index.xml</link>
+    <link>https://songyang0716.github.io/post/index.xml</link>
     <description>Recent content in Posts on Yang&#39;s Den</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 22 Apr 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://songyang0716.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>An Analysis of Premier League.rmd</title>
-      <link>/2017/04/an-analysis-of-premier-league.rmd/</link>
+      <title>An Analysis of Premier League in R</title>
+      <link>https://songyang0716.github.io/2017/04/an-analysis-of-premier-league-in-r/</link>
       <pubDate>Sat, 22 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/04/an-analysis-of-premier-league.rmd/</guid>
-      <description>&lt;!-- BLOGDOWN-HEAD --&gt;
-&lt;!-- /BLOGDOWN-HEAD --&gt;
+      <guid>https://songyang0716.github.io/2017/04/an-analysis-of-premier-league-in-r/</guid>
+      <description>&lt;p&gt;The &lt;strong&gt;Premier League&lt;/strong&gt; is an English professional league for men’s association football clubs. At the top of the English football league system, it is the country’s primary football competition. Contested by 20 clubs, it operates on a system of promotion and relegation with the English Football League. Premier League season runs from August to May, Teams play 38 matches each, totalling 380 matches in the season. I have to say that it’s my favorite league in the world, I do really enjoy the high competitiveness of Premier League, Also in the video game, it’s a wise choice to start your career mode using a Premier League team due to the high transfer budget.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;div id=&#34;setup&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Setup&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;The soccer data is collected and prepared by James P. Curley (2016). engsoccerdata: English Soccer Data&lt;/em&gt;&lt;/p&gt;
+&lt;div id=&#34;import-and-clean-the-data&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Import and clean the data&lt;/h3&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(devtools)
+# install_github(&amp;#39;jalapic/engsoccerdata&amp;#39;, username = &amp;#39;jalapic&amp;#39;)
+library(engsoccerdata)
+library(dplyr)
+library(tidyr)
+library(tidyverse)
+library(ggplot2)
 
-&lt;!-- BLOGDOWN-BODY-BEFORE --&gt;
-&lt;!-- /BLOGDOWN-BODY-BEFORE --&gt;
+df &amp;lt;- as_tibble(england)
 
+# The dataset includes results of all top 4 tier soccer games in England
+# since 1888, In our analysis, We are only interested in the Premier League
+# which started in 1992.
+df$date &amp;lt;- as.Date(df$Date, format = &amp;quot;%Y-%m-%d&amp;quot;)
+pl &amp;lt;- df %&amp;gt;% filter(tier == 1, Season &amp;gt;= 1992)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;visulizating-some-interesting-facts&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Visulizating some interesting facts&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The followings are the 47 teams that ever played in Premier League for at least one season&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sort(unique(pl$home))&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;AFC Bournemouth&amp;quot;         &amp;quot;Arsenal&amp;quot;                
+##  [3] &amp;quot;Aston Villa&amp;quot;             &amp;quot;Barnsley&amp;quot;               
+##  [5] &amp;quot;Birmingham City&amp;quot;         &amp;quot;Blackburn Rovers&amp;quot;       
+##  [7] &amp;quot;Blackpool&amp;quot;               &amp;quot;Bolton Wanderers&amp;quot;       
+##  [9] &amp;quot;Bradford City&amp;quot;           &amp;quot;Burnley&amp;quot;                
+## [11] &amp;quot;Cardiff City&amp;quot;            &amp;quot;Charlton Athletic&amp;quot;      
+## [13] &amp;quot;Chelsea&amp;quot;                 &amp;quot;Coventry City&amp;quot;          
+## [15] &amp;quot;Crystal Palace&amp;quot;          &amp;quot;Derby County&amp;quot;           
+## [17] &amp;quot;Everton&amp;quot;                 &amp;quot;Fulham&amp;quot;                 
+## [19] &amp;quot;Hull City&amp;quot;               &amp;quot;Ipswich Town&amp;quot;           
+## [21] &amp;quot;Leeds United&amp;quot;            &amp;quot;Leicester City&amp;quot;         
+## [23] &amp;quot;Liverpool&amp;quot;               &amp;quot;Manchester City&amp;quot;        
+## [25] &amp;quot;Manchester United&amp;quot;       &amp;quot;Middlesbrough&amp;quot;          
+## [27] &amp;quot;Newcastle United&amp;quot;        &amp;quot;Norwich City&amp;quot;           
+## [29] &amp;quot;Nottingham Forest&amp;quot;       &amp;quot;Oldham Athletic&amp;quot;        
+## [31] &amp;quot;Portsmouth&amp;quot;              &amp;quot;Queens Park Rangers&amp;quot;    
+## [33] &amp;quot;Reading&amp;quot;                 &amp;quot;Sheffield United&amp;quot;       
+## [35] &amp;quot;Sheffield Wednesday&amp;quot;     &amp;quot;Southampton&amp;quot;            
+## [37] &amp;quot;Stoke City&amp;quot;              &amp;quot;Sunderland&amp;quot;             
+## [39] &amp;quot;Swansea City&amp;quot;            &amp;quot;Swindon Town&amp;quot;           
+## [41] &amp;quot;Tottenham Hotspur&amp;quot;       &amp;quot;Watford&amp;quot;                
+## [43] &amp;quot;West Bromwich Albion&amp;quot;    &amp;quot;West Ham United&amp;quot;        
+## [45] &amp;quot;Wigan Athletic&amp;quot;          &amp;quot;Wimbledon&amp;quot;              
+## [47] &amp;quot;Wolverhampton Wanderers&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;which clubs have never been relegated from the league ?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pl_team &amp;lt;- pl %&amp;gt;%
+       group_by(home) %&amp;gt;%
+       summarize(appearence = n_distinct(Season))
+
+pl_team %&amp;gt;%
+  mutate(home = reorder(home, appearence)) %&amp;gt;%
+  top_n(15) %&amp;gt;%
+  ggplot(aes(x = reorder(home, -appearence), y = appearence)) +
+  geom_bar(stat = &amp;#39;identity&amp;#39;, fill = &amp;#39;lightblue&amp;#39;, color = &amp;#39;black&amp;#39;) +
+  theme(axis.text.x=element_text(angle=45, hjust=1)) +
+  xlab(&amp;#39;Club&amp;#39;) +
+  ylab(&amp;#39;Season&amp;#39;) +
+  ggtitle(&amp;#39;Total Seasons in Premier League&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://songyang0716.github.io/post/premier_league_analysis_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Since the start of the Premier League, seven clubs have never faced the drop: They are &lt;strong&gt;Arsenal, Aston Villa, Chelsea, Everton, Liverpool, Man Utd and Hotspur&lt;/strong&gt;. Hopefully, we could see Newcastle United in the next season !&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Ranking of each club in the past 25 years&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Which club has the longest consecutive winning / losing runs&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;analysis&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Analysis&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;/div&gt;
 </description>
     </item>
     
     <item>
       <title>A Review of Spelling Correction</title>
-      <link>/2017/04/a-review-of-spelling-correction/</link>
+      <link>https://songyang0716.github.io/2017/04/a-review-of-spelling-correction/</link>
       <pubDate>Sun, 16 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/04/a-review-of-spelling-correction/</guid>
+      <guid>https://songyang0716.github.io/2017/04/a-review-of-spelling-correction/</guid>
       <description>&lt;p&gt;A tutorial on Non-Word Spelling Correction and Real Word Spelling Correction
 &lt;/p&gt;
 
@@ -130,10 +207,10 @@ def edit2(word):
     
     <item>
       <title>Hello World</title>
-      <link>/2017/04/hello-world/</link>
+      <link>https://songyang0716.github.io/2017/04/hello-world/</link>
       <pubDate>Fri, 14 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/04/hello-world/</guid>
+      <guid>https://songyang0716.github.io/2017/04/hello-world/</guid>
       <description>&lt;p&gt;Welcome to my Den !
 &lt;/p&gt;
 
