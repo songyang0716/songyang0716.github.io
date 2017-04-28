@@ -74,9 +74,7 @@ pl_team %>%
 
 ```
 
-Since the start of the Premier League, seven clubs have never faced the drop: They are **Arsenal, Aston Villa, Chelsea, Everton, Liverpool, Man Utd and Hotspur**. Hopefully, we could see Newcastle United in the next season !
-
-
+Since the start of the Premier League, seven clubs have never faced the drop: They are **Arsenal, Aston Villa, Chelsea, Everton, Liverpool, Man Utd and Hotspur**. Hopefully, we could see Newcastle United in the next season ! <br />
 
 * Ranking of each club in the past 25 years
 
@@ -119,17 +117,16 @@ pl_rank  %>%
 
 ```
 
+From the plot, We notice Manchester United wins the most titles in the premier league history and fans are impressed by their stability and consistency before Ferguson's retirement in 2012. On the other hand, Manchester City is not a championship competitor before, After being purchased by the **Abu Dhabi United Group** in 2008, the club took transfer spending to an unprecendented level and the continued inverstment in players followed in gradually successive seasons.<br />
 
 
-* Which club has the longest consecutive winning / losing runs
 
-```{r, warning = FALSE, message = FALSE, tidy = TRUE}
 
-```
 
 
 ## Analysis
 
+###Defense Wins Championships ?
 
 
 ## Conclusion

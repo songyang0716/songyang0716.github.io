@@ -85,7 +85,7 @@ pl_team %&amp;gt;%
   ylab(&amp;#39;Season&amp;#39;) +
   ggtitle(&amp;#39;Total Seasons in Premier League&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/premier_league_analysis_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;Since the start of the Premier League, seven clubs have never faced the drop: They are &lt;strong&gt;Arsenal, Aston Villa, Chelsea, Everton, Liverpool, Man Utd and Hotspur&lt;/strong&gt;. Hopefully, we could see Newcastle United in the next season !&lt;/p&gt;
+&lt;p&gt;Since the start of the Premier League, seven clubs have never faced the drop: They are &lt;strong&gt;Arsenal, Aston Villa, Chelsea, Everton, Liverpool, Man Utd and Hotspur&lt;/strong&gt;. Hopefully, we could see Newcastle United in the next season ! &lt;br /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Ranking of each club in the past 25 years&lt;/li&gt;
 &lt;/ul&gt;
@@ -124,13 +124,14 @@ pl_rank  %&amp;gt;%
     ggtitle(&amp;#39;Top Team Standing&amp;#39;) +
     theme(legend.position=&amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/premier_league_analysis_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Which club has the longest consecutive winning / losing runs&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;From the plot, We notice Manchester United wins the most titles in the premier league history and fans are impressed by their stability and consistency before Ferguson’s retirement in 2012. On the other hand, Manchester City is not a championship competitor before, After being purchased by the &lt;strong&gt;Abu Dhabi United Group&lt;/strong&gt; in 2008, the club took transfer spending to an unprecendented level and the continued inverstment in players followed in gradually successive seasons.&lt;br /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;analysis&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Analysis&lt;/h2&gt;
+&lt;div id=&#34;defense-wins-championships&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Defense Wins Championships ?&lt;/h3&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;conclusion&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Conclusion&lt;/h2&gt;
