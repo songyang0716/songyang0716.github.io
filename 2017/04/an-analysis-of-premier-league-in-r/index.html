@@ -215,9 +215,9 @@
   
   <div class="postShorten-meta post-meta">
   
-    <time itemprop="datePublished" datetime="2017-04-22T00:00:00Z">
+    <time itemprop="datePublished" datetime="2017-04-29T00:00:00Z">
       
-  April 22, 2017
+  April 29, 2017
 
     </time>
   
@@ -243,6 +243,8 @@ library(dplyr)
 library(tidyr)
 library(tidyverse)
 library(ggplot2)
+library(ggrepel)
+
 
 df &lt;- as_tibble(england)
 
@@ -312,6 +314,7 @@ temp1 &lt;-  pl_rank %&gt;%
 temp2 &lt;- pl_rank %&gt;%
           group_by(Season, visitor) %&gt;%
           summarize(away_points = sum(away_team_point))
+
 temp1$away_points &lt;- temp2$away_points
 pl_rank &lt;- temp1 %&gt;%
            mutate(total_points = home_points + away_points)
@@ -338,17 +341,57 @@ pl_rank  %&gt;%
     ggtitle(&#39;Top Team Standing&#39;) +
     theme(legend.position=&quot;bottom&quot;)</code></pre>
 <p><img src="https://songyang0716.github.io/post/premier_league_analysis_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<p>From the plot, We notice Manchester United wins the most titles in the premier league history and fans are impressed by their stability and consistency before Ferguson’s retirement in 2012. On the other hand, Manchester City is not a championship competitor before, After being purchased by the <strong>Abu Dhabi United Group</strong> in 2008, the club took transfer spending to an unprecendented level and the continued inverstment in players followed in gradually successive seasons.<br /></p>
+<p>From the plot, I notice Manchester United wins the most titles in the premier league history and fans are impressed by their stability and consistency before Ferguson’s retirement in 2012. On the other hand, Manchester City is not a championship competitor before, After being purchased by the <strong>Abu Dhabi United Group</strong> in 2008, the club took transfer spending to an unprecendented level and the continued inverstment in players followed in gradually successive seasons.<br /></p>
 </div>
 </div>
 <div id="analysis" class="section level2">
 <h2>Analysis</h2>
 <div id="could-defense-win-championships" class="section level3">
 <h3>Could Defense win championships ?</h3>
-<p>In 2004, Greece won the European Championship with a defense first approach. They did manage to score in the process, but it was their defense that allowed them to claim the title. In addition, <strong>Mourinho</strong> helped Inter Milan to win the 2010 Champions League by employing the so called ‘parking the bus’ strategy, avoiding attacking play and let all team chasing the ball in their half-court. Clearly, All of the examples I cited are in the tournament game. So I want to learn that if it’s possible for a team with an average offensive ability and outstanding defensive ability to win the premier league ?</p>
+<p>In 2004, Greece won the European Championship with a defense first approach. They did manage to score in the process, but it was their defense that allowed them to claim the title. In addition, <strong>Jose Mourinho</strong> helped Inter Milan to win the 2010 Champions League by employing the so called ‘parking the bus’ strategy, avoiding attacking play and let all team chasing the ball in their half-court. Clearly, All of the examples I cited are in the tournament game. So I want to learn that if it’s possible for a team with an average offensive ability and outstanding defensive ability to win the premier league ?</p>
+<p>I use the ranking of <strong>total goals a team has scored</strong> to evaluate the ability of its offense, In the same way, I used the ranking of <strong>total goals a team have been scored</strong> to evaluate the ability its defense</p>
+<pre class="r"><code>pl_team_overview &lt;- pl %&gt;%
+           mutate(home_team_point = ifelse(hgoal &gt; vgoal, 3, ifelse(hgoal == vgoal, 1, 0))) %&gt;%
+           mutate(away_team_point = ifelse(vgoal &gt; hgoal, 3, ifelse(hgoal == vgoal, 1, 0)))
+
+temp1 &lt;-  pl_team_overview %&gt;%
+           group_by(Season, home) %&gt;%
+           summarize(home_points = sum(home_team_point), GF_Home = sum(hgoal), GA_Home = sum(vgoal))
+
+temp2 &lt;- pl_team_overview %&gt;%
+          group_by(Season, visitor) %&gt;%
+          summarize(away_points = sum(away_team_point), GF_Away = sum(vgoal), GA_Away = sum(hgoal))
+
+temp1$away_points &lt;- temp2$away_points
+temp1$GF_Away &lt;- temp2$GF_Away
+temp1$GA_Away &lt;- temp2$GA_Away
+
+pl_team_overview &lt;- temp1 %&gt;%
+           mutate(total_points = home_points + away_points) %&gt;%
+           mutate(GF = GF_Home + GF_Away) %&gt;%
+           mutate(GA = GA_Home + GA_Away)
+
+pl_team_overview &lt;- pl_team_overview %&gt;%
+           rename(Team = home) %&gt;%
+           group_by(Season) %&gt;%
+           mutate(GF_ranking = rank(-GF, ties.method = &quot;min&quot;), GA_ranking = rank(GA, ties.method = &quot;min&quot;), points_ranking =
+                  rank(-total_points, ties.method = &quot;min&quot;))
+
+
+# Plot the Offense and Defense Ranking of the Championship Team
+pl_team_overview %&gt;%
+                  filter(points_ranking == 1) %&gt;%
+                  ggplot(aes(x = GF_ranking, y = GA_ranking)) +
+                  geom_point(shape = 21, color = &#39;gray57&#39;, fill = &#39;deepskyblue3&#39;, size = 3, alpha = 1/3) +
+                  geom_abline(intercept = 0, slope = 1, color=&quot;red&quot;, linetype=&quot;dashed&quot;) +
+                  scale_x_continuous(name=&quot;Goals Scored Ranking&quot;, limits=c(1, 8), breaks = seq(1,8,1)) +
+                  scale_y_continuous(name=&quot;Goals Allowed Ranking&quot;, limits=c(1, 8), breaks = seq(1,8,1)) +
+                  ggtitle(&#39;Premier League Championships Offence and Defense Ranking&#39;)</code></pre>
+<p><img src="https://songyang0716.github.io/post/premier_league_analysis_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>From the above plot, I noticed that most of the points cluster in the upper left part of the plot, which indicates all of past premier league championship teams at least have the top 3 offensive ability, on the other hand, their defensive ability may not be prestigious (Top 7)</p>
 </div>
-<div id="offense-and-defence-which-one-is-more-important" class="section level3">
-<h3>Offense and Defence, Which one is more important ?</h3>
+<div id="could-defense-avoid-relegation" class="section level3">
+<h3>Could Defense avoid relegation ?</h3>
 </div>
 </div>
 <div id="conclusion" class="section level2">

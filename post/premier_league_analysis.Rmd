@@ -1,7 +1,7 @@
 ---
 title: An Analysis of Premier League in R
 author: Yang Song
-date: '2017-04-22'
+date: '2017-04-29'
 draft: false
 type: "post"
 thumbnailImagePosition: left
@@ -36,6 +36,8 @@ library(dplyr)
 library(tidyr)
 library(tidyverse)
 library(ggplot2)
+library(ggrepel)
+
 
 df <- as_tibble(england)
 
@@ -88,6 +90,7 @@ temp1 <-  pl_rank %>%
 temp2 <- pl_rank %>%
           group_by(Season, visitor) %>%
           summarize(away_points = sum(away_team_point))
+
 temp1$away_points <- temp2$away_points
 pl_rank <- temp1 %>%
            mutate(total_points = home_points + away_points)
@@ -117,7 +120,7 @@ pl_rank  %>%
 
 ```
 
-From the plot, We notice Manchester United wins the most titles in the premier league history and fans are impressed by their stability and consistency before Ferguson's retirement in 2012. On the other hand, Manchester City is not a championship competitor before, After being purchased by the **Abu Dhabi United Group** in 2008, the club took transfer spending to an unprecendented level and the continued inverstment in players followed in gradually successive seasons.<br />
+From the plot, I notice Manchester United wins the most titles in the premier league history and fans are impressed by their stability and consistency before Ferguson's retirement in 2012. On the other hand, Manchester City is not a championship competitor before, After being purchased by the **Abu Dhabi United Group** in 2008, the club took transfer spending to an unprecendented level and the continued inverstment in players followed in gradually successive seasons.<br />
 
 
 
@@ -128,16 +131,59 @@ From the plot, We notice Manchester United wins the most titles in the premier l
 
 ### Could Defense win championships ?
 
-In 2004, Greece won the European Championship with a defense first approach. They did manage to score in the process, but it was their defense that allowed them to claim the title. In addition, **Mourinho** helped Inter Milan to win the 2010 Champions League by employing the so called 'parking the bus' strategy,  avoiding attacking play and let all team chasing the ball in their half-court. Clearly, All of the examples I cited are in the tournament game. So I want to learn that if it's possible for a team with an average offensive ability and outstanding defensive ability to win the premier league ?
+In 2004, Greece won the European Championship with a defense first approach. They did manage to score in the process, but it was their defense that allowed them to claim the title. In addition, **Jose Mourinho** helped Inter Milan to win the 2010 Champions League by employing the so called 'parking the bus' strategy,  avoiding attacking play and let all team chasing the ball in their half-court. Clearly, All of the examples I cited are in the tournament game. So I want to learn that if it's possible for a team with an average offensive ability and outstanding defensive ability to win the premier league ?
 
-### Offense and Defence, Which one is more important ?
+I use the ranking of **total goals a team has scored** to evaluate the ability of its offense, In the same way, I used the ranking of **total goals a team have been scored** to evaluate the ability its defense
+
+```{r, warning = FALSE, message = FALSE}
+pl_team_overview <- pl %>%
+           mutate(home_team_point = ifelse(hgoal > vgoal, 3, ifelse(hgoal == vgoal, 1, 0))) %>%
+           mutate(away_team_point = ifelse(vgoal > hgoal, 3, ifelse(hgoal == vgoal, 1, 0)))
+
+temp1 <-  pl_team_overview %>%
+           group_by(Season, home) %>%
+           summarize(home_points = sum(home_team_point), GF_Home = sum(hgoal), GA_Home = sum(vgoal))
+
+temp2 <- pl_team_overview %>%
+          group_by(Season, visitor) %>%
+          summarize(away_points = sum(away_team_point), GF_Away = sum(vgoal), GA_Away = sum(hgoal))
+
+temp1$away_points <- temp2$away_points
+temp1$GF_Away <- temp2$GF_Away
+temp1$GA_Away <- temp2$GA_Away
+
+pl_team_overview <- temp1 %>%
+           mutate(total_points = home_points + away_points) %>%
+           mutate(GF = GF_Home + GF_Away) %>%
+           mutate(GA = GA_Home + GA_Away)
+
+pl_team_overview <- pl_team_overview %>%
+           rename(Team = home) %>%
+           group_by(Season) %>%
+           mutate(GF_ranking = rank(-GF, ties.method = "min"), GA_ranking = rank(GA, ties.method = "min"), points_ranking =
+                  rank(-total_points, ties.method = "min"))
+
+
+# Plot the Offense and Defense Ranking of the Championship Team
+pl_team_overview %>%
+                  filter(points_ranking == 1) %>%
+                  ggplot(aes(x = GF_ranking, y = GA_ranking)) +
+                  geom_point(shape = 21, color = 'gray57', fill = 'deepskyblue3', size = 3, alpha = 1/3) +
+                  geom_abline(intercept = 0, slope = 1, color="red", linetype="dashed") +
+                  scale_x_continuous(name="Goals Scored Ranking", limits=c(1, 8), breaks = seq(1,8,1)) +
+                  scale_y_continuous(name="Goals Allowed Ranking", limits=c(1, 8), breaks = seq(1,8,1)) +
+                  ggtitle('Premier League Championships Offence and Defense Ranking')
+
+
+```
+
+From the above plot, I noticed that most of the points cluster in the upper left part of the plot, which indicates all of past premier league championship teams at least have the top 3 offensive ability, on the other hand, their defensive ability may not be prestigious (Top 7)
+
+
+
+
+### Could Defense avoid relegation ?
 
 
 
 ## Conclusion
-
-
-
-
-
-
