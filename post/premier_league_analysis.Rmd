@@ -6,7 +6,6 @@ draft: false
 type: "post"
 thumbnailImagePosition: left
 thumbnailImage: "img/premier_league_logo.jpg"
-description: "This is a review and discussion on my Machine Learning class project - Mining the Stack Overflow Dataset."
 ---
 
 
