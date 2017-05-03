@@ -6,8 +6,72 @@
     <description>Recent content on Yang&#39;s Den</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 29 Apr 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 02 May 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://songyang0716.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Optimal Stopping in Speed Dating</title>
+      <link>https://songyang0716.github.io/2017/05/optimal-stopping-in-speed-dating/</link>
+      <pubDate>Tue, 02 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://songyang0716.github.io/2017/05/optimal-stopping-in-speed-dating/</guid>
+      <description>&lt;p&gt;I came across this question when I was reading the first chapter of the book ‘Algorithms to Live By’. It’s a famous problem that uses the optimal stopping theory. The problem has been studied extensively in the fields of statics, decision theory and applied probability. It’s also known as secretary problem, marriage problem and the best choice problem.In any optimal problem, the crucial dilemma is not which option to &lt;em&gt;pick&lt;/em&gt;, but how many options to even &lt;em&gt;consider&lt;/em&gt;. The problem proved to be a near-perfect mathematical puzzle: simple to explain, devilish to solve, succinct in its answer, and intriguing in its implications. I am going to present this problem under the speed dating scenario for easier understanding and use simulation to find the answer.&lt;/p&gt;
+&lt;!--more--&gt;
+&lt;div id=&#34;introduction&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Imagine you are going to attend a speed dating event at Ritz Carlton on Friday night, You have paid $500 to the event organizer and are determined to find an idea partner in this luxury hotel. However, this event is not only planned and optimized for yourself, there are some rules on the board to help running the event smoothly. The headache guidelines include: 1.The Boy/Girl arrvies sequentially in random order and you have only 5 mins to talk with each one of them. 2. Once you decide to pass the current partner, he/she is gone forever and cannot be recalled. 3.Once you feel good enough about the current person, You could exchange the phone number with him/her and you have to leave the event immediately. (The rules, of course, are not entirely reasonable in real applications) Since you have spent lots of money and energy to join this event, you also set a high standard for yourself: to find the best Boy/Girl in this event, no one less will do. And you are experienced enough to order the person you met from most admired to worst with no ties in 5 mins. So the question comes: what kind of strategy should you adopt to find the best candidate ? At which point should you decide to stop and exchange your phone number with the opposite partner? In my simulation, I assume there are 100 candidates joining this event&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;simulation&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Simulation&lt;/h2&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(ggplot2)
+
+set.seed(123)
+best_k &amp;lt;- function(Simulations_N, N) {
+    if (N == 0 || Simulations_N == 0) {
+        return(&amp;quot;Number of Samples and Number of Simulations should be Greater Than Zero !&amp;quot;)
+    }
+    # Index represents the stopping place, the number is the time you select the
+    # best candidate
+    quality &amp;lt;- rep(0, N - 1)
+    for (i in 1:Simulations_N) {
+        # Randomly generate N numbers which indicate the quality of the candidates
+        scores &amp;lt;- sample.int(N, N)
+        for (j in 1:N - 1) {
+            if (max(scores[1:j]) == N) {
+                # Fail to find a good partner
+            } else {
+                # Find the first candidate that we see who is better than all of the
+                # previous candidates
+                optimal_place &amp;lt;- min(which(scores[j + 1:N] &amp;gt; max(scores[1:j]))) + 
+                  j
+                if (scores[optimal_place] == N) {
+                  quality[j] = quality[j] + 1
+                }
+            }
+        }
+    }
+    return(which.max(quality)/N)
+}
+
+# Increase the simulation N and to see the convergent result
+simulations &amp;lt;- seq(1000, 30000, 1000)
+result &amp;lt;- NULL
+
+for (z in simulations) {
+    result &amp;lt;- c(result, best_k(z, 100))
+}
+
+qplot(x = simulations, y = result, geom = c(&amp;quot;point&amp;quot;, &amp;quot;line&amp;quot;), xlab = &amp;quot;Sample Size&amp;quot;, 
+    ylab = &amp;quot;Optimal Stopping&amp;quot;) + geom_hline(aes(yintercept = 0.37), color = &amp;quot;red&amp;quot;, 
+    linetype = &amp;quot;dashed&amp;quot;) + geom_text(aes(0, 0.37, label = 0.37, vjust = -1))&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://songyang0716.github.io/post/2017-05-02-optimal-stopping-in-speed-dating_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;conclusion&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;The &lt;strong&gt;37% Rule&lt;/strong&gt;&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
     <item>
       <title>An Analysis of Premier League in R</title>

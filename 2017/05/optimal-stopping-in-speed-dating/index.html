@@ -20,7 +20,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.19">
-    <title>A Review of Spelling Correction</title>
+    <title>Optimal Stopping in Speed Dating</title>
     <meta name="author" content="Yang Song">
     <meta name="keywords" content="">
 
@@ -28,18 +28,15 @@
     
 
     
-    <meta name="description" content="A tutorial on Non-Word Spelling Correction and Real Word Spelling Correction
-">
-    <meta property="og:description" content="A tutorial on Non-Word Spelling Correction and Real Word Spelling Correction
-">
+    <meta name="description" content="I came across this question when I was reading the first chapter of the book ‘Algorithms to Live By’. It’s a famous problem that uses the optimal stopping theory. The problem has been studied extensively in the fields of statics, decision theory and applied probability. It’s also known as secretary problem, marriage problem and the best choice problem.In any optimal problem, the crucial dilemma is not which option to pick, but how many options to even consider.">
+    <meta property="og:description" content="I came across this question when I was reading the first chapter of the book ‘Algorithms to Live By’. It’s a famous problem that uses the optimal stopping theory. The problem has been studied extensively in the fields of statics, decision theory and applied probability. It’s also known as secretary problem, marriage problem and the best choice problem.In any optimal problem, the crucial dilemma is not which option to pick, but how many options to even consider.">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="A Review of Spelling Correction">
-    <meta property="og:url" content="/2017/04/a-review-of-spelling-correction/">
+    <meta property="og:title" content="Optimal Stopping in Speed Dating">
+    <meta property="og:url" content="/2017/05/optimal-stopping-in-speed-dating/">
     <meta property="og:site_name" content="Yang&#39;s Den">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Yang&#39;s Den">
-    <meta name="twitter:description" content="A tutorial on Non-Word Spelling Correction and Real Word Spelling Correction
-">
+    <meta name="twitter:description" content="I came across this question when I was reading the first chapter of the book ‘Algorithms to Live By’. It’s a famous problem that uses the optimal stopping theory. The problem has been studied extensively in the fields of statics, decision theory and applied probability. It’s also known as secretary problem, marriage problem and the best choice problem.In any optimal problem, the crucial dilemma is not which option to pick, but how many options to even consider.">
     
     
 
@@ -51,7 +48,7 @@
     
 
     
-      <meta property="og:image" content="https://songyang0716.github.io/img/spelling_correction.jpg">
+      <meta property="og:image" content="https://songyang0716.github.io/img/speed_dating.jpg">
     
     
     
@@ -213,14 +210,14 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      A Review of Spelling Correction
+      Optimal Stopping in Speed Dating
     </h1>
   
   <div class="postShorten-meta post-meta">
   
-    <time itemprop="datePublished" datetime="2017-04-16T00:00:00Z">
+    <time itemprop="datePublished" datetime="2017-05-02T00:00:00Z">
       
-  April 16, 2017
+  May 2, 2017
 
     </time>
   
@@ -232,102 +229,62 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>A tutorial on Non-Word Spelling Correction and Real Word Spelling Correction
-</p>
+              <p>I came across this question when I was reading the first chapter of the book ‘Algorithms to Live By’. It’s a famous problem that uses the optimal stopping theory. The problem has been studied extensively in the fields of statics, decision theory and applied probability. It’s also known as secretary problem, marriage problem and the best choice problem.In any optimal problem, the crucial dilemma is not which option to <em>pick</em>, but how many options to even <em>consider</em>. The problem proved to be a near-perfect mathematical puzzle: simple to explain, devilish to solve, succinct in its answer, and intriguing in its implications. I am going to present this problem under the speed dating scenario for easier understanding and use simulation to find the answer.</p>
+<!--more-->
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>Imagine you are going to attend a speed dating event at Ritz Carlton on Friday night, You have paid $500 to the event organizer and are determined to find an idea partner in this luxury hotel. However, this event is not only planned and optimized for yourself, there are some rules on the board to help running the event smoothly. The headache guidelines include: 1.The Boy/Girl arrvies sequentially in random order and you have only 5 mins to talk with each one of them. 2. Once you decide to pass the current partner, he/she is gone forever and cannot be recalled. 3.Once you feel good enough about the current person, You could exchange the phone number with him/her and you have to leave the event immediately. (The rules, of course, are not entirely reasonable in real applications) Since you have spent lots of money and energy to join this event, you also set a high standard for yourself: to find the best Boy/Girl in this event, no one less will do. And you are experienced enough to order the person you met from most admired to worst with no ties in 5 mins. So the question comes: what kind of strategy should you adopt to find the best candidate ? At which point should you decide to stop and exchange your phone number with the opposite partner? In my simulation, I assume there are 100 candidates joining this event</p>
+</div>
+<div id="simulation" class="section level2">
+<h2>Simulation</h2>
+<pre class="r"><code>library(ggplot2)
 
-<p><em>Note : The ideas and contents of this tutorial is from Stanford Professor Dan Jurafsky</em></p>
+set.seed(123)
+best_k &lt;- function(Simulations_N, N) {
+    if (N == 0 || Simulations_N == 0) {
+        return(&quot;Number of Samples and Number of Simulations should be Greater Than Zero !&quot;)
+    }
+    # Index represents the stopping place, the number is the time you select the
+    # best candidate
+    quality &lt;- rep(0, N - 1)
+    for (i in 1:Simulations_N) {
+        # Randomly generate N numbers which indicate the quality of the candidates
+        scores &lt;- sample.int(N, N)
+        for (j in 1:N - 1) {
+            if (max(scores[1:j]) == N) {
+                # Fail to find a good partner
+            } else {
+                # Find the first candidate that we see who is better than all of the
+                # previous candidates
+                optimal_place &lt;- min(which(scores[j + 1:N] &gt; max(scores[1:j]))) + 
+                  j
+                if (scores[optimal_place] == N) {
+                  quality[j] = quality[j] + 1
+                }
+            }
+        }
+    }
+    return(which.max(quality)/N)
+}
 
-<h3 id="background">Background</h3>
+# Increase the simulation N and to see the convergent result
+simulations &lt;- seq(1000, 30000, 1000)
+result &lt;- NULL
 
-<p>Recently, I am always interrupted by the annoying <a href="https://www.grammarly.com/">Grammarly</a> ads on Youtube. In the same time, I can&rsquo;t help to watch and astonished by the powerful features in this playform, one of the feature is to correct misspelled words in your email, flags words in a email that may not be spelled correctly. Then I decided to learn the ideas behind it. Spelling correction is often considered from two perspectives. <strong>Non-word spelling correction</strong> is the detection and correction of spelling errors that result in non-words (like <em>speling</em> for <em>spelling</em>, <em>corection</em> for <em>correction</em>). By contrast, <strong>real word spelling correction</strong> is the task of detecting and correcting spelling errors even if they accidentally result in an actual word of English (I like to eat Cheescake Factory <em>desert</em>: which is suppose to be <em>dessert</em>)</p>
+for (z in simulations) {
+    result &lt;- c(result, best_k(z, 100))
+}
 
-<ul>
-<li><p><strong>Non-word spelling errors</strong> are detected by looking for any word not found in a dictionary. For example, the word <em>speling</em> can&rsquo;t be found in a dictionary. To correct non-word spelling errors we need to generate <strong>candidates</strong> : real words that have a similar pattern to the error. Candidate corrections from the spelling error <em>speling</em> might include <em>speeding</em>, <em>spoiling</em>, <em>spiking</em>, <em>spending</em> or <em>spelling</em>. Then we rank the candidate using a <strong>distance metric</strong> between the source and the surface error.  We want the word <em>spelling</em> has the highest probability among all the candidates</p></li>
+qplot(x = simulations, y = result, geom = c(&quot;point&quot;, &quot;line&quot;), xlab = &quot;Sample Size&quot;, 
+    ylab = &quot;Optimal Stopping&quot;) + geom_hline(aes(yintercept = 0.37), color = &quot;red&quot;, 
+    linetype = &quot;dashed&quot;) + geom_text(aes(0, 0.37, label = 0.37, vjust = -1))</code></pre>
+<p><img src="https://songyang0716.github.io/post/2017-05-02-optimal-stopping-in-speed-dating_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>The <strong>37% Rule</strong></p>
+</div>
 
-<li><p><strong>Real-word spelling error</strong> detection is much more difficult, since any word in the input text could be an error. However, we could still find the candidate of all words that occurs in a sentence and rank all the combinations to find the users original intentional one</p></li>
-</ul>
-
-<h3 id="methods">Methods</h3>
-
-<p>In order to learn the spelling correction, we need to introduce the <strong>noisy channel model</strong> first and show how to apply it to the task of detecing and correcting spelling errors.</p>
-
-<p>The intuition of the <strong>noisy channel</strong> model is to treat the misspelled word as if a correctly spelled word had been &ldquo;&ldquo;distorted&rdquo; by being passed through a noisy communication channel. This channel introduces &ldquo;noise&rdquo; in the form of substitution or other changes to the letters, making it hard to recognize the &ldquo;true&rdquo; word. Our goal is to build a model of the channel. Given this model, we then find the true word by passing every candidate word of the language through our model of the noisy channel and seeing which one comes the closest to the misspelled word.</p>
-
-<p>The noisy channel is a kind of <strong>Bayesian Inference</strong>. For each given misspelled word <em>x</em>, Our job is to find one correct spelled word <em>w</em> with the highest possibility.</p>
-
-<pre><code>                        w_hat = argmaxP(w|x)
-</code></pre>
-
-<h3 id="a-baby-version-of-word-spelling-corrector">A baby version of Word Spelling Corrector</h3>
-
-<h4 id="python-version">Python Version</h4>
-
-
-  
-    
-  
-  
-    
-  
-  
-    
-  
-  
-    
-  
-
-
-<figure class="highlight python">
-  <figcaption>
-    
-      <span>spell.py</span><a href="http://underscorejs.org/#compact" target="_blank" rel="external">spell.py</a>
-    
-  </figcaption>
-  <table>
-    <tbody>
-      <tr>
-        <td class="gutter">
-          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre>
-        </td>
-        <td class="code">
-          <pre class="python code-highlight">import re
-from collections import Counter
-
-def words(text) : return re.findall(r&#39;\w&#43;&#39;, text.lower())
-
-WORDS = Counter(words(open(&#39;big.txt&#39;).read()))
-
-def P(word, N = sum(WORDS.values())):
-    # Probability of the word
-    return WORDS[word] * 1.0 / N
-
-def correction(word):
-    # Return the maximum prob word
-    return max(candidate(word), key = P)
-
-def candidate(word):
-    return (known([word]) | known(edit1(word)) | known(edit2(word)) | {word})
-
-def known(words):
-    return set(w for w in words if w in WORDS)
-
-def edit1(word):
-    # All edit that are one edit away from word
-    letters = &#34;abcdefghijklmnopqrstuvwxyz&#34;
-    splits = [(word[:i], word[i:])for i in range(len(word) &#43; 1)]
-    deletes = {L &#43; R[1:] for L, R in splits if R}
-    inserts = {L &#43; letter &#43; R for L, R in splits for letter in letters}
-    sub = {L &#43; letter &#43; R[1:] for L, R in splits if R for letter in letters}
-    trans = {L &#43; R[1] &#43; R[0] &#43; R[2:] for L, R in splits if len(R) &gt; 1}
-    return deletes | inserts | trans | sub | {word}
-
-def edit2(word):
-    return {e2 for e1 in edit1(word) for e2 in edit1(e1)}</pre>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</figure>
               
             </div>
           </div>
@@ -341,7 +298,7 @@ def edit2(word):
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://songyang0716.github.io/2017/04/an-analysis-of-premier-league-in-r/" data-tooltip="An Analysis of Premier League in R">
+            <a class="post-action-btn btn btn--disabled">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -349,7 +306,7 @@ def edit2(word):
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://songyang0716.github.io/2017/04/hello-world/" data-tooltip="Hello World">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://songyang0716.github.io/2017/04/an-analysis-of-premier-league-in-r/" data-tooltip="An Analysis of Premier League in R">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -366,17 +323,17 @@ def edit2(word):
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fa-review-of-spelling-correction%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fsongyang0716.github.io%2f2017%2f05%2foptimal-stopping-in-speed-dating%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fa-review-of-spelling-correction%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsongyang0716.github.io%2f2017%2f05%2foptimal-stopping-in-speed-dating%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fa-review-of-spelling-correction%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fsongyang0716.github.io%2f2017%2f05%2foptimal-stopping-in-speed-dating%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -422,7 +379,7 @@ def edit2(word):
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://songyang0716.github.io/2017/04/an-analysis-of-premier-league-in-r/" data-tooltip="An Analysis of Premier League in R">
+            <a class="post-action-btn btn btn--disabled">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -430,7 +387,7 @@ def edit2(word):
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://songyang0716.github.io/2017/04/hello-world/" data-tooltip="Hello World">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://songyang0716.github.io/2017/04/an-analysis-of-premier-league-in-r/" data-tooltip="An Analysis of Premier League in R">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -447,17 +404,17 @@ def edit2(word):
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fa-review-of-spelling-correction%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fsongyang0716.github.io%2f2017%2f05%2foptimal-stopping-in-speed-dating%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fa-review-of-spelling-correction%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsongyang0716.github.io%2f2017%2f05%2foptimal-stopping-in-speed-dating%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fa-review-of-spelling-correction%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fsongyang0716.github.io%2f2017%2f05%2foptimal-stopping-in-speed-dating%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -484,17 +441,17 @@ def edit2(word):
       <div id="share-options-bar" class="share-options-bar" data-behavior="4">
   <ul class="share-options">
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fa-review-of-spelling-correction%2f">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fsongyang0716.github.io%2f2017%2f05%2foptimal-stopping-in-speed-dating%2f">
         <i class="fa fa-google-plus"></i><span>Share on Google Plus</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fa-review-of-spelling-correction%2f">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsongyang0716.github.io%2f2017%2f05%2foptimal-stopping-in-speed-dating%2f">
         <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fsongyang0716.github.io%2f2017%2f04%2fa-review-of-spelling-correction%2f">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fsongyang0716.github.io%2f2017%2f05%2foptimal-stopping-in-speed-dating%2f">
         <i class="fa fa-twitter"></i><span>Share on Twitter</span>
       </a>
     </li>
@@ -689,9 +646,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/songyang0716.github.io\/2017\/04\/a-review-of-spelling-correction\/';
+          this.page.url = 'https:\/\/songyang0716.github.io\/2017\/05\/optimal-stopping-in-speed-dating\/';
           
-            this.page.identifier = '\/2017\/04\/a-review-of-spelling-correction\/'
+            this.page.identifier = '\/2017\/05\/optimal-stopping-in-speed-dating\/'
           
         };
         (function() {
