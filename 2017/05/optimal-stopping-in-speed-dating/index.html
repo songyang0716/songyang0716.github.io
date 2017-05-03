@@ -268,7 +268,8 @@ best_k &lt;- function(Simulations_N, N) {
 }
 
 # Increase the simulation N and to see the convergent result
-simulations &lt;- seq(1000, 30000, 1000)
+simulations &lt;- simulations &lt;- c(10, 50, 100, 200, 300, 400, 500, seq(1000, 30000, 
+    1000))
 result &lt;- NULL
 
 for (z in simulations) {
