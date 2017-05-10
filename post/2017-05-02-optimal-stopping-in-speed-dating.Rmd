@@ -70,6 +70,10 @@ qplot(x = simulations, y = result, geom = c("point","line"), xlab = "Sample Size
 ```
 
 
-## Conclusion
+## Whence 37% ?
+*This part is from the book Algorithms to Live By by Brian Christian and Tom Griffiths*
 
-The **37% Rule**
+In your search for a lover, there are two ways you can fail: stopping earily, you leave the best choice undiscovered. When you stop too late, you hold out for a better choice who doesn't exist. The optimal strategy will clearly require finding the right balance between the two, walking the tightrope between looking too much and not enough.
+
+Intuitively, there are a few potential strategies. For instance, making an offer the third time an applicant trumps eveyone seen so far- or maybe the fourth time. Or perhaps taking the next best-yet applicant to come along after a long drought. But as it happens, neither of these relatively sensible strategies comes out on top. Instead, the optimal solution takes the form of what we'll call the **Look-Then-Leap-Rule**. You set a predetermined amount of time for "looking" - that is, exploring your options, gathering data - in which you categorically don't choose anyone, no matter how impressive. After that point, you enter the "leap" phase, prepared to instantly commit to anyone who outshines the best applicant you saw in the look phase.
+
