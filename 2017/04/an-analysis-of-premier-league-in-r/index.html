@@ -328,9 +328,8 @@ pl_rank &lt;- pl_rank %&gt;%
 
 # We only include some famous football clubs in the visulization
 pl_rank  %&gt;%
-    filter(Team %in% c(&#39;Arsenal&#39;,&#39;Chelsea&#39;,
-                        &#39;Liverpool&#39;,&#39;Manchester City&#39;,&#39;Manchester United&#39;,
-                        &#39;Tottenham Hotspur&#39;)) %&gt;%
+    filter(Team %in% c(&#39;Arsenal&#39;,&#39;Chelsea&#39;,&#39;Liverpool&#39;,
+                       &#39;Manchester City&#39;,&#39;Manchester United&#39;,&#39;Tottenham Hotspur&#39;)) %&gt;%
     ggplot(aes(x = Season, y = ranking, group = Team, colour = Team)) +
     geom_line(size = 1) +
     geom_point() +

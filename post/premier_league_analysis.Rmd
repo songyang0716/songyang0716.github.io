@@ -21,7 +21,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-
 ## Setup
 
 *The soccer data is collected and prepared by James P. Curley (2016). engsoccerdata: English Soccer Data*
@@ -104,9 +103,8 @@ pl_rank <- pl_rank %>%
 
 # We only include some famous football clubs in the visulization
 pl_rank  %>%
-    filter(Team %in% c('Arsenal','Chelsea',
-                        'Liverpool','Manchester City','Manchester United',
-                        'Tottenham Hotspur')) %>%
+    filter(Team %in% c('Arsenal','Chelsea','Liverpool',
+                       'Manchester City','Manchester United','Tottenham Hotspur')) %>%
     ggplot(aes(x = Season, y = ranking, group = Team, colour = Team)) +
     geom_line(size = 1) +
     geom_point() +
