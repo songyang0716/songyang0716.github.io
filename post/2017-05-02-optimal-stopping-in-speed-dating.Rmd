@@ -9,7 +9,7 @@ thumbnailImage: "img/speed_dating.jpg"
 ---
 
 
-I came across this question when I was reading the first chapter of the book 'Algorithms to Live By'. It's a famous problem that uses the optimal stopping theory. The problem has been studied extensively in the fields of statics, decision theory and applied probability. It's also known as secretary problem, marriage problem and the best choice problem.In any optimal problem, the crucial dilemma is not which option to *pick*, but how many options to even *consider*.
+I came across this question when I was reading the first chapter of the book 'Algorithms to Live By'. It's a famous problem that uses the optimal stopping theory. The problem has been studied extensively in the fields of statistics, decision theory and applied probability. It's also known as secretary problem, marriage problem and the best choice problem.In any optimal problem, the crucial dilemma is not which option to *pick*, but how many options to even *consider*.
 The problem proved to be a near-perfect mathematical puzzle: simple to explain, devilish to solve, succinct in its answer, and intriguing in its implications. I am going to present this problem under the speed dating scenario for easier understanding and use simulation to find the answer.
 
 
@@ -71,7 +71,7 @@ qplot(x = simulations, y = result, geom = c("point","line"), xlab = "Sample Size
 
 
 ## Whence 37% ?
-*This part is from the book Algorithms to Live By by Brian Christian and Tom Griffiths*
+*This part is from the book "Algorithms to Live By" by Brian Christian and Tom Griffiths*
 
 In your search for a lover, there are two ways you can fail: stopping earily, you leave the best choice undiscovered. When you stop too late, you hold out for a better choice who doesn't exist. The optimal strategy will clearly require finding the right balance between the two, walking the tightrope between looking too much and not enough.
 

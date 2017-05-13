@@ -347,9 +347,9 @@ pl_rank  %&gt;%
 </div>
 <div id="analysis" class="section level2">
 <h2>Analysis</h2>
-<div id="could-defense-win-championships" class="section level3">
-<h3>Could Defense win championships ?</h3>
-<p>In 2004, Greece won the European Championship with a defense first approach. They did manage to score in the process, but it was their defense that allowed them to claim the title. In addition, <strong>Jose Mourinho</strong> helped Inter Milan to win the 2010 Champions League by employing the so called ‘parking the bus’ strategy, avoiding attacking play and let all team chasing the ball in their half-court. Clearly, All of the examples I cited are in the tournament game. So I want to learn that if it’s possible for a team with an average offensive ability and outstanding defensive ability to win the premier league ?</p>
+<div id="could-defense-help-a-team-to-win-championships" class="section level3">
+<h3>Could defense help a team to win championships ?</h3>
+<p>In 2004, Greece won the European Championship with a defense first approach. They did manage to score in the process, but it was their defense that allowed them to claim the title. In addition, <strong>Jose Mourinho</strong> helped Inter Milan to win the 2010 Champions League by employing the so called ‘parking the bus’ strategy, avoiding attacking play and let all team chasing the ball in their half-court. Clearly, All of the examples I cited are in the tournament game. So I want to learn that if it’s possible for a team without explosive strikers but outstanding defensive still able to win the premier league ?</p>
 <p>I use the ranking of <strong>total goals a team has scored</strong> to evaluate the ability of its offense, In the same way, I used the ranking of <strong>total goals a team have been scored</strong> to evaluate the ability its defense</p>
 <pre class="r"><code>pl_team_overview &lt;- pl %&gt;%
            mutate(home_team_point = ifelse(hgoal &gt; vgoal, 3, ifelse(hgoal == vgoal, 1, 0))) %&gt;%
@@ -370,16 +370,16 @@ temp1$GA_Away &lt;- temp2$GA_Away
 pl_team_overview &lt;- temp1 %&gt;%
            mutate(total_points = home_points + away_points) %&gt;%
            mutate(GF = GF_Home + GF_Away) %&gt;%
-           mutate(GA = GA_Home + GA_Away)
+           mutate(GA = GA_Home + GA_Away) %&gt;%
+           mutate(goaldiff = GF - GA)
 
 pl_team_overview &lt;- pl_team_overview %&gt;%
            rename(Team = home) %&gt;%
            group_by(Season) %&gt;%
-           mutate(GF_ranking = rank(-GF, ties.method = &quot;min&quot;), GA_ranking = rank(GA, ties.method = &quot;min&quot;), points_ranking =
-                  rank(-total_points, ties.method = &quot;min&quot;))
+           mutate(GF_ranking = rank(-GF, ties.method = &quot;min&quot;), GA_ranking = rank(GA, ties.method = &quot;min&quot;), points_ranking = order(order(-total_points, -goaldiff)))
 
 
-# Plot the Offense and Defense Ranking of the Championship Team
+# Plot the offense and defense Ranking of the Championship Team
 pl_team_overview %&gt;%
                   filter(points_ranking == 1) %&gt;%
                   ggplot(aes(x = GF_ranking, y = GA_ranking)) +
@@ -387,16 +387,33 @@ pl_team_overview %&gt;%
                   geom_abline(intercept = 0, slope = 1, color=&quot;red&quot;, linetype=&quot;dashed&quot;) +
                   scale_x_continuous(name=&quot;Goals Scored Ranking&quot;, limits=c(1, 8), breaks = seq(1,8,1)) +
                   scale_y_continuous(name=&quot;Goals Allowed Ranking&quot;, limits=c(1, 8), breaks = seq(1,8,1)) +
-                  ggtitle(&#39;Premier League Championships Offence and Defense Ranking&#39;)</code></pre>
+                  ggtitle(&#39;Premier League Championships offense and defense Ranking&#39;)</code></pre>
 <p><img src="https://songyang0716.github.io/post/premier_league_analysis_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p>From the above plot, I noticed that most of the points cluster in the upper left part of the plot, which indicates all of past premier league championship teams at least have the top 3 offensive ability, on the other hand, their defensive ability may not be prestigious (Top 7)</p>
+<p>From the above plot, I noticed that most of the points cluster in the upper left part of the plot, which indicates all of past premier league championship teams at least have the top 3 offense, on the other hand, their defensive ability may not be prestigious (Top 7)</p>
 </div>
-<div id="could-defense-avoid-relegation" class="section level3">
-<h3>Could Defense avoid relegation ?</h3>
+<div id="could-defense-help-a-team-to-avoid-relegation" class="section level3">
+<h3>Could defense help a team to avoid relegation ?</h3>
+<p>Surviving Premier League relegation has always been lucrative, considering that teams staying afloat can retain around 100 million for the next season. Still, not eveyone can avoid the drop. So my question is that is it possible for a team with slightly above average defense but unproductive offense ensure survival ?</p>
+<pre class="r"><code># Plot the offense and defense Ranking of the Relegation Team
+relegation_team &lt;- pl_team_overview %&gt;%
+                          filter((Season %in% (1995:2016) &amp; points_ranking &gt;= 18) |
+                          (Season == 1992 &amp; points_ranking &gt;= 20) |
+                          (Season == 1993 &amp; points_ranking &gt;= 20) |
+                          (Season == 1994 &amp; points_ranking &gt;= 19)) %&gt;%
+                          select(Season, Team, GF_ranking, GA_ranking) %&gt;%
+                        rename(Offense = GF_ranking, Defense = GA_ranking)
+
+# Convert the dataframe from wide to long using tidyr package
+relegation_team_long &lt;- gather(relegation_team, Offense_or_Defense, ranking, Offense, Defense)
+
+relegation_team_long %&gt;%
+                ggplot(aes(x = ranking, fill = Offense_or_Defense)) +
+                geom_density(alpha = 0.4) +
+                scale_x_continuous(name=&quot;Ranking&quot;, limits=c(1, 22), breaks = seq(1,20,1)) +
+                ggtitle(&#39;Premier League Relegation Team&#39;)</code></pre>
+<p><img src="https://songyang0716.github.io/post/premier_league_analysis_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>From the above plot, Relegation teams always did worse in both offense and defense side. In addition, I notice that defense has higher density in the lower ranking side of the plot, which infers the relegation teams have lower average defense ranking than offense ranking. However, the difference is not significant. On the other hand, The basic lesson is that competence on both offense and defense with a slightly above average performance in one of the two areas (ranking in top 8) is enough to gurantee survival</p>
 </div>
-</div>
-<div id="conclusion" class="section level2">
-<h2>Conclusion</h2>
 </div>
 
               
@@ -633,7 +650,7 @@ pl_team_overview %&gt;%
                   May 5, 2017
                 </span>
               </span>
-              <div class="media-content hide-xs font-merryweather">I came across this question when I was reading the first chapter of the book ‘Algorithms to Live By’. It’s a famous problem that uses the optimal stopping theory. The problem has been studied extensively in the fields of statics, decision theory and applied probability. It’s also known as secretary problem, marriage problem and the best choice problem.In any optimal problem, the crucial dilemma is not which option to pick, but how many options to even consider.</div>
+              <div class="media-content hide-xs font-merryweather">I came across this question when I was reading the first chapter of the book ‘Algorithms to Live By’. It’s a famous problem that uses the optimal stopping theory. The problem has been studied extensively in the fields of statistics, decision theory and applied probability. It’s also known as secretary problem, marriage problem and the best choice problem.In any optimal problem, the crucial dilemma is not which option to pick, but how many options to even consider.</div>
             </div>
             <div style="clear:both;"></div>
             <hr>

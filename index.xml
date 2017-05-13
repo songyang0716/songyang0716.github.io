@@ -15,7 +15,7 @@
       <pubDate>Tue, 02 May 2017 00:00:00 +0000</pubDate>
       
       <guid>https://songyang0716.github.io/2017/05/optimal-stopping-in-speed-dating/</guid>
-      <description>&lt;p&gt;I came across this question when I was reading the first chapter of the book ‘Algorithms to Live By’. It’s a famous problem that uses the optimal stopping theory. The problem has been studied extensively in the fields of statics, decision theory and applied probability. It’s also known as secretary problem, marriage problem and the best choice problem.In any optimal problem, the crucial dilemma is not which option to &lt;em&gt;pick&lt;/em&gt;, but how many options to even &lt;em&gt;consider&lt;/em&gt;. The problem proved to be a near-perfect mathematical puzzle: simple to explain, devilish to solve, succinct in its answer, and intriguing in its implications. I am going to present this problem under the speed dating scenario for easier understanding and use simulation to find the answer.&lt;/p&gt;
+      <description>&lt;p&gt;I came across this question when I was reading the first chapter of the book ‘Algorithms to Live By’. It’s a famous problem that uses the optimal stopping theory. The problem has been studied extensively in the fields of statistics, decision theory and applied probability. It’s also known as secretary problem, marriage problem and the best choice problem.In any optimal problem, the crucial dilemma is not which option to &lt;em&gt;pick&lt;/em&gt;, but how many options to even &lt;em&gt;consider&lt;/em&gt;. The problem proved to be a near-perfect mathematical puzzle: simple to explain, devilish to solve, succinct in its answer, and intriguing in its implications. I am going to present this problem under the speed dating scenario for easier understanding and use simulation to find the answer.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;div id=&#34;introduction&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Introduction&lt;/h2&gt;
@@ -68,7 +68,7 @@ qplot(x = simulations, y = result, geom = c(&amp;quot;point&amp;quot;, &amp;quot
 &lt;/div&gt;
 &lt;div id=&#34;whence-37&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Whence 37% ?&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;This part is from the book Algorithms to Live By by Brian Christian and Tom Griffiths&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;This part is from the book “Algorithms to Live By” by Brian Christian and Tom Griffiths&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;In your search for a lover, there are two ways you can fail: stopping earily, you leave the best choice undiscovered. When you stop too late, you hold out for a better choice who doesn’t exist. The optimal strategy will clearly require finding the right balance between the two, walking the tightrope between looking too much and not enough.&lt;/p&gt;
 &lt;p&gt;Intuitively, there are a few potential strategies. For instance, making an offer the third time an applicant trumps eveyone seen so far- or maybe the fourth time. Or perhaps taking the next best-yet applicant to come along after a long drought. But as it happens, neither of these relatively sensible strategies comes out on top. Instead, the optimal solution takes the form of what we’ll call the &lt;strong&gt;Look-Then-Leap-Rule&lt;/strong&gt;. You set a predetermined amount of time for “looking” - that is, exploring your options, gathering data - in which you categorically don’t choose anyone, no matter how impressive. After that point, you enter the “leap” phase, prepared to instantly commit to anyone who outshines the best applicant you saw in the look phase.&lt;/p&gt;
 &lt;/div&gt;
@@ -199,9 +199,9 @@ pl_rank  %&amp;gt;%
 &lt;/div&gt;
 &lt;div id=&#34;analysis&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Analysis&lt;/h2&gt;
-&lt;div id=&#34;could-defense-win-championships&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Could Defense win championships ?&lt;/h3&gt;
-&lt;p&gt;In 2004, Greece won the European Championship with a defense first approach. They did manage to score in the process, but it was their defense that allowed them to claim the title. In addition, &lt;strong&gt;Jose Mourinho&lt;/strong&gt; helped Inter Milan to win the 2010 Champions League by employing the so called ‘parking the bus’ strategy, avoiding attacking play and let all team chasing the ball in their half-court. Clearly, All of the examples I cited are in the tournament game. So I want to learn that if it’s possible for a team with an average offensive ability and outstanding defensive ability to win the premier league ?&lt;/p&gt;
+&lt;div id=&#34;could-defense-help-a-team-to-win-championships&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Could defense help a team to win championships ?&lt;/h3&gt;
+&lt;p&gt;In 2004, Greece won the European Championship with a defense first approach. They did manage to score in the process, but it was their defense that allowed them to claim the title. In addition, &lt;strong&gt;Jose Mourinho&lt;/strong&gt; helped Inter Milan to win the 2010 Champions League by employing the so called ‘parking the bus’ strategy, avoiding attacking play and let all team chasing the ball in their half-court. Clearly, All of the examples I cited are in the tournament game. So I want to learn that if it’s possible for a team without explosive strikers but outstanding defensive still able to win the premier league ?&lt;/p&gt;
 &lt;p&gt;I use the ranking of &lt;strong&gt;total goals a team has scored&lt;/strong&gt; to evaluate the ability of its offense, In the same way, I used the ranking of &lt;strong&gt;total goals a team have been scored&lt;/strong&gt; to evaluate the ability its defense&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;pl_team_overview &amp;lt;- pl %&amp;gt;%
            mutate(home_team_point = ifelse(hgoal &amp;gt; vgoal, 3, ifelse(hgoal == vgoal, 1, 0))) %&amp;gt;%
@@ -222,16 +222,16 @@ temp1$GA_Away &amp;lt;- temp2$GA_Away
 pl_team_overview &amp;lt;- temp1 %&amp;gt;%
            mutate(total_points = home_points + away_points) %&amp;gt;%
            mutate(GF = GF_Home + GF_Away) %&amp;gt;%
-           mutate(GA = GA_Home + GA_Away)
+           mutate(GA = GA_Home + GA_Away) %&amp;gt;%
+           mutate(goaldiff = GF - GA)
 
 pl_team_overview &amp;lt;- pl_team_overview %&amp;gt;%
            rename(Team = home) %&amp;gt;%
            group_by(Season) %&amp;gt;%
-           mutate(GF_ranking = rank(-GF, ties.method = &amp;quot;min&amp;quot;), GA_ranking = rank(GA, ties.method = &amp;quot;min&amp;quot;), points_ranking =
-                  rank(-total_points, ties.method = &amp;quot;min&amp;quot;))
+           mutate(GF_ranking = rank(-GF, ties.method = &amp;quot;min&amp;quot;), GA_ranking = rank(GA, ties.method = &amp;quot;min&amp;quot;), points_ranking = order(order(-total_points, -goaldiff)))
 
 
-# Plot the Offense and Defense Ranking of the Championship Team
+# Plot the offense and defense Ranking of the Championship Team
 pl_team_overview %&amp;gt;%
                   filter(points_ranking == 1) %&amp;gt;%
                   ggplot(aes(x = GF_ranking, y = GA_ranking)) +
@@ -239,16 +239,33 @@ pl_team_overview %&amp;gt;%
                   geom_abline(intercept = 0, slope = 1, color=&amp;quot;red&amp;quot;, linetype=&amp;quot;dashed&amp;quot;) +
                   scale_x_continuous(name=&amp;quot;Goals Scored Ranking&amp;quot;, limits=c(1, 8), breaks = seq(1,8,1)) +
                   scale_y_continuous(name=&amp;quot;Goals Allowed Ranking&amp;quot;, limits=c(1, 8), breaks = seq(1,8,1)) +
-                  ggtitle(&amp;#39;Premier League Championships Offence and Defense Ranking&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+                  ggtitle(&amp;#39;Premier League Championships offense and defense Ranking&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;https://songyang0716.github.io/post/premier_league_analysis_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
-&lt;p&gt;From the above plot, I noticed that most of the points cluster in the upper left part of the plot, which indicates all of past premier league championship teams at least have the top 3 offensive ability, on the other hand, their defensive ability may not be prestigious (Top 7)&lt;/p&gt;
+&lt;p&gt;From the above plot, I noticed that most of the points cluster in the upper left part of the plot, which indicates all of past premier league championship teams at least have the top 3 offense, on the other hand, their defensive ability may not be prestigious (Top 7)&lt;/p&gt;
 &lt;/div&gt;
-&lt;div id=&#34;could-defense-avoid-relegation&#34; class=&#34;section level3&#34;&gt;
-&lt;h3&gt;Could Defense avoid relegation ?&lt;/h3&gt;
+&lt;div id=&#34;could-defense-help-a-team-to-avoid-relegation&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Could defense help a team to avoid relegation ?&lt;/h3&gt;
+&lt;p&gt;Surviving Premier League relegation has always been lucrative, considering that teams staying afloat can retain around 100 million for the next season. Still, not eveyone can avoid the drop. So my question is that is it possible for a team with slightly above average defense but unproductive offense ensure survival ?&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;# Plot the offense and defense Ranking of the Relegation Team
+relegation_team &amp;lt;- pl_team_overview %&amp;gt;%
+                          filter((Season %in% (1995:2016) &amp;amp; points_ranking &amp;gt;= 18) |
+                          (Season == 1992 &amp;amp; points_ranking &amp;gt;= 20) |
+                          (Season == 1993 &amp;amp; points_ranking &amp;gt;= 20) |
+                          (Season == 1994 &amp;amp; points_ranking &amp;gt;= 19)) %&amp;gt;%
+                          select(Season, Team, GF_ranking, GA_ranking) %&amp;gt;%
+                        rename(Offense = GF_ranking, Defense = GA_ranking)
+
+# Convert the dataframe from wide to long using tidyr package
+relegation_team_long &amp;lt;- gather(relegation_team, Offense_or_Defense, ranking, Offense, Defense)
+
+relegation_team_long %&amp;gt;%
+                ggplot(aes(x = ranking, fill = Offense_or_Defense)) +
+                geom_density(alpha = 0.4) +
+                scale_x_continuous(name=&amp;quot;Ranking&amp;quot;, limits=c(1, 22), breaks = seq(1,20,1)) +
+                ggtitle(&amp;#39;Premier League Relegation Team&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://songyang0716.github.io/post/premier_league_analysis_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;From the above plot, Relegation teams always did worse in both offense and defense side. In addition, I notice that defense has higher density in the lower ranking side of the plot, which infers the relegation teams have lower average defense ranking than offense ranking. However, the difference is not significant. On the other hand, The basic lesson is that competence on both offense and defense with a slightly above average performance in one of the two areas (ranking in top 8) is enough to gurantee survival&lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;div id=&#34;conclusion&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Conclusion&lt;/h2&gt;
 &lt;/div&gt;
 </description>
     </item>
