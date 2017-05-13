@@ -327,11 +327,10 @@ pl_rank &lt;- pl_rank %&gt;%
            mutate(ranking = row_number())
 
 # We only include some famous football clubs in the visulization
-
 pl_rank  %&gt;%
-    filter(Team %in% c(&#39;Arsenal&#39;,&#39;Chelsea&#39;,&#39;Everton&#39;,
+    filter(Team %in% c(&#39;Arsenal&#39;,&#39;Chelsea&#39;,
                         &#39;Liverpool&#39;,&#39;Manchester City&#39;,&#39;Manchester United&#39;,
-                        &#39;Tottenham Hotspur&#39;, &#39;Leicester City&#39;)) %&gt;%
+                        &#39;Tottenham Hotspur&#39;)) %&gt;%
     ggplot(aes(x = Season, y = ranking, group = Team, colour = Team)) +
     geom_line(size = 1) +
     geom_point() +
@@ -395,6 +394,7 @@ pl_team_overview %&gt;%
 <h3>Could defense help a team to avoid relegation ?</h3>
 <p>Surviving Premier League relegation has always been lucrative, considering that teams staying afloat can retain around 100 million for the next season. Still, not eveyone can avoid the drop. So my question is that is it possible for a team with slightly above average defense but unproductive offense ensure survival ?</p>
 <pre class="r"><code># Plot the offense and defense Ranking of the Relegation Team
+# In season 1992-1994, there are more than 20 teams in the league
 relegation_team &lt;- pl_team_overview %&gt;%
                           filter((Season %in% (1995:2016) &amp; points_ranking &gt;= 18) |
                           (Season == 1992 &amp; points_ranking &gt;= 20) |
@@ -712,6 +712,24 @@ relegation_team_long %&gt;%
           <div class="media">
             
             <div class="media-body">
+              <a class="link-unstyled" href="https://songyang0716.github.io/2015/03/highlighted-code-showcase/">
+                <h3 class="media-heading">highlighted code showcase</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Mar 3, 2015
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Tranquilpeak Hugo theme have its own theme to highlight source code. It&rsquo;s based on GitHub theme: simple and elegant. Check out how it sublimate source codes.
+</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
               <a class="link-unstyled" href="https://songyang0716.github.io/post/">
                 <h3 class="media-heading">Posts</h3>
               </a>
@@ -733,7 +751,7 @@ relegation_team_long %&gt;%
          data-message-zero="no post found"
          data-message-one="1 post found"
          data-message-other="{n} posts found">
-         5 posts found
+         6 posts found
       </p>
     </div>
   </div>

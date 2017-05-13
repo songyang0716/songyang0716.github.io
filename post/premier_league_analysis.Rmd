@@ -21,6 +21,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
+
 ## Setup
 
 *The soccer data is collected and prepared by James P. Curley (2016). engsoccerdata: English Soccer Data*
@@ -102,11 +103,10 @@ pl_rank <- pl_rank %>%
            mutate(ranking = row_number())
 
 # We only include some famous football clubs in the visulization
-
 pl_rank  %>%
-    filter(Team %in% c('Arsenal','Chelsea','Everton',
+    filter(Team %in% c('Arsenal','Chelsea',
                         'Liverpool','Manchester City','Manchester United',
-                        'Tottenham Hotspur', 'Leicester City')) %>%
+                        'Tottenham Hotspur')) %>%
     ggplot(aes(x = Season, y = ranking, group = Team, colour = Team)) +
     geom_line(size = 1) +
     geom_point() +
@@ -193,6 +193,7 @@ Surviving Premier League relegation has always been lucrative, considering that 
 ```{r, warning = FALSE, message = FALSE}
 
 # Plot the offense and defense Ranking of the Relegation Team
+# In season 1992-1994, there are more than 20 teams in the league
 relegation_team <- pl_team_overview %>%
                           filter((Season %in% (1995:2016) & points_ranking >= 18) |
                           (Season == 1992 & points_ranking >= 20) |
@@ -214,5 +215,7 @@ relegation_team_long %>%
 
 
 From the above plot, Relegation teams always did worse in both offense and defense side. In addition, I notice that defense has higher density in the lower ranking side of the plot, which infers the relegation teams have lower average defense ranking than offense ranking. However, the difference is not significant. On the other hand, The basic lesson is that competence on both offense and defense with a slightly above average performance in one of the two areas (ranking in top 8) is enough to gurantee survival
+
+
 
 
