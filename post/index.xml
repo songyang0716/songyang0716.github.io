@@ -76,13 +76,26 @@ qplot(x = simulations, y = result, geom = c(&amp;quot;point&amp;quot;, &amp;quot
     </item>
     
     <item>
-      <title>An Analysis of Premier League in R</title>
-      <link>https://songyang0716.github.io/2017/04/an-analysis-of-premier-league-in-r/</link>
+      <title>An Analysis of Premier League.rmd</title>
+      <link>https://songyang0716.github.io/2017/04/an-analysis-of-premier-league.rmd/</link>
       <pubDate>Sat, 29 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://songyang0716.github.io/2017/04/an-analysis-of-premier-league-in-r/</guid>
+      <guid>https://songyang0716.github.io/2017/04/an-analysis-of-premier-league.rmd/</guid>
       <description>&lt;p&gt;The &lt;strong&gt;Premier League&lt;/strong&gt; is an English professional league for men’s association football clubs. At the top of the English football league system, it is the country’s primary football competition. Contested by 20 clubs, it operates on a system of promotion and relegation with the English Football League. Premier League season runs from August to May, Teams play 38 matches each, totalling 380 matches in the season. I have to say that it’s my favorite league in the world, I do really enjoy the high competitiveness of Premier League, Also in the video game, it’s a wise choice to start your career mode using a Premier League team due to the high transfer budget.&lt;/p&gt;
 &lt;!--more--&gt;
+&lt;style type=&#34;text/css&#34;&gt;
+
+body, td {
+   font-size: 15px;
+}
+code.r{
+  font-size: 10px;
+}
+pre {
+  font-size: 15px
+}
+
+&lt;/style&gt;
 &lt;div id=&#34;setup&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Setup&lt;/h2&gt;
 &lt;p&gt;&lt;em&gt;The soccer data is collected and prepared by James P. Curley (2016). engsoccerdata: English Soccer Data&lt;/em&gt;&lt;/p&gt;

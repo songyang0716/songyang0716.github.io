@@ -1,5 +1,5 @@
 ---
-title: An Analysis of Premier League in R
+title: An Analysis of Premier League.rmd
 author: Yang Song
 date: '2017-04-29'
 draft: false
@@ -8,13 +8,25 @@ thumbnailImagePosition: left
 thumbnailImage: "img/premier_league_logo.jpg"
 ---
 
-
-The **Premier League** is an English professional league for men's association football clubs. At the top of the English football league system, it is the country's primary football competition. Contested by 20 clubs, it operates on a system of promotion and relegation with the English Football League. Premier League season runs from August to May, Teams play 38 matches each, totalling 380 matches in the season. I have to say that it's my favorite league in the world, I do really enjoy the high competitiveness of Premier League, Also in the video game, it's a wise choice to start your career mode using a Premier League team due to the high transfer budget.
-
+The **Premier League** is an English professional league for men’s association football clubs. At the top of the English football league system, it is the country’s primary football competition. Contested by 20 clubs, it operates on a system of promotion and relegation with the English Football League. Premier League season runs from August to May, Teams play 38 matches each, totalling 380 matches in the season. I have to say that it’s my favorite league in the world, I do really enjoy the high competitiveness of Premier League, Also in the video game, it’s a wise choice to start your career mode using a Premier League team due to the high transfer budget.
 
 
 <!--more-->
 
+
+<style type="text/css">
+
+body, td {
+   font-size: 15px;
+}
+code.r{
+  font-size: 10px;
+}
+pre {
+  font-size: 15px
+}
+
+</style>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
