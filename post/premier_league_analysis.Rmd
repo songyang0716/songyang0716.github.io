@@ -14,19 +14,6 @@ The **Premier League** is an English professional league for men’s association
 <!--more-->
 
 
-<style type="text/css">
-
-body, td {
-   font-size: 15px;
-}
-code.r{
-  font-size: 10px;
-}
-pre {
-  font-size: 15px
-}
-
-</style>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
