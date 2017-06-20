@@ -245,7 +245,7 @@
 
 <p>The training dataset I used is from <strong>Peter Norvig</strong>. You could have access to this file in <a href="http://norvig.com/big.txt">http://norvig.com/big.txt</a></p>
 
-<h4 id="python-version">Python Version</h4>
+<h4 id="python-code">Python Code</h4>
 
 
   
@@ -414,6 +414,50 @@ class Sentence_Corrector :
     </tbody>
   </table>
 </figure>
+
+<h4 id="python-code-1">Python Code</h4>
+
+<p>
+  
+    
+  
+  
+    
+  
+  
+    
+  
+  
+    
+  
+
+
+<figure class="highlight python">
+  <figcaption>
+    
+      <span>spell.py</span><a href="http://underscorejs.org/#compact" target="_blank" rel="external">spell.py</a>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="python code-highlight"># Usage Examples:
+corrector = Sentence_Corrector(&#39;../data/big.txt&#39;)
+corrector.return_best_sentence(&#39;this is wron spallin word&#39;)
+corrector.return_best_sentence(&#39;aoccdrning to a resarch at cmabridge university&#39;)
+corrector.return_best_sentence(&#39;it does not mttaer in waht oredr the ltteers&#39;)
+corrector.return_best_sentence(&#39;the olny important tihng is taht&#39;)
+corrector.return_best_sentence(&#39;Can they leav him my messages&#39;)
+corrector.return_best_sentence(&#39;This used to belong to thew queen&#39;)</pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure></p>
               
             </div>
           </div>
