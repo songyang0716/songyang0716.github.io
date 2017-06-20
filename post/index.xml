@@ -20,7 +20,7 @@
 
 &lt;h3 id=&#34;method&#34;&gt;Method&lt;/h3&gt;
 
-&lt;p&gt;I learned this topic from the 5th chapter of the book &lt;strong&gt;&amp;lsquo;Speech and Language Processing&amp;rsquo;&lt;/strong&gt; by &lt;strong&gt;&amp;lsquo;Daniel Jurafsky &amp;amp; James H. Martin&amp;rsquo;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I learned this topic from the 5th chapter of the book &lt;strong&gt;Speech and Language Processing&lt;/strong&gt; by &lt;strong&gt;Daniel Jurafsky &amp;amp; James H. Martin&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;The algorithm takes the input sentence X = {x1, x2, x3, x4&amp;hellip; xn}, which might contains some spelling errors, next generates a large set of candidate correction sentences C(X), finally picks the sentence with the highest language model probability.&lt;/p&gt;
 
