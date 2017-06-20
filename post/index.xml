@@ -6,8 +6,198 @@
     <description>Recent content in Posts on Yang&#39;s Den</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 02 May 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 19 Jun 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://songyang0716.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>An implementation of noisy channel model</title>
+      <link>https://songyang0716.github.io/2017/06/an-implementation-of-noisy-channel-model/</link>
+      <pubDate>Mon, 19 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://songyang0716.github.io/2017/06/an-implementation-of-noisy-channel-model/</guid>
+      <description>&lt;p&gt;A simple implementation of noisy channel model to correct the non-word, real-word spelling errors occured in a sentence
+&lt;/p&gt;
+
+&lt;h3 id=&#34;method&#34;&gt;Method&lt;/h3&gt;
+
+&lt;p&gt;I learned this topic from the 5th chapter of the book &lt;strong&gt;&amp;lsquo;Speech and Language Processing&amp;rsquo;&lt;/strong&gt; by &lt;strong&gt;&amp;lsquo;Daniel Jurafsky &amp;amp; James H. Martin&amp;rsquo;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The algorithm takes the input sentence X = {x1, x2, x3, x4&amp;hellip; xn}, which might contains some spelling errors, next generates a large set of candidate correction sentences C(X), finally picks the sentence with the highest language model probability.&lt;/p&gt;
+
+&lt;p&gt;To generate the candidate correction sentences, I start by generating a set of candidate words for each input word xi. I used the python package &lt;strong&gt;PyEnchant&lt;/strong&gt; to find these candidates word. Then each new proposed sentences is scored by the noisy channel In formula, W_hat = argmax(P(X/W) * P(W)), X is the sentence we observed, W represents one of our candidate sentences. For P(W), I use the bigram stupid backoff with laplace smoothing. For the channel model, P(X/W) will be 0.95 when x = w, and then distribute the rest 0.05 evenly over all other candidate corrections C(X).&lt;/p&gt;
+
+&lt;p&gt;The training dataset I used is from &lt;strong&gt;Peter Norvig&lt;/strong&gt;. You could have access to this file in &lt;a href=&#34;http://norvig.com/big.txt&#34;&gt;http://norvig.com/big.txt&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;python-version&#34;&gt;Python Version&lt;/h4&gt;
+
+
+  
+    
+  
+  
+    
+  
+  
+    
+  
+  
+    
+  
+
+
+&lt;figure class=&#34;highlight python&#34;&gt;
+  &lt;figcaption&gt;
+    
+      &lt;span&gt;spell.py&lt;/span&gt;&lt;a href=&#34;http://underscorejs.org/#compact&#34; target=&#34;_blank&#34; rel=&#34;external&#34;&gt;spell.py&lt;/a&gt;
+    
+  &lt;/figcaption&gt;
+  &lt;table&gt;
+    &lt;tbody&gt;
+      &lt;tr&gt;
+        &lt;td class=&#34;gutter&#34;&gt;
+          &lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;47&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;48&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;49&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;50&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;51&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;52&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;53&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;54&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;55&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;56&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;57&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;58&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;59&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;60&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;61&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;62&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;63&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;64&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;65&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;66&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;67&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;68&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;69&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;70&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;71&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;72&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;73&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;74&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;75&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;76&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;77&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;78&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;79&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;80&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;81&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;82&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;83&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;84&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;85&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;86&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;87&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;88&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;89&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;90&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;91&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;92&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;93&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;94&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;95&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;96&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;97&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;98&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;99&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;100&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;101&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;102&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;103&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;104&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;105&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;106&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;107&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;108&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;109&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;110&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;111&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;112&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;113&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;114&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;115&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;116&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;117&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;118&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;119&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;120&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;121&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;122&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;123&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;124&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;125&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;126&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;127&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;128&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;129&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;130&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;131&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;132&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;133&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;134&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;
+        &lt;/td&gt;
+        &lt;td class=&#34;code&#34;&gt;
+          &lt;pre class=&#34;python code-highlight&#34;&gt;import enchant
+import numpy as np
+import csv
+import math, collections
+import pandas as pd
+import re
+import itertools
+from nltk import tokenize
+import nltk.data
+
+
+class Sentence_Corrector :
+    def __init__(self, training_file) :
+        self.laplaceUnigramCounts = collections.defaultdict(lambda: 0)
+        self.laplaceBigramCounts = collections.defaultdict(lambda: 0)
+        self.total = 0
+        self.sentences = []
+        self.importantKeywords = set()
+        self.d = enchant.Dict(&amp;#34;en_US&amp;#34;)
+        self.tokenize_file(training_file)
+        self.train()
+
+    def tokenize_file(self, file) :
+        # &amp;#34;&amp;#34;&amp;#34;
+        #   Read the file, tokenize and build a list of sentences
+        # &amp;#34;&amp;#34;&amp;#34;
+        tokenizer = nltk.data.load(&amp;#39;tokenizers/punkt/english.pickle&amp;#39;)
+        f = open(file)
+        content = f.read()
+        for sentence in tokenizer.tokenize(content):
+            sentence_clean = [i.lower() for i in re.split(&amp;#39;[^a-zA-Z]&amp;#43;&amp;#39;, sentence) if i]
+            self.sentences.append(sentence_clean)
+
+
+    def train(self):
+        # &amp;#34;&amp;#34;&amp;#34;
+        #   Train unigram and bigram
+        # &amp;#34;&amp;#34;&amp;#34;
+        for sentence in self.sentences:
+            sentence.insert(0, &amp;#39;&amp;lt;s&amp;gt;&amp;#39;)
+            sentence.append(&amp;#39;&amp;lt;/s&amp;gt;&amp;#39;)
+            for i in xrange(len(sentence) - 1):
+                token1 = sentence[i]
+                token2 = sentence[i &amp;#43; 1]
+                self.laplaceUnigramCounts[token1] &amp;#43;= 1
+                self.laplaceBigramCounts[(token1, token2)] &amp;#43;= 1
+                self.total &amp;#43;= 1
+            self.total &amp;#43;= 1
+            self.laplaceUnigramCounts[sentence[-1]] &amp;#43;= 1
+
+
+    def candidate_word(self, word):
+        # &amp;#34;&amp;#34;&amp;#34;
+        # Generate similar word for a given word
+        # &amp;#34;&amp;#34;&amp;#34;
+        suggests = []
+        for candidate in self.importantKeywords:
+            if candidate.startswith(word):
+                suggests.append(candidate)
+        suggests.append(word)
+
+        if len(suggests) == 1:
+            suggests = self.d.suggest(word)
+            suggests = [suggest.lower() for suggest in suggests][:4]
+            suggests.append(word)
+            suggests = list(set(suggests))
+
+        return suggests, len(suggests)
+
+    def candidate_sentence(self, sentence):
+        # &amp;#34;&amp;#34;&amp;#34;
+        # Takes one sentence, and return all the possible sentences, and also return a dictionary of word : suggested number of words
+        # &amp;#34;&amp;#34;&amp;#34;
+        candidate_sentences = []
+        words_count = {}
+        for word in sentence:
+            candidate_sentences.append(self.candidate_word(word)[0])
+            words_count[word] = self.candidate_word(word)[1]
+
+        candidate_sentences = list(itertools.product(*candidate_sentences))
+        return candidate_sentences, words_count
+
+    def correction_score(self, words_count, old_sentence, new_sentence) :
+        # &amp;#34;&amp;#34;&amp;#34;
+        #   Take a old sentence and a new sentence, for each words in the new sentence, if it&amp;#39;s same as the orginal sentence, assign 0.95 prob
+        #   If it&amp;#39;s not same as original sentence, give 0.05 / (count(similarword) - 1)
+        # &amp;#34;&amp;#34;&amp;#34;
+        score = 1
+        for i in xrange(len(new_sentence)) :
+            if new_sentence[i] in words_count :
+                score *= 0.95
+            else :
+                score *= (0.05 / (words_count[old_sentence[i]] - 1))
+        return math.log(score)
+
+    def score(self, sentence):
+        # &amp;#34;&amp;#34;&amp;#34;
+        #     Takes a list of strings as argument and returns the log-probability of the
+        #     sentence using the stupid backoff language model.
+        #     Use laplace smoothing to avoid new words with 0 probability
+        # &amp;#34;&amp;#34;&amp;#34;
+        score = 0.0
+        for i in range(len(sentence) - 1):
+            if self.laplaceBigramCounts[(sentence[i],sentence[i &amp;#43; 1])] &amp;gt; 0:
+                score &amp;#43;= math.log(self.laplaceBigramCounts[(sentence[i],sentence[i &amp;#43; 1])])
+                score -= math.log(self.laplaceUnigramCounts[sentence[i]])
+            else:
+                score &amp;#43;= (math.log(self.laplaceUnigramCounts[sentence[i &amp;#43; 1]] &amp;#43; 1) &amp;#43; math.log(0.4))
+                score -= math.log(self.total &amp;#43; len(self.laplaceUnigramCounts))
+        return score
+
+    def return_best_sentence(self, old_sentence) :
+        # &amp;#34;&amp;#34;&amp;#34;
+        #   Generate all candiate sentences and
+        #   Calculate the prob of each one and return the one with highest probability
+        #   Probability involves two part 1. correct probability and 2. language model prob
+        #   correct prob : p(c | w)
+        #   language model prob : use stupid backoff algorithm
+        # &amp;#34;&amp;#34;&amp;#34;
+        bestScore = float(&amp;#39;-inf&amp;#39;)
+        bestSentence = []
+        old_sentence = [word.lower() for word in old_sentence.split()]
+        sentences, word_count = self.candidate_sentence(old_sentence)
+        for new_sentence in sentences:
+            new_sentence = list(new_sentence)
+            score = self.correction_score(word_count, new_sentence, old_sentence)
+            new_sentence.insert(0, &amp;#39;&amp;lt;s&amp;gt;&amp;#39;)
+            new_sentence.append(&amp;#39;&amp;lt;/s&amp;gt;&amp;#39;)
+            score &amp;#43;= self.score(new_sentence)
+            if score &amp;gt;= bestScore:
+                bestScore = score
+                bestSentence = new_sentence
+        bestSentence = &amp;#39; &amp;#39;.join(bestSentence[1:-1])
+        return bestSentence, bestScore&lt;/pre&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/figure&gt;</description>
+    </item>
     
     <item>
       <title>Optimal Stopping in Speed Dating</title>
