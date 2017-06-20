@@ -241,7 +241,7 @@
 
 <p>The algorithm takes the input sentence X = {x1, x2, x3, x4&hellip; xn}, which might contains some spelling errors, next generates a large set of candidate correction sentences C(X), finally picks the sentence with the highest language model probability.</p>
 
-<p>To generate the candidate correction sentences, I start by generating a set of candidate words for each input word xi. I used the python package <strong>PyEnchant</strong> to find these candidates word. Then each new proposed sentences is scored by the noisy channel In formula, W_hat = argmax(P(X/W) * P(W)), X is the sentence we observed, W represents one of our candidate sentences. For P(W), I use the bigram stupid backoff with laplace smoothing. For the channel model, P(X/W) will be 0.95 when x = w, and then distribute the rest 0.05 evenly over all other candidate corrections C(X).</p>
+<p>To generate the candidate correction sentences, I start by generating a set of candidate words for each input word xi. I used the python package <strong>PyEnchant</strong> to find these candidates word. Then each new proposed sentences is scored by the noisy channel In formula, W_hat = argmax(P(X/W) * P(W)), X is the sentence we observed, W represents one of our candidate sentences. For P(W), I use the <strong>bigram stupid backoff with laplace smoothing</strong>. For the channel model, P(X/W) will be 0.95 when x = w, and then distribute the rest 0.05 evenly over all other candidate corrections C(X).</p>
 
 <p>The training dataset I used is from <strong>Peter Norvig</strong>. You could have access to this file in <a href="http://norvig.com/big.txt">http://norvig.com/big.txt</a></p>
 
