@@ -1,0 +1,10 @@
+---
+title: Scrape daily stock price and deliver to your email with python
+date: '2017-09-29'
+Author: Yang Song
+thumbnailImagePosition: left
+thumbnailImage: "img/stock_pic.jpg"
+---
+
+A tutorial on website scraping & email delivering using python
+<!--more-->
