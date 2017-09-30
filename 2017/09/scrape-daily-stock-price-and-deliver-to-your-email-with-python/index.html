@@ -234,6 +234,140 @@
             <div class="main-content-wrap">
               <p>A tutorial on website scraping &amp; email delivering using python
 </p>
+
+<h3 id="background">Background</h3>
+
+<p>As I think back, I&rsquo;ve always been involved with the investment market unintentionally. As a kid, my parents always talk with their financial advisors about their mutual funds, look for new investment opportunities in the market. They urged me to buy some bonds with my pocket money during college. However, at that time, I didn&rsquo;t really know what money really was and meant. After I graduated from school around two years ago, I started thinking about investment. I have a little extra money that I can roll the dice with. I already contribute to my 401k and also have the majority of my money in the mutual funds, which apparently are less risky than a stock. However, I want to try some stocks to help me understand money and market better. I picked a couple of stocks and purchased a few shares in each of them. However, I am tired of checking the stock information using my phone. So I am thinking about to retrieve the stock indices automatically from the internet and then send to my personal email. One could also set up a automater to run the script every hour.</p>
+
+<h3 id="code-review">Code Review</h3>
+
+<p>The coding involves two methods,the first method is called scrape, which uses python <a href="http://web.stanford.edu/~zlotnick/TextAsData/Web_Scraping_with_Beautiful_Soup.html">BeautifulSoup</a> package to extract the stock indices for specific stocks that we care about. The second method is called email, which will send the information to the specific email addresses using the python <a href="https://docs.python.org/3/library/smtplib.html">smtplib</a> package.</p>
+
+<h4 id="python-code">Python Code</h4>
+
+
+  
+    
+  
+  
+    
+  
+  
+    
+  
+  
+    
+  
+
+
+<figure class="highlight python">
+  <figcaption>
+    
+      <span>scraper.py</span><a href="http://underscorejs.org/#compact" target="_blank" rel="external">scraper.py</a>
+    
+  </figcaption>
+  <table>
+    <tbody>
+      <tr>
+        <td class="gutter">
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre>
+        </td>
+        <td class="code">
+          <pre class="python code-highlight">import urllib2
+from bs4 import BeautifulSoup
+from time import sleep
+import smtplib
+import getpass
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from collections import defaultdict
+
+class stock_scraper:
+    def __init__(self, stocks = [&#39;SPX:IND&#39;,&#39;INDU:IND&#39;,&#39;CCMP:IND&#39;,&#39;SNAP:US&#39;,&#39;DLPH:US&#39;, &#39;HD:US&#39;], sender_email = &#39;sender email&#39;, receiver_email = [&#39;receiver email&#39;]) :
+        &#34;&#34;&#34;
+        Stocks : Default contains five stocks
+        All using stocks ticker symbol
+
+        sender_email : From which email address do you want to send the file
+        receiver_email : Which email address to send the file
+        &#34;&#34;&#34;
+        self.stock_performance = defaultdict(list)
+        self.scrape(stocks)
+        self.email(sender_email, receiver_email)
+
+    def scrape(self, stocks) :
+        &#34;&#34;&#34;
+        stocks : list of stocks ticker symbol
+        &#34;&#34;&#34;
+        for stock in stocks:
+            quote_page = &#39;http://www.bloomberg.com/quote/&#39; &#43; stock
+            page = urllib2.urlopen(quote_page)
+            soup = BeautifulSoup(page, &#39;html.parser&#39;)
+
+            name_box = soup.find(&#39;h1&#39;, attrs={&#39;class&#39;: &#39;name&#39;})
+            name = name_box.text
+            price_box = soup.find(&#39;div&#39;, attrs = {&#39;class&#39;:&#39;price&#39;})
+            price = price_box.text
+            change_box = soup.find(&#39;div&#39;, attrs = {&#39;class&#39;:&#39;change-container&#39;})
+            percent_change = change_box.text.strip().split(&#39;   &#39;)[1]
+            percent_change = float(percent_change.split(&#34;%&#34;)[0])
+
+            if not soup.find(&#39;div&#39;, attrs = {&#39;class&#39;:&#39;price-container up&#39;}):
+                percent_change *= -1
+
+            if percent_change and price and name:
+                self.stock_performance[name].append(price)
+                self.stock_performance[name].append(percent_change)
+
+            sleep(2)
+
+        return
+
+    def email(self, sender, receivers) :
+        &#34;&#34;&#34;
+        from : sender&#39;s email address
+        to: receivers&#39; email addresses
+        &#34;&#34;&#34;
+        msg = MIMEMultipart()
+        msg[&#39;Subject&#39;] = &#39;Daily Stock Performance&#39;
+        msg[&#39;From&#39;] = sender
+        msg[&#39;To&#39;] = &#34;,&#34;.join(receivers)
+        msg.preamble = &#39;Daily Stock Performance&#39;
+
+        message = &#34;Hello!\n&#34;
+        message &#43;= &#34;\n&#34;
+        for stock_name, value in self.stock_performance.iteritems():
+            if value[1] &gt;= 0 :
+                message &#43;= (stock_name &#43; &#39;is doing good today! &#39; &#43; &#39;The stock price increases &#39; &#43; str(value[1]) &#43; &#39;%, The current stock price is $&#39; &#43; str(value[0])) &#43; &#39;\n&#39;
+                message &#43;= &#34;\n&#34;
+            else:
+                message &#43;= (stock_name &#43; &#39;is not doing good today! &#39; &#43; &#39;The stock price decreases &#39; &#43; str(value[1]) &#43; &#39;%, The current stock price is $&#39; &#43; str(value[0])) &#43; &#39;\n&#39;
+                message &#43;= &#34;\n&#34;
+
+
+        msg.attach(MIMEText(message, &#39;plain&#39;))
+
+        pw = &#39;password&#39;
+        s = smtplib.SMTP(host=&#39;smtp.gmail.com&#39;, port=587)
+        s.starttls()
+        try:
+            s.login(sender, pw)
+            print &#34;Your email is sent, thank you !&#34;
+        except SMTPAuthenticationError:
+            print &#34;Wrong password dude !&#34;
+            return
+
+        s.sendmail(sender, receivers, msg.as_string())
+
+        del msg
+        s.quit()
+
+        return</pre>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
               
             </div>
           </div>

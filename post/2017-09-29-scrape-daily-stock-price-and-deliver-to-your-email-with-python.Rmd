@@ -8,3 +8,112 @@ thumbnailImage: "img/stock_pic.jpg"
 
 A tutorial on website scraping & email delivering using python
 <!--more-->
+
+
+
+
+*Note : The ideas and contents of this tutorial is from Stanford Professor Dan Jurafsky*
+
+### Background
+
+
+
+
+#### Python Code
+
+{{< codeblock "scraper.py" "python" "http://underscorejs.org/#compact" "scraper.py" >}}
+
+
+import urllib2
+from bs4 import BeautifulSoup
+from time import sleep
+import smtplib
+import getpass
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from collections import defaultdict
+
+class stock_scraper:
+    def __init__(self, stocks = ['SPX:IND','INDU:IND','CCMP:IND','SNAP:US','DLPH:US', 'HD:US'], sender_email = 'sender email', receiver_email = ['receiver email']) :
+        """
+        Stocks : Default contains five stocks
+        All using stocks ticker symbol
+
+        sender_email : From which email address do you want to send the file
+        receiver_email : Which email address to send the file
+        """
+        self.stock_performance = defaultdict(list)
+        self.scrape(stocks)
+        self.email(sender_email, receiver_email)
+
+    def scrape(self, stocks) :
+        """
+        stocks : list of stocks ticker symbol
+        """
+        for stock in stocks:
+            quote_page = 'http://www.bloomberg.com/quote/' + stock
+            page = urllib2.urlopen(quote_page)
+            soup = BeautifulSoup(page, 'html.parser')
+
+            name_box = soup.find('h1', attrs={'class': 'name'})
+            name = name_box.text
+            price_box = soup.find('div', attrs = {'class':'price'})
+            price = price_box.text
+            change_box = soup.find('div', attrs = {'class':'change-container'})
+            percent_change = change_box.text.strip().split('   ')[1]
+            percent_change = float(percent_change.split("%")[0])
+
+            if not soup.find('div', attrs = {'class':'price-container up'}):
+                percent_change *= -1
+
+            if percent_change and price and name:
+                self.stock_performance[name].append(price)
+                self.stock_performance[name].append(percent_change)
+
+            sleep(2)
+
+        return
+
+    def email(self, sender, receivers) :
+        """
+        from : sender's email address
+        to: receivers' email addresses
+        """
+        msg = MIMEMultipart()
+        msg['Subject'] = 'Daily Stock Performance'
+        msg['From'] = sender
+        msg['To'] = ",".join(receivers)
+        msg.preamble = 'Daily Stock Performance'
+
+        message = "Hello!\n"
+        message += "\n"
+        for stock_name, value in self.stock_performance.iteritems():
+            if value[1] >= 0 :
+                message += (stock_name + 'is doing good today! ' + 'The stock price increases ' + str(value[1]) + '%, The current stock price is $' + str(value[0])) + '\n'
+                message += "\n"
+            else:
+                message += (stock_name + 'is not doing good today! ' + 'The stock price decreases ' + str(value[1]) + '%, The current stock price is $' + str(value[0])) + '\n'
+                message += "\n"
+
+
+        msg.attach(MIMEText(message, 'plain'))
+
+        # pw = getpass.getpass("Enter your sender email password: ")
+        pw = 'password'
+        s = smtplib.SMTP(host='smtp.gmail.com', port=587)
+        s.starttls()
+        try:
+            s.login(sender, pw)
+            print "Your email is sent, thank you !"
+        except SMTPAuthenticationError:
+            print "Wrong password dude !"
+            return
+
+        s.sendmail(sender, receivers, msg.as_string())
+
+        del msg
+        s.quit()
+
+        return
+
+{{< /codeblock >}}
