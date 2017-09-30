@@ -20,7 +20,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="Hugo 0.19">
-    <title>An implementation of noisy channel model</title>
+    <title>Scrape daily stock price and deliver to your email</title>
     <meta name="author" content="Yang Song">
     <meta name="keywords" content="">
 
@@ -28,17 +28,17 @@
     
 
     
-    <meta name="description" content="A simple implementation of noisy channel model to correct the non-word, real-word spelling errors occured in a sentence
+    <meta name="description" content="A tutorial on website scraping &amp; email delivering using python
 ">
-    <meta property="og:description" content="A simple implementation of noisy channel model to correct the non-word, real-word spelling errors occured in a sentence
+    <meta property="og:description" content="A tutorial on website scraping &amp; email delivering using python
 ">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="An implementation of noisy channel model">
-    <meta property="og:url" content="/2017/06/an-implementation-of-noisy-channel-model/">
+    <meta property="og:title" content="Scrape daily stock price and deliver to your email">
+    <meta property="og:url" content="/2017/09/scrape-daily-stock-price-and-deliver-to-your-email/">
     <meta property="og:site_name" content="Yang&#39;s Den">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Yang&#39;s Den">
-    <meta name="twitter:description" content="A simple implementation of noisy channel model to correct the non-word, real-word spelling errors occured in a sentence
+    <meta name="twitter:description" content="A tutorial on website scraping &amp; email delivering using python
 ">
     
     
@@ -51,7 +51,7 @@
     
 
     
-      <meta property="og:image" content="https://songyang0716.github.io/img/badspellingcrosswalk.jpg">
+      <meta property="og:image" content="https://songyang0716.github.io/img/stock_pic.jpg">
     
     
     
@@ -213,14 +213,14 @@
             <div class="post-header main-content-wrap text-left">
   
     <h1 class="post-title" itemprop="headline">
-      An implementation of noisy channel model
+      Scrape daily stock price and deliver to your email
     </h1>
   
   <div class="postShorten-meta post-meta">
   
-    <time itemprop="datePublished" datetime="2017-06-19T00:00:00Z">
+    <time itemprop="datePublished" datetime="2017-09-29T00:00:00Z">
       
-  June 19, 2017
+  September 29, 2017
 
     </time>
   
@@ -232,18 +232,16 @@
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p>A simple implementation of noisy channel model to correct the non-word, real-word spelling errors occured in a sentence
+              <p>A tutorial on website scraping &amp; email delivering using python
 </p>
 
-<h3 id="method">Method</h3>
+<h3 id="background">Background</h3>
 
-<p>I learned this topic from the 5th chapter of the book <strong>Speech and Language Processing</strong> by <strong>Daniel Jurafsky &amp; James H. Martin</strong></p>
+<p>As I think back, I&rsquo;ve always been involved with the investment market unintentionally. As a kid, my parents always talk with their financial advisors about their mutual funds, look for new investment opportunities in the market. They urged me to buy some bonds with my pocket money during college. However, at that time, I didn&rsquo;t really know what money really was and meant. After I graduated from school around two years ago, I started thinking about investment. I have a little extra money that I can roll the dice with. I already contribute to my 401k and also have the majority of my money in the mutual funds, which apparently are less risky than a stock. However, I want to try some stocks to help me understand money and market better. I picked a couple of stocks and purchased a few shares in each of them. However, I am tired of checking the stock information using my phone. So I am thinking about to retrieve the stock indices automatically from the internet and then send to my personal email. One could also set up a automater to run the script every hour.</p>
 
-<p>The algorithm takes the input sentence X = {x1, x2, x3, x4&hellip; xn}, which might contains some spelling errors, next generates a large set of candidate correction sentences C(X), finally picks the sentence with the highest language model probability.</p>
+<h3 id="code-review">Code Review</h3>
 
-<p>To generate the candidate correction sentences, I start by generating a set of candidate words for each input word xi. I used the python package <strong>PyEnchant</strong> to find these candidates word. Then each new proposed sentences is scored by the noisy channel In formula, W_hat = argmax(P(X/W) * P(W)), X is the sentence we observed, W represents one of our candidate sentences. For P(W), I use the <strong>bigram stupid backoff with laplace smoothing</strong>. For the channel model, P(X/W) will be 0.95 when x = w, and then distribute the rest 0.05 evenly over all other candidate corrections C(X).</p>
-
-<p>The training dataset I used is from <strong>Peter Norvig</strong>. You could have access to this file in <a href="http://norvig.com/big.txt">http://norvig.com/big.txt</a></p>
+<p>The coding involves two methods,the first method is called scrape, which uses python <a href="http://web.stanford.edu/~zlotnick/TextAsData/Web_Scraping_with_Beautiful_Soup.html">BeautifulSoup</a> package to extract the stock indices for specific stocks that we care about. The second method is called email, which will send the information to the specific email addresses using the python <a href="https://docs.python.org/3/library/smtplib.html">smtplib</a> package.</p>
 
 <h4 id="python-code">Python Code</h4>
 
@@ -265,198 +263,111 @@
 <figure class="highlight python">
   <figcaption>
     
-      <span>spell.py</span><a href="http://underscorejs.org/#compact" target="_blank" rel="external">spell.py</a>
+      <span>scraper.py</span><a href="http://underscorejs.org/#compact" target="_blank" rel="external">scraper.py</a>
     
   </figcaption>
   <table>
     <tbody>
       <tr>
         <td class="gutter">
-          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre>
+          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre>
         </td>
         <td class="code">
-          <pre class="python code-highlight">import enchant
-import numpy as np
-import csv
-import math, collections
-import pandas as pd
-import re
-import itertools
-from nltk import tokenize
-import nltk.data
+          <pre class="python code-highlight">import urllib2
+from bs4 import BeautifulSoup
+from time import sleep
+import smtplib
+import getpass
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from collections import defaultdict
 
+class stock_scraper:
+    def __init__(self, stocks = [&#39;SPX:IND&#39;,&#39;INDU:IND&#39;,&#39;CCMP:IND&#39;,&#39;SNAP:US&#39;,&#39;DLPH:US&#39;, &#39;HD:US&#39;], sender_email = &#39;sender email&#39;, receiver_email = [&#39;receiver email&#39;]) :
+        &#34;&#34;&#34;
+        Stocks : Default contains five stocks
+        All using stocks ticker symbol
 
-class Sentence_Corrector :
-    def __init__(self, training_file) :
-        self.laplaceUnigramCounts = collections.defaultdict(lambda: 0)
-        self.laplaceBigramCounts = collections.defaultdict(lambda: 0)
-        self.total = 0
-        self.sentences = []
-        self.importantKeywords = set()
-        self.d = enchant.Dict(&#34;en_US&#34;)
-        self.tokenize_file(training_file)
-        self.train()
+        sender_email : From which email address do you want to send the file
+        receiver_email : Which email address to send the file
+        &#34;&#34;&#34;
+        self.stock_performance = defaultdict(list)
+        self.scrape(stocks)
+        self.email(sender_email, receiver_email)
 
-    def tokenize_file(self, file) :
-        # &#34;&#34;&#34;
-        #   Read the file, tokenize and build a list of sentences
-        # &#34;&#34;&#34;
-        tokenizer = nltk.data.load(&#39;tokenizers/punkt/english.pickle&#39;)
-        f = open(file)
-        content = f.read()
-        for sentence in tokenizer.tokenize(content):
-            sentence_clean = [i.lower() for i in re.split(&#39;[^a-zA-Z]&#43;&#39;, sentence) if i]
-            self.sentences.append(sentence_clean)
+    def scrape(self, stocks) :
+        &#34;&#34;&#34;
+        stocks : list of stocks ticker symbol
+        &#34;&#34;&#34;
+        for stock in stocks:
+            quote_page = &#39;http://www.bloomberg.com/quote/&#39; &#43; stock
+            page = urllib2.urlopen(quote_page)
+            soup = BeautifulSoup(page, &#39;html.parser&#39;)
 
+            name_box = soup.find(&#39;h1&#39;, attrs={&#39;class&#39;: &#39;name&#39;})
+            name = name_box.text
+            price_box = soup.find(&#39;div&#39;, attrs = {&#39;class&#39;:&#39;price&#39;})
+            price = price_box.text
+            change_box = soup.find(&#39;div&#39;, attrs = {&#39;class&#39;:&#39;change-container&#39;})
+            percent_change = change_box.text.strip().split(&#39;   &#39;)[1]
+            percent_change = float(percent_change.split(&#34;%&#34;)[0])
 
-    def train(self):
-        # &#34;&#34;&#34;
-        #   Train unigram and bigram
-        # &#34;&#34;&#34;
-        for sentence in self.sentences:
-            sentence.insert(0, &#39;&lt;s&gt;&#39;)
-            sentence.append(&#39;&lt;/s&gt;&#39;)
-            for i in xrange(len(sentence) - 1):
-                token1 = sentence[i]
-                token2 = sentence[i &#43; 1]
-                self.laplaceUnigramCounts[token1] &#43;= 1
-                self.laplaceBigramCounts[(token1, token2)] &#43;= 1
-                self.total &#43;= 1
-            self.total &#43;= 1
-            self.laplaceUnigramCounts[sentence[-1]] &#43;= 1
+            if not soup.find(&#39;div&#39;, attrs = {&#39;class&#39;:&#39;price-container up&#39;}):
+                percent_change *= -1
 
+            if percent_change and price and name:
+                self.stock_performance[name].append(price)
+                self.stock_performance[name].append(percent_change)
 
-    def candidate_word(self, word):
-        # &#34;&#34;&#34;
-        # Generate similar word for a given word
-        # &#34;&#34;&#34;
-        suggests = []
-        for candidate in self.importantKeywords:
-            if candidate.startswith(word):
-                suggests.append(candidate)
-        suggests.append(word)
+            sleep(2)
 
-        if len(suggests) == 1:
-            suggests = self.d.suggest(word)
-            suggests = [suggest.lower() for suggest in suggests][:4]
-            suggests.append(word)
-            suggests = list(set(suggests))
+        return
 
-        return suggests, len(suggests)
+    def email(self, sender, receivers) :
+        &#34;&#34;&#34;
+        from : sender&#39;s email address
+        to: receivers&#39; email addresses
+        &#34;&#34;&#34;
+        msg = MIMEMultipart()
+        msg[&#39;Subject&#39;] = &#39;Daily Stock Performance&#39;
+        msg[&#39;From&#39;] = sender
+        msg[&#39;To&#39;] = &#34;,&#34;.join(receivers)
+        msg.preamble = &#39;Daily Stock Performance&#39;
 
-    def candidate_sentence(self, sentence):
-        # &#34;&#34;&#34;
-        # Takes one sentence, and return all the possible sentences, and also return a dictionary of word : suggested number of words
-        # &#34;&#34;&#34;
-        candidate_sentences = []
-        words_count = {}
-        for word in sentence:
-            candidate_sentences.append(self.candidate_word(word)[0])
-            words_count[word] = self.candidate_word(word)[1]
-
-        candidate_sentences = list(itertools.product(*candidate_sentences))
-        return candidate_sentences, words_count
-
-    def correction_score(self, words_count, old_sentence, new_sentence) :
-        # &#34;&#34;&#34;
-        #   Take a old sentence and a new sentence, for each words in the new sentence, if it&#39;s same as the orginal sentence, assign 0.95 prob
-        #   If it&#39;s not same as original sentence, give 0.05 / (count(similarword) - 1)
-        # &#34;&#34;&#34;
-        score = 1
-        for i in xrange(len(new_sentence)) :
-            if new_sentence[i] in words_count :
-                score *= 0.95
-            else :
-                score *= (0.05 / (words_count[old_sentence[i]] - 1))
-        return math.log(score)
-
-    def score(self, sentence):
-        # &#34;&#34;&#34;
-        #     Takes a list of strings as argument and returns the log-probability of the
-        #     sentence using the stupid backoff language model.
-        #     Use laplace smoothing to avoid new words with 0 probability
-        # &#34;&#34;&#34;
-        score = 0.0
-        for i in range(len(sentence) - 1):
-            if self.laplaceBigramCounts[(sentence[i],sentence[i &#43; 1])] &gt; 0:
-                score &#43;= math.log(self.laplaceBigramCounts[(sentence[i],sentence[i &#43; 1])])
-                score -= math.log(self.laplaceUnigramCounts[sentence[i]])
+        message = &#34;Hello!\n&#34;
+        message &#43;= &#34;\n&#34;
+        for stock_name, value in self.stock_performance.iteritems():
+            if value[1] &gt;= 0 :
+                message &#43;= (stock_name &#43; &#39;is doing good today! &#39; &#43; &#39;The stock price increases &#39; &#43; str(value[1]) &#43; &#39;%, The current stock price is $&#39; &#43; str(value[0])) &#43; &#39;\n&#39;
+                message &#43;= &#34;\n&#34;
             else:
-                score &#43;= (math.log(self.laplaceUnigramCounts[sentence[i &#43; 1]] &#43; 1) &#43; math.log(0.4))
-                score -= math.log(self.total &#43; len(self.laplaceUnigramCounts))
-        return score
+                message &#43;= (stock_name &#43; &#39;is not doing good today! &#39; &#43; &#39;The stock price decreases &#39; &#43; str(value[1]) &#43; &#39;%, The current stock price is $&#39; &#43; str(value[0])) &#43; &#39;\n&#39;
+                message &#43;= &#34;\n&#34;
 
-    def return_best_sentence(self, old_sentence) :
-        # &#34;&#34;&#34;
-        #   Generate all candiate sentences and
-        #   Calculate the prob of each one and return the one with highest probability
-        #   Probability involves two part 1. correct probability and 2. language model prob
-        #   correct prob : p(c | w)
-        #   language model prob : use stupid backoff algorithm
-        # &#34;&#34;&#34;
-        bestScore = float(&#39;-inf&#39;)
-        bestSentence = []
-        old_sentence = [word.lower() for word in old_sentence.split()]
-        sentences, word_count = self.candidate_sentence(old_sentence)
-        for new_sentence in sentences:
-            new_sentence = list(new_sentence)
-            score = self.correction_score(word_count, new_sentence, old_sentence)
-            new_sentence.insert(0, &#39;&lt;s&gt;&#39;)
-            new_sentence.append(&#39;&lt;/s&gt;&#39;)
-            score &#43;= self.score(new_sentence)
-            if score &gt;= bestScore:
-                bestScore = score
-                bestSentence = new_sentence
-        bestSentence = &#39; &#39;.join(bestSentence[1:-1])
-        return bestSentence, bestScore</pre>
+
+        msg.attach(MIMEText(message, &#39;plain&#39;))
+
+        pw = &#39;password&#39;
+        s = smtplib.SMTP(host=&#39;smtp.gmail.com&#39;, port=587)
+        s.starttls()
+        try:
+            s.login(sender, pw)
+            print &#34;Your email is sent, thank you !&#34;
+        except SMTPAuthenticationError:
+            print &#34;Wrong password dude !&#34;
+            return
+
+        s.sendmail(sender, receivers, msg.as_string())
+
+        del msg
+        s.quit()
+
+        return</pre>
         </td>
       </tr>
     </tbody>
   </table>
 </figure>
-
-<h4 id="usage-examples">Usage Examples</h4>
-
-<p>
-  
-    
-  
-  
-    
-  
-  
-    
-  
-  
-    
-  
-
-
-<figure class="highlight python">
-  <figcaption>
-    
-      <span>spell.py</span><a href="http://underscorejs.org/#compact" target="_blank" rel="external">spell.py</a>
-    
-  </figcaption>
-  <table>
-    <tbody>
-      <tr>
-        <td class="gutter">
-          <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre>
-        </td>
-        <td class="code">
-          <pre class="python code-highlight">corrector = Sentence_Corrector(&#39;../data/big.txt&#39;)
-corrector.return_best_sentence(&#39;this is wron spallin word&#39;)
-corrector.return_best_sentence(&#39;aoccdrning to a resarch at cmabridge university&#39;)
-corrector.return_best_sentence(&#39;it does not mttaer in waht oredr the ltteers&#39;)
-corrector.return_best_sentence(&#39;the olny important tihng is taht&#39;)
-corrector.return_best_sentence(&#39;Can they leav him my messages&#39;)
-corrector.return_best_sentence(&#39;This used to belong to thew queen&#39;)</pre>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</figure></p>
               
             </div>
           </div>
@@ -470,7 +381,7 @@ corrector.return_best_sentence(&#39;This used to belong to thew queen&#39;)</pre
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://songyang0716.github.io/2017/09/scrape-daily-stock-price-and-deliver-to-your-email/" data-tooltip="Scrape daily stock price and deliver to your email">
+            <a class="post-action-btn btn btn--disabled">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -478,7 +389,7 @@ corrector.return_best_sentence(&#39;This used to belong to thew queen&#39;)</pre
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://songyang0716.github.io/2017/05/optimal-stopping-in-speed-dating/" data-tooltip="Optimal Stopping in Speed Dating">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://songyang0716.github.io/2017/06/an-implementation-of-noisy-channel-model/" data-tooltip="An implementation of noisy channel model">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -495,17 +406,17 @@ corrector.return_best_sentence(&#39;This used to belong to thew queen&#39;)</pre
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fsongyang0716.github.io%2f2017%2f06%2fan-implementation-of-noisy-channel-model%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fsongyang0716.github.io%2f2017%2f09%2fscrape-daily-stock-price-and-deliver-to-your-email%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsongyang0716.github.io%2f2017%2f06%2fan-implementation-of-noisy-channel-model%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsongyang0716.github.io%2f2017%2f09%2fscrape-daily-stock-price-and-deliver-to-your-email%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fsongyang0716.github.io%2f2017%2f06%2fan-implementation-of-noisy-channel-model%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fsongyang0716.github.io%2f2017%2f09%2fscrape-daily-stock-price-and-deliver-to-your-email%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -551,7 +462,7 @@ corrector.return_best_sentence(&#39;This used to belong to thew queen&#39;)</pre
       
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://songyang0716.github.io/2017/09/scrape-daily-stock-price-and-deliver-to-your-email/" data-tooltip="Scrape daily stock price and deliver to your email">
+            <a class="post-action-btn btn btn--disabled">
           
             <i class="fa fa-angle-left"></i>
             <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
@@ -559,7 +470,7 @@ corrector.return_best_sentence(&#39;This used to belong to thew queen&#39;)</pre
         </li>
         <li class="post-action">
           
-            <a class="post-action-btn btn btn--default tooltip--top" href="https://songyang0716.github.io/2017/05/optimal-stopping-in-speed-dating/" data-tooltip="Optimal Stopping in Speed Dating">
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://songyang0716.github.io/2017/06/an-implementation-of-noisy-channel-model/" data-tooltip="An implementation of noisy channel model">
           
             <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
             <i class="fa fa-angle-right"></i>
@@ -576,17 +487,17 @@ corrector.return_best_sentence(&#39;This used to belong to thew queen&#39;)</pre
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fsongyang0716.github.io%2f2017%2f06%2fan-implementation-of-noisy-channel-model%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fsongyang0716.github.io%2f2017%2f09%2fscrape-daily-stock-price-and-deliver-to-your-email%2f">
           <i class="fa fa-google-plus"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsongyang0716.github.io%2f2017%2f06%2fan-implementation-of-noisy-channel-model%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsongyang0716.github.io%2f2017%2f09%2fscrape-daily-stock-price-and-deliver-to-your-email%2f">
           <i class="fa fa-facebook-official"></i>
         </a>
       </li>
       <li class="post-action hide-xs">
-        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fsongyang0716.github.io%2f2017%2f06%2fan-implementation-of-noisy-channel-model%2f">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fsongyang0716.github.io%2f2017%2f09%2fscrape-daily-stock-price-and-deliver-to-your-email%2f">
           <i class="fa fa-twitter"></i>
         </a>
       </li>
@@ -613,17 +524,17 @@ corrector.return_best_sentence(&#39;This used to belong to thew queen&#39;)</pre
       <div id="share-options-bar" class="share-options-bar" data-behavior="4">
   <ul class="share-options">
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fsongyang0716.github.io%2f2017%2f06%2fan-implementation-of-noisy-channel-model%2f">
+      <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3a%2f%2fsongyang0716.github.io%2f2017%2f09%2fscrape-daily-stock-price-and-deliver-to-your-email%2f">
         <i class="fa fa-google-plus"></i><span>Share on Google Plus</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsongyang0716.github.io%2f2017%2f06%2fan-implementation-of-noisy-channel-model%2f">
+      <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsongyang0716.github.io%2f2017%2f09%2fscrape-daily-stock-price-and-deliver-to-your-email%2f">
         <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
       </a>
     </li>
     <li class="share-option">
-      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fsongyang0716.github.io%2f2017%2f06%2fan-implementation-of-noisy-channel-model%2f">
+      <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3a%2f%2fsongyang0716.github.io%2f2017%2f09%2fscrape-daily-stock-price-and-deliver-to-your-email%2f">
         <i class="fa fa-twitter"></i><span>Share on Twitter</span>
       </a>
     </li>
@@ -854,9 +765,9 @@ $(document).ready(function() {
     
       <script>
         var disqus_config = function () {
-          this.page.url = 'https:\/\/songyang0716.github.io\/2017\/06\/an-implementation-of-noisy-channel-model\/';
+          this.page.url = 'https:\/\/songyang0716.github.io\/2017\/09\/scrape-daily-stock-price-and-deliver-to-your-email\/';
           
-            this.page.identifier = '\/2017\/06\/an-implementation-of-noisy-channel-model\/'
+            this.page.identifier = '\/2017\/09\/scrape-daily-stock-price-and-deliver-to-your-email\/'
           
         };
         (function() {
