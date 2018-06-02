@@ -113,7 +113,44 @@ plt.xlabel(&amp;quot;Nationality&amp;quot;)
 plt.ylabel(&amp;quot;Score&amp;quot;)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;img src=&#34;/img/fifa_output_3.png&#34; alt=&#34;My Image&#34; /&gt;&lt;/p&gt;</description>
+&lt;p&gt;&lt;img src=&#34;/img/fifa_output_3.png&#34; alt=&#34;My Image&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In order to find similar player, I used the Kullback-Leibler divergence (also called relative entropy), it&amp;rsquo;s a measure of how one probability distribution diverges from a second probability distribution. I normalize players&amp;rsquo; attributes score to be probability distribution, then pick the target player we are interested to compare with other players distribution and sort the result from highest to lowest, finally return top K similar player with lowest kl-divergence score&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+import operator
+player_name = &#39;Renato Augusto&#39;
+
+
+def returnSimilarPlayer(df, player_name, overall_difference = 5, results = 5):
+    similar_player = {}
+    overall_rating = df.loc[df.Name == player_name, &#39;Overall&#39;].values[0]
+    attributes_rating = df.ix[df.Name == player_name, 3:].values[0]
+    for row in df.itertuples(name = None):
+        if abs(row[2] - overall_rating) &amp;lt;= overall_difference:
+            kl_distance = entropy(attributes_rating, np.array(row[4:]))
+            similar_player[(row[1], row[2])] = kl_distance
+    similar_player_cp = sorted(similar_player.items(), key = operator.itemgetter(1), reverse = False)
+    return similar_player_cp[1:results + 1]
+
+print( returnSimilarPlayer(player_subcolumns, player_name) )
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The similar player with Renato Augusto that returned from the methods are J. Veretout, V. Vada, Parejo, M. Brozovi and M. Pjanic.&lt;/p&gt;
+
+&lt;p&gt;I also run the method again to see the similar player with Lionel Messi, the top 5 players are Neymar, L. Insigne, Y. Carrasco (playing in China now), E. Hazard and R. Mahrez&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Plot the attribute scores for these six players
+best_player = player_attribute_long[player_attribute_long.Name.isin([&#39;L. Messi&#39;, &#39;Neymar&#39;, &#39;L. Insigne&#39;,&#39;Y. Carrasco&#39;,&#39;E. Hazard&#39;,&#39;R. Mahrez&#39;])].reset_index(drop = True)
+plt.subplots(figsize = (20, 15))
+sns.pointplot(x = &amp;quot;variable&amp;quot;, y = &amp;quot;value&amp;quot;, hue = &amp;quot;Name&amp;quot;, data = best_player, dodge =True)
+plt.xticks(rotation = &#39;vertical&#39;, fontsize = 13)
+plt.xlabel(&amp;quot;Attribute&amp;quot;)
+plt.ylabel(&amp;quot;Normalized Score&amp;quot;)
+plt.legend()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;/img/fifa_output_4.png&#34; alt=&#34;My Image&#34; /&gt;&lt;/p&gt;</description>
     </item>
     
     <item>

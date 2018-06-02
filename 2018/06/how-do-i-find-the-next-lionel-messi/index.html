@@ -352,6 +352,43 @@ plt.ylabel(&quot;Score&quot;)
 </code></pre>
 
 <p><img src="/img/fifa_output_3.png" alt="My Image" /></p>
+
+<p>In order to find similar player, I used the Kullback-Leibler divergence (also called relative entropy), it&rsquo;s a measure of how one probability distribution diverges from a second probability distribution. I normalize players&rsquo; attributes score to be probability distribution, then pick the target player we are interested to compare with other players distribution and sort the result from highest to lowest, finally return top K similar player with lowest kl-divergence score</p>
+
+<pre><code class="language-python">
+import operator
+player_name = 'Renato Augusto'
+
+
+def returnSimilarPlayer(df, player_name, overall_difference = 5, results = 5):
+    similar_player = {}
+    overall_rating = df.loc[df.Name == player_name, 'Overall'].values[0]
+    attributes_rating = df.ix[df.Name == player_name, 3:].values[0]
+    for row in df.itertuples(name = None):
+        if abs(row[2] - overall_rating) &lt;= overall_difference:
+            kl_distance = entropy(attributes_rating, np.array(row[4:]))
+            similar_player[(row[1], row[2])] = kl_distance
+    similar_player_cp = sorted(similar_player.items(), key = operator.itemgetter(1), reverse = False)
+    return similar_player_cp[1:results + 1]
+
+print( returnSimilarPlayer(player_subcolumns, player_name) )
+</code></pre>
+
+<p>The similar player with Renato Augusto that returned from the methods are J. Veretout, V. Vada, Parejo, M. Brozovi and M. Pjanic.</p>
+
+<p>I also run the method again to see the similar player with Lionel Messi, the top 5 players are Neymar, L. Insigne, Y. Carrasco (playing in China now), E. Hazard and R. Mahrez</p>
+
+<pre><code class="language-python"># Plot the attribute scores for these six players
+best_player = player_attribute_long[player_attribute_long.Name.isin(['L. Messi', 'Neymar', 'L. Insigne','Y. Carrasco','E. Hazard','R. Mahrez'])].reset_index(drop = True)
+plt.subplots(figsize = (20, 15))
+sns.pointplot(x = &quot;variable&quot;, y = &quot;value&quot;, hue = &quot;Name&quot;, data = best_player, dodge =True)
+plt.xticks(rotation = 'vertical', fontsize = 13)
+plt.xlabel(&quot;Attribute&quot;)
+plt.ylabel(&quot;Normalized Score&quot;)
+plt.legend()
+</code></pre>
+
+<p><img src="/img/fifa_output_4.png" alt="My Image" /></p>
               
             </div>
           </div>
