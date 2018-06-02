@@ -36,6 +36,8 @@ import seaborn as sns
 import sys
 reload(sys)
 sys.setdefaultencoding(&#39;utf8&#39;)
+from scipy.stats import entropy
+import operator
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Basic exploration on the dataSet
@@ -117,9 +119,7 @@ plt.ylabel(&amp;quot;Score&amp;quot;)
 
 &lt;p&gt;In order to find similar player, I used the Kullback-Leibler divergence (also called relative entropy), it&amp;rsquo;s a measure of how one probability distribution diverges from a second probability distribution. I normalize players&amp;rsquo; attributes score to be probability distribution, then pick the target player we are interested to compare with other players distribution and sort the result from highest to lowest, finally return top K similar player with lowest kl-divergence score&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
-import operator
-player_name = &#39;Renato Augusto&#39;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;player_name = &#39;Renato Augusto&#39;
 
 
 def returnSimilarPlayer(df, player_name, overall_difference = 5, results = 5):
