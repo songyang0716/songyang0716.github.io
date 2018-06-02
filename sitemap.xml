@@ -2,44 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://songyang0716.github.io/2017/09/scrape-daily-stock-price-and-deliver-to-your-email/</loc>
+    <loc>/2018/06/how-do-i-find-the-next-lionel-messi/</loc>
+    <lastmod>2018-06-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/2017/09/scrape-daily-stock-price-and-deliver-to-your-email/</loc>
     <lastmod>2017-09-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://songyang0716.github.io/2017/06/an-implementation-of-noisy-channel-model/</loc>
+    <loc>/2017/06/an-implementation-of-noisy-channel-model/</loc>
     <lastmod>2017-06-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://songyang0716.github.io/2017/05/optimal-stopping-in-speed-dating/</loc>
+    <loc>/2017/05/optimal-stopping-in-speed-dating/</loc>
     <lastmod>2017-05-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://songyang0716.github.io/2017/04/an-analysis-of-premier-league.rmd/</loc>
+    <loc>/2017/04/an-analysis-of-premier-league.rmd/</loc>
     <lastmod>2017-04-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://songyang0716.github.io/2017/04/a-review-of-spelling-correction/</loc>
+    <loc>/2017/04/a-review-of-spelling-correction/</loc>
     <lastmod>2017-04-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://songyang0716.github.io/2017/04/hello-world/</loc>
+    <loc>/2017/04/hello-world/</loc>
     <lastmod>2017-04-14T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://songyang0716.github.io/post/</loc>
-    <lastmod>2017-09-29T00:00:00+00:00</lastmod>
+    <loc>/post/</loc>
+    <lastmod>2018-06-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://songyang0716.github.io/</loc>
-    <lastmod>2017-09-29T00:00:00+00:00</lastmod>
+    <loc>/</loc>
+    <lastmod>2018-06-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

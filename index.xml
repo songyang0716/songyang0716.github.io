@@ -2,19 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Yang&#39;s Den</title>
-    <link>https://songyang0716.github.io/index.xml</link>
+    <link>/index.xml</link>
     <description>Recent content on Yang&#39;s Den</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 29 Sep 2017 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://songyang0716.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How do I find the next Lionel Messi</title>
+      <link>/2018/06/how-do-i-find-the-next-lionel-messi/</link>
+      <pubDate>Sat, 02 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/06/how-do-i-find-the-next-lionel-messi/</guid>
+      <description>&lt;p&gt;Using statistical method to help you find similar playing style soccer players
+&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Scrape daily stock price and deliver to your email</title>
-      <link>https://songyang0716.github.io/2017/09/scrape-daily-stock-price-and-deliver-to-your-email/</link>
+      <link>/2017/09/scrape-daily-stock-price-and-deliver-to-your-email/</link>
       <pubDate>Fri, 29 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://songyang0716.github.io/2017/09/scrape-daily-stock-price-and-deliver-to-your-email/</guid>
+      <guid>/2017/09/scrape-daily-stock-price-and-deliver-to-your-email/</guid>
       <description>&lt;p&gt;A tutorial on website scraping &amp;amp; email delivering using python
 &lt;/p&gt;
 
@@ -155,10 +165,10 @@ class stock_scraper:
     
     <item>
       <title>An implementation of noisy channel model</title>
-      <link>https://songyang0716.github.io/2017/06/an-implementation-of-noisy-channel-model/</link>
+      <link>/2017/06/an-implementation-of-noisy-channel-model/</link>
       <pubDate>Mon, 19 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://songyang0716.github.io/2017/06/an-implementation-of-noisy-channel-model/</guid>
+      <guid>/2017/06/an-implementation-of-noisy-channel-model/</guid>
       <description>&lt;p&gt;A simple implementation of noisy channel model to correct the non-word, real-word spelling errors occured in a sentence
 &lt;/p&gt;
 
@@ -388,10 +398,10 @@ corrector.return_best_sentence(&amp;#39;This used to belong to thew queen&amp;#3
     
     <item>
       <title>Optimal Stopping in Speed Dating</title>
-      <link>https://songyang0716.github.io/2017/05/optimal-stopping-in-speed-dating/</link>
+      <link>/2017/05/optimal-stopping-in-speed-dating/</link>
       <pubDate>Tue, 02 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://songyang0716.github.io/2017/05/optimal-stopping-in-speed-dating/</guid>
+      <guid>/2017/05/optimal-stopping-in-speed-dating/</guid>
       <description>&lt;p&gt;I came across this question when I was reading the first chapter of the book ‘Algorithms to Live By’. It’s a famous problem that uses the optimal stopping theory. The problem has been studied extensively in the fields of statistics, decision theory and applied probability. It’s also known as secretary problem, marriage problem and the best choice problem.In any optimal problem, the crucial dilemma is not which option to &lt;em&gt;pick&lt;/em&gt;, but how many options to even &lt;em&gt;consider&lt;/em&gt;. The problem proved to be a near-perfect mathematical puzzle: simple to explain, devilish to solve, succinct in its answer, and intriguing in its implications. I am going to present this problem under the speed dating scenario for easier understanding and use simulation to find the answer.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;div id=&#34;introduction&#34; class=&#34;section level2&#34;&gt;
@@ -441,7 +451,7 @@ for (z in simulations) {
 qplot(x = simulations, y = result, geom = c(&amp;quot;point&amp;quot;, &amp;quot;line&amp;quot;), xlab = &amp;quot;Sample Size&amp;quot;, 
     ylab = &amp;quot;Optimal Stopping&amp;quot;) + geom_hline(aes(yintercept = 0.37), color = &amp;quot;red&amp;quot;, 
     linetype = &amp;quot;dashed&amp;quot;) + geom_text(aes(0, 0.37, label = 0.37, vjust = -1))&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://songyang0716.github.io/post/2017-05-02-optimal-stopping-in-speed-dating_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/2017-05-02-optimal-stopping-in-speed-dating_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;whence-37&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;Whence 37% ?&lt;/h2&gt;
@@ -454,10 +464,10 @@ qplot(x = simulations, y = result, geom = c(&amp;quot;point&amp;quot;, &amp;quot
     
     <item>
       <title>An Analysis of Premier League.rmd</title>
-      <link>https://songyang0716.github.io/2017/04/an-analysis-of-premier-league.rmd/</link>
+      <link>/2017/04/an-analysis-of-premier-league.rmd/</link>
       <pubDate>Sat, 29 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://songyang0716.github.io/2017/04/an-analysis-of-premier-league.rmd/</guid>
+      <guid>/2017/04/an-analysis-of-premier-league.rmd/</guid>
       <description>&lt;p&gt;The &lt;strong&gt;Premier League&lt;/strong&gt; is an English professional league for men’s association football clubs. At the top of the English football league system, it is the country’s primary football competition. Contested by 20 clubs, it operates on a system of promotion and relegation with the English Football League. Premier League season runs from August to May, Teams play 38 matches each, totalling 380 matches in the season. I have to say that it’s my favorite league in the world, I do really enjoy the high competitiveness of Premier League, Also in the video game, it’s a wise choice to start your career mode using a Premier League team due to the high transfer budget.&lt;/p&gt;
 &lt;!--more--&gt;
 &lt;div id=&#34;setup&#34; class=&#34;section level2&#34;&gt;
@@ -490,30 +500,31 @@ pl &amp;lt;- df %&amp;gt;% filter(tier == 1, Season &amp;gt;= 1992)&lt;/code&gt;
 &lt;li&gt;The followings are the 47 teams that ever played in Premier League for at least one season&lt;/li&gt;
 &lt;/ul&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;sort(unique(pl$home))&lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;##  [1] &amp;quot;AFC Bournemouth&amp;quot;         &amp;quot;Arsenal&amp;quot;                
-##  [3] &amp;quot;Aston Villa&amp;quot;             &amp;quot;Barnsley&amp;quot;               
-##  [5] &amp;quot;Birmingham City&amp;quot;         &amp;quot;Blackburn Rovers&amp;quot;       
-##  [7] &amp;quot;Blackpool&amp;quot;               &amp;quot;Bolton Wanderers&amp;quot;       
-##  [9] &amp;quot;Bradford City&amp;quot;           &amp;quot;Burnley&amp;quot;                
-## [11] &amp;quot;Cardiff City&amp;quot;            &amp;quot;Charlton Athletic&amp;quot;      
-## [13] &amp;quot;Chelsea&amp;quot;                 &amp;quot;Coventry City&amp;quot;          
-## [15] &amp;quot;Crystal Palace&amp;quot;          &amp;quot;Derby County&amp;quot;           
-## [17] &amp;quot;Everton&amp;quot;                 &amp;quot;Fulham&amp;quot;                 
-## [19] &amp;quot;Hull City&amp;quot;               &amp;quot;Ipswich Town&amp;quot;           
-## [21] &amp;quot;Leeds United&amp;quot;            &amp;quot;Leicester City&amp;quot;         
-## [23] &amp;quot;Liverpool&amp;quot;               &amp;quot;Manchester City&amp;quot;        
-## [25] &amp;quot;Manchester United&amp;quot;       &amp;quot;Middlesbrough&amp;quot;          
-## [27] &amp;quot;Newcastle United&amp;quot;        &amp;quot;Norwich City&amp;quot;           
-## [29] &amp;quot;Nottingham Forest&amp;quot;       &amp;quot;Oldham Athletic&amp;quot;        
-## [31] &amp;quot;Portsmouth&amp;quot;              &amp;quot;Queens Park Rangers&amp;quot;    
-## [33] &amp;quot;Reading&amp;quot;                 &amp;quot;Sheffield United&amp;quot;       
-## [35] &amp;quot;Sheffield Wednesday&amp;quot;     &amp;quot;Southampton&amp;quot;            
-## [37] &amp;quot;Stoke City&amp;quot;              &amp;quot;Sunderland&amp;quot;             
-## [39] &amp;quot;Swansea City&amp;quot;            &amp;quot;Swindon Town&amp;quot;           
-## [41] &amp;quot;Tottenham Hotspur&amp;quot;       &amp;quot;Watford&amp;quot;                
-## [43] &amp;quot;West Bromwich Albion&amp;quot;    &amp;quot;West Ham United&amp;quot;        
-## [45] &amp;quot;Wigan Athletic&amp;quot;          &amp;quot;Wimbledon&amp;quot;              
-## [47] &amp;quot;Wolverhampton Wanderers&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;##  [1] AFC Bournemouth         Arsenal                
+##  [3] Aston Villa             Barnsley               
+##  [5] Birmingham City         Blackburn Rovers       
+##  [7] Blackpool               Bolton Wanderers       
+##  [9] Bradford City           Burnley                
+## [11] Cardiff City            Charlton Athletic      
+## [13] Chelsea                 Coventry City          
+## [15] Crystal Palace          Derby County           
+## [17] Everton                 Fulham                 
+## [19] Hull City               Ipswich Town           
+## [21] Leeds United            Leicester City         
+## [23] Liverpool               Manchester City        
+## [25] Manchester United       Middlesbrough          
+## [27] Newcastle United        Norwich City           
+## [29] Nottingham Forest       Oldham Athletic        
+## [31] Portsmouth              Queens Park Rangers    
+## [33] Reading                 Sheffield United       
+## [35] Sheffield Wednesday     Southampton            
+## [37] Stoke City              Sunderland             
+## [39] Swansea City            Swindon Town           
+## [41] Tottenham Hotspur       Watford                
+## [43] West Bromwich Albion    West Ham United        
+## [45] Wigan Athletic          Wimbledon              
+## [47] Wolverhampton Wanderers
+## 142 Levels: Aberdare Athletic Accrington ... York City&lt;/code&gt;&lt;/pre&gt;
 &lt;ul&gt;
 &lt;li&gt;which clubs have never been relegated from the league ?&lt;/li&gt;
 &lt;/ul&gt;
@@ -530,7 +541,7 @@ pl_team %&amp;gt;%
   xlab(&amp;#39;Club&amp;#39;) +
   ylab(&amp;#39;Season&amp;#39;) +
   ggtitle(&amp;#39;Total Seasons in Premier League&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://songyang0716.github.io/post/premier_league_analysis_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/premier_league_analysis_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Since the start of the Premier League, seven clubs have never faced the drop: They are &lt;strong&gt;Arsenal, Aston Villa, Chelsea, Everton, Liverpool, Man Utd and Hotspur&lt;/strong&gt;. Hopefully, we could see Newcastle United in the next season ! &lt;br /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Ranking of each club in the past 25 years&lt;/li&gt;
@@ -568,7 +579,7 @@ pl_rank  %&amp;gt;%
     ylab(&amp;#39;Standing&amp;#39;) +
     ggtitle(&amp;#39;Top Team Standing&amp;#39;) +
     theme(legend.position=&amp;quot;bottom&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://songyang0716.github.io/post/premier_league_analysis_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/premier_league_analysis_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;From the plot, I notice Manchester United wins the most titles in the premier league history and fans are impressed by their stability and consistency before Ferguson’s retirement in 2012. On the other hand, Manchester City is not a championship competitor before, After being purchased by the &lt;strong&gt;Abu Dhabi United Group&lt;/strong&gt; in 2008, the club took transfer spending to an unprecendented level and the continued inverstment in players followed in gradually successive seasons.&lt;br /&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -615,7 +626,7 @@ pl_team_overview %&amp;gt;%
                   scale_x_continuous(name=&amp;quot;Goals Scored Ranking&amp;quot;, limits=c(1, 8), breaks = seq(1,8,1)) +
                   scale_y_continuous(name=&amp;quot;Goals Allowed Ranking&amp;quot;, limits=c(1, 8), breaks = seq(1,8,1)) +
                   ggtitle(&amp;#39;Premier League Championships offense and defense Ranking&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://songyang0716.github.io/post/premier_league_analysis_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/premier_league_analysis_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;From the above plot, I noticed that most of the points cluster in the upper left part of the plot, which indicates all of past premier league championship teams at least have the top 3 offense, on the other hand, their defensive ability may not be prestigious (Top 7)&lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;could-defense-help-a-team-to-avoid-relegation&#34; class=&#34;section level3&#34;&gt;
@@ -639,7 +650,7 @@ relegation_team_long %&amp;gt;%
                 geom_density(alpha = 0.4) +
                 scale_x_continuous(name=&amp;quot;Ranking&amp;quot;, limits=c(1, 22), breaks = seq(1,20,1)) +
                 ggtitle(&amp;#39;Premier League Relegation Team&amp;#39;)&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;https://songyang0716.github.io/post/premier_league_analysis_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/premier_league_analysis_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;From the above plot, Relegation teams always did worse in both offense and defense side. In addition, I notice that defense has higher density in the lower ranking side of the plot, which infers the relegation teams have lower average defense ranking than offense ranking. However, the difference is not significant. On the other hand, The basic lesson is that competence on both offense and defense with a slightly above average performance in one of the two areas (ranking in top 8) is enough to gurantee survival&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -648,10 +659,10 @@ relegation_team_long %&amp;gt;%
     
     <item>
       <title>A Review of Spelling Correction</title>
-      <link>https://songyang0716.github.io/2017/04/a-review-of-spelling-correction/</link>
+      <link>/2017/04/a-review-of-spelling-correction/</link>
       <pubDate>Sun, 16 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://songyang0716.github.io/2017/04/a-review-of-spelling-correction/</guid>
+      <guid>/2017/04/a-review-of-spelling-correction/</guid>
       <description>&lt;p&gt;A tutorial on Non-Word Spelling Correction and Real Word Spelling Correction
 &lt;/p&gt;
 
@@ -752,10 +763,10 @@ def edit2(word):
     
     <item>
       <title>Hello World</title>
-      <link>https://songyang0716.github.io/2017/04/hello-world/</link>
+      <link>/2017/04/hello-world/</link>
       <pubDate>Fri, 14 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://songyang0716.github.io/2017/04/hello-world/</guid>
+      <guid>/2017/04/hello-world/</guid>
       <description>&lt;p&gt;Welcome to my Den !
 &lt;/p&gt;
 
