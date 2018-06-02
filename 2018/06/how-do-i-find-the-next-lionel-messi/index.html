@@ -255,6 +255,103 @@ ga('send', 'pageview');
             <div class="main-content-wrap">
               <p>Using statistical method to help you find similar playing style soccer players
 </p>
+
+<h3 id="2018-world-cup-is-coming">2018 World Cup is coming</h3>
+
+<p>2018 FIFA World Cup is right around the corner, It seems like it might be missing some big nations, like Italy, Netherlands, USA or China (Highest populations). But that&rsquo;s what makes this tournament the best in sports. If you check out the Google Trend and type in keyword <strong>Soccer</strong>, you could easily tell a bump in searches every four years. Brazil are looking to bounce back from a travesty 7:1 in 2014, while Spain and France are hoping to dethrone defending champions Germany. Can Korean, Japan or Iran make a splash for Asian ? What would be the destiny of England ? There are so many doubts in this summer, So in the coming weeks I will be paying close attention to these teams and look forward to seeing the final Winner in July !</p>
+
+<p>By now, all nations have already submit their final 23-man World Cup squad, there are some under-the-radar names that in the list. For example, Renato Augusto, the Brazilian midfielder who currently played in Chinese soccer club Beijing GuoAn, might not be a household name, but certainly he is indispensable to the team. So Fans are wondering can we have a preview of this player&rsquo;s playing style? How does he compare with other brazilian midfielder like Paulinho ? and How do I find a similar player like him ?</p>
+
+<p>Luckily, this is a way to answer these questions, I got this amazing FIFA 18 dataset from Kaggle competition <a href="https://www.kaggle.com/thec03u5/fifa-18-demo-player-dataset">https://www.kaggle.com/thec03u5/fifa-18-demo-player-dataset</a> and it contains more than 40 attributes for each player and also their national, club and position information. I am going to use these attributes data to build out our soccer player recommender system, to help you learn more about Renato Augusto. (The script is written in Python)</p>
+
+<pre><code class="language-python"># Import packages
+import numpy as np
+import pandas as pd
+%matplotlib inline
+import matplotlib
+import matplotlib.pyplot as plt
+import seaborn as sns
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+</code></pre>
+
+<pre><code class="language-python"># Basic exploration on the dataSet
+# Ignore some details
+player = pd.read_csv(&quot;fifa-18-demo-player-dataset/CompleteDataset.csv&quot;)
+player.columns
+player = player.iloc[:, [1,2,4,6,7,8,10,11,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,63]]
+player.shape  
+# There are 17981 player with 43 different attribute
+player.dtypes
+</code></pre>
+
+<pre><code class="language-python"># The dataset contains some updated information on player's attribute value i.e. 85 + 2,
+# so we need to complete the calculation
+def update_score(score):
+	score = str(score)
+	if '+' in score:
+		old, updates = score.split(&quot;+&quot;)
+		new_score = int(old) + int(updates)
+		return str(min(new_score, 100))
+	elif '-' in score:
+		old, updates =score.split(&quot;-&quot;)
+		new_score = int(old) - int(updates)
+		return str(max(0, new_score))
+	else:
+		return score
+
+
+# Only include numeric metrics
+numeric_attributes = ['Overall','Potential','Acceleration','Aggression','Agility','Balance','Ball control','Composure','Crossing','Curve','Dribbling','Finishing','Free kick accuracy','GK diving',
+              'GK handling','GK kicking','GK positioning','GK reflexes','Heading accuracy','Interceptions','Jumping','Long passing','Long shots','Marking','Penalties','Positioning',
+              'Reactions','Short passing','Shot power','Sliding tackle','Sprint speed','Stamina','Standing tackle','Strength','Vision','Volleys']
+
+
+for attr in numeric_attributes:
+	player[attr] = player[attr].apply(lambda x: update_score(x)).astype(int)
+</code></pre>
+
+<pre><code class="language-python"># Distribution of each attribute 
+player_attribute = player[numeric_attributes]
+player_attribute.describe()
+plt.subplots(figsize = (20, 15))
+sns.boxplot(x = &quot;variable&quot;, y = &quot;value&quot;, data = pd.melt(player_attribute))
+plt.xticks(rotation = 'vertical')
+plt.yticks(np.arange(0, 101, 5))
+plt.ylabel(&quot;Score&quot;)
+plt.xlabel(&quot;Attributes&quot;)
+</code></pre>
+
+<p><img src="/img/fifa_output_1.png" alt="My Image" /></p>
+
+<pre><code class="language-python"># Correlation coefficients between these attributes 
+attribute_corr = player_attribute.corr()
+plt.subplots(figsize = (25, 20))
+sns.heatmap(attribute_corr, xticklabels = attribute_corr.columns, 
+            yticklabels = attribute_corr.columns, 
+            cmap = 'RdBu_r', annot = True)
+</code></pre>
+
+<p><img src="/img/fifa_output_2.png" alt="My Image" /></p>
+
+<p>There are many interesting findings from the above plots, Defender&rsquo;s key attributes (Interception, Marking, Sliding Tackle..) always have high variances, Reactions is highly correlated with one&rsquo;s overall rating, Marking skills is related with Aggressions, and Jumping is kind like a independent attribute which is not correlated with any other attributes. Balance and Strength have negative correlation, which implies smaller sized players usually have higher balance as they have lower centres of gravity, and can often ride tackles and stay on their feet.</p>
+
+<pre><code class="language-python"># Player's Overall Ratings by Countries
+# I only include the nations that have more than 400 players in the dataset
+# The subset samples contain 11 countries
+player_by_nation = player.groupby(['Nationality'])['Name'].apply(lambda x : len(x)).reset_index()
+great_soccer_nations = player_by_nation.loc[player_by_nation.Name &gt;= 300,'Nationality'].values
+player_subset = player[player.Nationality.isin(great_soccer_nations)].reset_index(drop = True)
+
+plt.figure(figsize=(20, 15))
+sns.boxplot(x = &quot;Nationality&quot;, y = &quot;value&quot;, hue = 'variable', data = pd.melt(player_subset[['Nationality','Overall','Potential']], id_vars = 'Nationality'), palette=&quot;Set3&quot;)
+plt.xticks(rotation = 'vertical')
+plt.xlabel(&quot;Nationality&quot;)
+plt.ylabel(&quot;Score&quot;)
+</code></pre>
+
+<p><img src="/img/fifa_output_3.png" alt="My Image" /></p>
               
             </div>
           </div>
