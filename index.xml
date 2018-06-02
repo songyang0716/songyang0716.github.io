@@ -6,13 +6,13 @@
     <description>Recent content on Yang&#39;s Den</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 02 Jun 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 04 Jun 2018 00:00:00 +0000</lastBuildDate>
     <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>How do I find the next Lionel Messi</title>
       <link>/2018/06/how-do-i-find-the-next-lionel-messi/</link>
-      <pubDate>Sat, 02 Jun 2018 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 04 Jun 2018 00:00:00 +0000</pubDate>
       
       <guid>/2018/06/how-do-i-find-the-next-lionel-messi/</guid>
       <description>&lt;p&gt;Using statistical method to help you find similar playing style soccer players
@@ -20,9 +20,9 @@
 
 &lt;h3 id=&#34;2018-world-cup-is-coming&#34;&gt;2018 World Cup is coming&lt;/h3&gt;
 
-&lt;p&gt;2018 FIFA World Cup is right around the corner, It seems like it might be missing some big nations, like Italy, Netherlands, USA or China (Highest populations). But that&amp;rsquo;s what makes this tournament the best in sports. If you check out the Google Trend and type in keyword &lt;strong&gt;Soccer&lt;/strong&gt;, you could easily tell a bump in searches every four years. Brazil are looking to bounce back from a travesty 7:1 in 2014, while Spain and France are hoping to dethrone defending champions Germany. Can Korean, Japan or Iran make a splash for Asian ? What would be the destiny of England ? There are so many doubts in this summer, So in the coming weeks I will be paying close attention to these teams and look forward to seeing the final Winner in July !&lt;/p&gt;
+&lt;p&gt;2018 FIFA World Cup is right around the corner, It might be missing some big nations, like Italy, Netherlands, USA or China (Highest populations). But that&amp;rsquo;s what makes this tournament the best in sports. If you check out the Google Trend and type in keyword &lt;strong&gt;Soccer&lt;/strong&gt;, you could easily tell a bump in searches in every four years. Brazil are looking to bounce back from a travesty 7:1 in 2014, while Spain and France are hoping to dethrone defending champions Germany. Can Korean, Japan or Iran make a splash for Asian ? What would be the destiny of England ? There are so many doubts to be answered in this summer, In the coming weeks the world will be paying close attention to these teams and look forward to seeing the final Winner in July !&lt;/p&gt;
 
-&lt;p&gt;By now, all nations have already submit their final 23-man World Cup squad, there are some under-the-radar names that in the list. For example, Renato Augusto, the Brazilian midfielder who currently played in Chinese soccer club Beijing GuoAn, might not be a household name, but certainly he is indispensable to the team. So Fans are wondering can we have a preview of this player&amp;rsquo;s playing style? How does he compare with other brazilian midfielder like Paulinho ? and How do I find a similar player like him ?&lt;/p&gt;
+&lt;p&gt;By now 6/4/2018, all nations have already submit their final 23-man World Cup squad, there are some under-the-radar names that in the list. For example, Renato Augusto, the Brazilian midfielder who currently played in Chinese soccer club Beijing GuoAn, might not be a household name, but certainly he is indispensable to the team. So Fans are wondering can we have a preview of this player&amp;rsquo;s playing style? How does he compare with other brazilian midfielder like Paulinho ? and How do I find a similar player like him ?&lt;/p&gt;
 
 &lt;p&gt;Luckily, this is a way to answer these questions, I got this amazing FIFA 18 dataset from Kaggle competition &lt;a href=&#34;https://www.kaggle.com/thec03u5/fifa-18-demo-player-dataset&#34;&gt;https://www.kaggle.com/thec03u5/fifa-18-demo-player-dataset&lt;/a&gt; and it contains more than 40 attributes for each player and also their national, club and position information. I am going to use these attributes data to build out our soccer player recommender system, to help you learn more about Renato Augusto. (The script is written in Python)&lt;/p&gt;
 
